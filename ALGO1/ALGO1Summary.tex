@@ -21,22 +21,24 @@
 
 \usepackage{enumitem} % To set no item separation
 
-\newcommand{\cat}[1]{\noindent \textbf{\Large #1}}
-
 % Redefine the itemize symbol
 	\AtBeginDocument{\def\labelitemi{\( \vartriangleright \)}}
 
 \begin{document}
 
 
-\title{\textbf{ALGO 1}}
-\author{}
+\title{Algorithmique 1}
+\author{L3 RI}
 \date{}
 
 \maketitle
 
+\tableofcontents
 
-\cat{Tris}
+
+\section{Algorithmes}
+
+\subsection{Tris}
 
 %
 \begin{itemize}[noitemsep]
@@ -57,30 +59,10 @@
 	\item Optimalité : \(  \Omega (n \log n)  \) nécessaire, arbres de décision
 \end{itemize}
 %
-~ \\
 
 
-\cat{Structures de données}
 
-%
-\begin{itemize}[noitemsep]
-	\item Files de priorité : implémentées par exemple avec un tas
-	
-		Enfiler, défiler un élément maximal, est vide?, construire file vide
-	\item Tables de hachage
-	
-		Ajout, suppression, contient?, risque de collision
-	\item Structure Union-Find
-	
-		créer partition, fusionner deux classes (union), obtenir un représentant (find)
-		
-		Implémentation par une forêt d'arbres, compression de chemin
-\end{itemize}
-%
-~ \\
-
-
-\cat{Arbres binaires}
+\subsection{Arbres binaires}
 
 %
 \begin{itemize}[noitemsep]
@@ -98,10 +80,10 @@
 	
 \end{itemize}
 %
-~ \\
 
 
-\cat{Graphes}
+
+\subsection{Graphes}
 
 %
 \begin{itemize}[noitemsep]
@@ -116,10 +98,9 @@
 	\item Arbre couvrant de poids minimal (\emph{Algorithme de Kruskal}, \emph{Algorithme de Prim})
 \end{itemize}
 %
-~ \\
 
 
-\cat{Algorithmes gloutons}
+\subsection{Algorithmes gloutons}
 
 \begin{itemize}[noitemsep]
 	\item Prendre un choix localement meilleur
@@ -127,10 +108,9 @@
 	\item Rendu de monnaie
 	\item Couverture d'ensemble (exemple où le choix glouton ne donne pas forcément la solution optimale)
 \end{itemize}
-~ \\
 
 
-\cat{Programmation dynamique}
+\subsection{Programmation dynamique}
 
 \begin{itemize}[noitemsep]
 	\item Paradigme de conception d'algorithmes
@@ -141,29 +121,67 @@
 	
 		Recherche plus court chemin dans un graphe (\emph{Algorithme de Floyd-Warshall}, \emph{algorithme de Bellman-Ford}), recherche plus longue sous-suite croissante, problème du sac à dos
 \end{itemize}
-~ \\
 
 
-\cat{Flots}
+\subsection{Flots}
 
 \begin{itemize}[noitemsep]
 	\item Problème du flot maximal
 	\item Algorithme de Ford-Fulkerson
 	\item Réduction du problème de couplage maximal au problème de flot maximal
 \end{itemize}
-~ \\
 
 
-\cat{Programmation linéaire}
+\subsection{Programmation linéaire}
 
 \begin{itemize}[noitemsep]
 	\item Forme canonique
 	\item Algorithme du simplexe
 \end{itemize}
-~ \\
 
 
-\cat{Autres}
+\section{Structures de données}
+
+%
+\subsection{Files de priorité}
+
+Implémentées par exemple avec un tas.
+
+Méthodes : 
+\begin{itemize}[noitemsep]
+	\item Enfiler
+	\item Défiler un élément maximal
+	\item Est vide?
+	\item Construire file vide
+\end{itemize}
+
+\subsection{Tables de hachage}
+	
+Méthodes : 
+\begin{itemize}[noitemsep]
+	\item Ajout d'un élément
+	\item Suppression d'un élément
+	\item Contient x ?
+\end{itemize}
+
+Risques de collision, n'est pas rare (idem paradoxe des anniversaires)
+
+\subsection{Structure Union-Find}
+
+Méthodes : 
+\begin{itemize}[noitemsep]
+	\item Créer partition
+	\item Fusionner deux classes (union)
+	\item Obtenir un représentant (find)
+\end{itemize}
+
+Implémentation par une forêt d'arbres. %
+Complexité améliorée en utilisant la compression de chemin.
+
+
+
+
+\section{Autres}
 
 \begin{itemize}[noitemsep]
 	\item Encodage de Huffman
