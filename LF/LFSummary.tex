@@ -1,0 +1,183 @@
+%summary for LF
+
+\documentclass[french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Langages formels et calculabilité}
+\date{}
+\author{L3 RI}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Langages Formels}
+\subsection{Automates}
+\paragraph{Analogie langages et équations}
+\begin{tabular}{c|c}
+$\emptyset$ & 0\\
+\{$\epsilon$\} & 1\\
+$\cup$ & +\\
+. & $\times$
+\end{tabular}
+
+\paragraph{Expressions rationnelles}
+Générées par la grammaire :
+$$E = \emptyset~|~\epsilon~|~(E.E)~|~(E\cup E)~|~E\up{*}$$
+
+\paragraph{Logique monadique du second ordre}
+
+Exemple : $\exists x, a(x)$ il existe une position $s$ dans le mot où la lettre est $a$.
+
+Générées par la grammaire :
+$$\varphi = x~|~a(x)~|~S(x,y)~|~x=y~|~x<y~|~\neg\varphi~|~(\varphi\wedge\varphi)~|~(\varphi\rightarrow\varphi)~|~\exists x\varphi~|~\exists X\varphi~|~\forall x\varphi~|~\forall X\varphi$$
+
+\paragraph{Théorème de Kleene} $Rat(\Sigma) = Rec(\Sigma)$
+
+Construction de l'automate depuis une expression $e$ en $\mathcal{O}(|e|)$ états. Construction de l'expr depuis un automate à $n$ états en $\mathcal{O}(4\up{n})$. On crée un automate généralisé puis on en supprime les états.
+
+\paragraph{Lemme de l'étoile / de pompage}
+
+L rationnel. $\exists N\in\mathbb{N},\ \forall m\in L$ avec $|m|\geq N$, alors $m = uwv$, $w\neq\epsilon$, et $\forall n\in\mathbb{N},\ uw\up{n}v\in L$.
+
+\paragraph{Langages rationnels stables par intersection}
+
+\paragraph{Unicité (à iso. près) de l'automate (det. complet) minimal}
+On quotiente l'automate par la relation d'équivalence entre les états : deux états sont équiv. si les langages reconnus à partir d'eux sont les mêmes.
+
+\paragraph{Algorithme de Moore}
+Pour obtenir l'automate minimal. Algorithme des ``patates qui se stabilisent''. Au début, une classe d'équivalence pour les états finaux et une pour les autres. Ensuite, on reste dans la même classe d'éq. si en lisant n'importe quelle lettre on arrivait dans la même classe pour la relation d'éq. précédente. Dès qu'on a les mêmes classes d'éq, on s'arrête et on quotiente l'automate initial par cette relation d'éq. pour avoir le minimal.
+
+Complexité moyenne $\mathcal{O}(n\log(n))$ pire $\mathcal{O}(|\Sigma|n\up{2})$.
+
+\paragraph{Reconnaissance par morphisme}
+L rec. par $\mu\colon\Sigma\up{*}\mapsto M$ ssi $\exists P\subseteq M$, $L=\mu\up{-1}(P)$.
+
+L rationnel ssi reconnu par morphisme de $\Sigma$ dans $M$ fini.
+
+\paragraph{Monoïde syntaxique} 
+Pour un langage L, on crée la rel. d'éq. : $m_1 \sim m_2$ ssi $\forall u,v \in\Sigma\up{*}, (um_1v\in L\ ssi\ um_2v\in L)$. $\Sigma\up{*}$ quotienté par cette relation est le monoïde syntaxique, isomorphe au mono. des transitions de l'automate minimal de L.
+
+\paragraph{Expressions rationnelles généralisées}
+$$E = \emptyset~|~\epsilon~|~E.E~|~E\cup E~|~E\up{C}~|~E\up{*}$$
+
+\paragraph{Langage sans étoile} 
+L sans étoile s'il existe E expr. généralisée, $L(E) = L$ et E de hauteur d'étoile généralisée (nombre max d'étoiles imbriquées, en admettant les complémentaires) nulle.
+
+\paragraph{Théorème Schützenberger}
+L rationnel. L sans étoile ssi son mono. syntaxique est apériodique ($\forall m, \exists i\in\mathbb{N}, m\up{i} = m\up{i+1})$.
+
+\subsection{Grammaires}
+\paragraph{Grammaire}
+$$G = (\Sigma, V, S, R)$$
+$V$ non terminaux, $S\in V$ axiome, $R\subseteq V\times(V\cup\Sigma)\up{*}$.
+
+Dérivation $u\rightarrow v$ si $\exists (X,m)\in R$ et $u=u_1Xu_2,\ v = u_1mu_2$. Dériv. gauche si $u_1\in\Sigma\up{*}$.
+
+Grammaire linéaire à droite pour des règles de la forme $$A\rightarrow B,\ A\rightarrow aB,\ A\rightarrow a$$.
+
+\paragraph{Lemme fondamental}
+$\forall k\in\mathbb{N}, \forall \alpha_1,\alpha_2 \in(\Sigma\cup V)\up{*}, u\in (\Sigma\cup V)\up{*}$, si $\alpha_1\alpha_2\rightarrow\up{k}u$, alors $\exists u_1,u_2\in(\Sigma\cup V)\up{*}, \exists k_1,k_2\in\mathbb{N}$ tels que $u = u_1 u_2$, $\alpha_1\rightarrow\up{$k_1$} u_1,\ \alpha_2 \rightarrow \up{$k_2$} u_2$ et $k = k_1 + k_2$.
+
+\paragraph{Stabilité de Alg($\Sigma$) par composition, union, étoile et morphisme}  
+On en déduit aussi $Rat(\Sigma) \subseteq Alg(\Sigma)$.
+
+Pas stable par intersection et complémentaire!
+
+\paragraph{Grammaires ambigües}
+$\exists u\in L(G)$ tel que $u$ est le mot des feuilles de 2 arbres de dérivation. Décider de l'ambiguité est indécidable.
+
+\paragraph{Lemme de l'étoile / Bar-Hillel, Perles et Shamir}
+L algébrique. $\exists K\in\mathbb{N}$ tel que $\forall u\in L,\ |u|\geq K$, alors $u = xvywz$ avec $vw\neq \epsilon$, $|vyw|\leq K$, $\forall i\in\mathbb{N}, xv\up{i}yw\up{i}z \in L$.
+
+\paragraph{Nettoyage de grammaire}
+On supprime d'abord les règles contenant des symboles non productifs (qui ne terminent jamais sur une lettre de $\Sigma$). Puis les non accessibles depuis $S$.
+
+\paragraph{Formes normales de Chomsky}
+Les règles dont de la forme $N\rightarrow BC$ ou $N\rightarrow a$ ou $S\rightarrow\epsilon$. La taille de la forme normale est au pire quadratique en la taille de la grammaire initiale.
+
+\paragraph{Algorithme CYK / Cocke,  Younger et Kasari}
+Prend une grammaire G en FNC. Prog dynamique. On calcule les $\mathcal{N}(i,j) = \{ N\in V~|~N\rightarrow\up{*}w[i..j]\}$.
+
+Cas récursif : $i<j$, $\mathcal{N}(i,j)=\{N\in V~|~\exists N\rightarrow BC, \exists k\in\{i..j-1\} \text{avec }B\in\mathcal{N}(i,k), C\in\mathcal{N}(k+1, j)\}$.
+
+On fait varier $l\colon2\rightarrow|w|$, $i\colon1\rightarrow|w|-l+1$, $j=i+l-1$.
+
+Complexité $\mathcal{O}(|w|\up{3}P(|G|))$ où $P$ polynôme.
+
+\paragraph{Théorème de Chomsky-Schützenberger}
+$L\in Alg(\Sigma)$ ssi $\exists n\in\mathbb{N}, \mu : \{a_1,\dots, a_n, \bar{a_1},\dots, \bar{a_n}\} \rightarrow\Sigma\up{*}, k\in Rat(\Sigma_n)$ tels que $L = \mu(D_n\up{*}\cap K)$. Où $D_n\up{*}$ est le langage de Dyck de $n$ parenthèses (ouvertes et fermées).
+
+\subsection{Automates à piles}
+\paragraph{Automates à piles}
+On rajoute $\Gamma$ un alphabet de pile, et $\delta\subseteq Q\times\Sigma\cup\{\epsilon\}\times\Gamma\cup\{\epsilon\}\times Q\times\Gamma\up{*}$ finie. Équivalence avec $Alg(\Sigma)$. $Rat(\Sigma)$ stable par complémentaire.
+
+\paragraph{Automate à pile déterministe}
+On peut voir $\delta$ comme une fonction partielle : $Q\times\Sigma\cup\{\epsilon\}\times\Gamma\cup\{\epsilon\}\rightarrow Q\times\Gamma\up{*}$ telle que $\forall q\in Q, a\in\Sigma, x\in\Gamma$, exactement une de ces valeurs est définie : $$\delta(q,a,x),\ \delta(q,a,\epsilon),\ \delta(q\epsilon,x),\ \delta(q,\epsilon,\epsilon).$$
+
+$\{a\up{n}b\up{n}\}$ déterministe. Langage des palyndromes non déterministe.
+
+\subsection{Analyse syntaxique}
+\paragraph{Analyse LL(1)}
+TO DO, un peu la flemme ce soir
+\paragraph{Analyse LR(0)}
+TO DO, un peu la flemme ce soir
+
+\section{Calculabilité}
+\subsection{Machines de Turing}
+\paragraph{Machine de Turing}
+Septuplet $(Q,\Sigma, R, \delta, q_0, A, \#)$ où $R$ alphabet de ruban. Une transition part d'un état, lit une lettre, écrit une autre lettre, va dans un autre état, bouge à droite ou à gauche sur le ruban.
+
+Une configuration : état, contenu du ruban, position curseur
+
+Une représentation : mot du ruban avant curseur, état, mot du ruban après $\subseteq R\up{*}\times Q\times(R\up{*}(R\backslash\{\#\})\cup\{\epsilon\})$.
+
+Thèse de Church : reconnu par une procédure effective ssi décidé par une MT.
+
+Équivalence avec ruban double, infini des deux côtés, plusieurs rubans, mémoire accès direct,  non déterministe.
+
+\paragraph{R et RE} 
+Langage accepté : ensemble des mots pour lesquels la machine termine.\\
+Langage décidé : M accepte L, et sans calcul infini.\\
+R ensemble des décidés $\subset$ RE ensemble des acceptés.
+
+
+\paragraph{Fonctions récursives primitives}
+Base : 0(), successeur, projections. On peut utiliser des règles de composition et récursion.
+
+Calculables et dénombrables mais pas suffisant (Ackermann, diagonalisation)
+
+\paragraph{Fonctions $\mu$-récursives}
+Minimisation non bornée : plus petit indice tel qu'un prédicat est vrai. 0 si ça n'existe pas. Un prédicat est sûr si ça existe. Pour obtenir les $\mu$-récursives, on s'autorise les mêmes constructeurs que les récursives primitives + minimisation non bornée de prédicats sûrs.
+
+Èquivalent à calculable par une MT.
+
+\subsection{Non calculabilité}
+\paragraph{Diagonalisation} Ensemble des machines et $\Sigma\up{*}$ dénombrables, pas l'ensemble des langages.
+
+\paragraph{Déduction sur R et RE}
+3 situations \begin{itemize}
+\item $L\in R\wedge \bar{L}\in R$
+\item $L\not\in RE\wedge\bar{L}\not\in RE$
+\item $L\not\in RE\wedge\bar{L}\in RE\backslash R$
+\end{itemize} 
+
+\paragraph{Réduction}
+On sait $L_1$ indécidable, on montre $L_2$ indécidable. On dit qu'on réduit de $L_1$ à $L_2$. On note $L_1\leq_C L_2$. On suppose avoir une MT décidant $L_2$ et on construit une MT décidant $L_1$ à partir de cette machine $\mapsto$ absurde.
+
+\paragraph{Théorème de Rice}
+Propriété $S\subseteq RE$. Non-triviale ($\neq\emptyset$ et $\neq RE$) $\Rightarrow$ indécidable.
+
+
+\paragraph{TO DO}
+Cours du 30/11 et analyse syntaxique
+
+\end{document}
