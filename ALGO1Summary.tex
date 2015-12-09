@@ -1,0 +1,123 @@
+% !TeX spellcheck = fr_FR ----------- %
+% ----------------------------------- %
+% ----SUMMARY-OF-ALGO-1-COURSE------- %
+% ----------------------------------- %
+% -@version-1.0---------------------- %
+% -@author-Florestan-De-Moor--------- %
+% ----------------------------------- %
+
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[frenchb]{babel}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+
+\usepackage{amsfonts}
+
+\usepackage{amssymb}
+
+\usepackage{enumitem} % To set no item separation
+
+\newcommand{\cat}[1]{\noindent \textbf{\Large #1}}
+
+% Redefine the itemize symbol
+	\AtBeginDocument{\def\labelitemi{\( \vartriangleright \)}}
+
+\begin{document}
+
+
+\title{\textbf{ALGO 1}}
+\date{}
+
+\maketitle
+
+
+\cat{Tris}
+
+%
+\begin{itemize}[noitemsep]
+	\item Tri par insertion : \(  O(n^2)  \)
+		
+		Considérer chaque élément un à un pour l'insérer à sa bonne place (penser à un jeu de cartes)
+		
+	\item Tri fusion : \(  O(n\log n)  \)
+		
+		Paradigme diviser pour régner, diviser en deux sous-problèmes
+	\item Tri Shell : \(  O(n^2)  \)
+	
+		Suite de tris par insertion sur chaque constituant d'une partition du tableau
+		
+	\item Tri par tas : \(  O(n\log n)  \)
+	
+		Utiliser une structure de file de priorité, ici un tas
+	\item Optimalité : \(  \Omega (n \log n)  \) nécessaire, arbres de décision
+\end{itemize}
+%
+~ \\
+
+
+\cat{Structures de données}
+
+%
+\begin{itemize}[noitemsep]
+	\item Files de priorité : implémentées par exemple avec un tas
+	
+		Enfiler, défiler un élément maximal, est vide?, construire file vide
+	\item Tables de hachage
+	
+		Ajout, suppressio, contient?, risque de collision
+\end{itemize}
+%
+~ \\
+
+
+\cat{Arbres binaires}
+
+%
+\begin{itemize}[noitemsep]
+	\item Arbre binaire : \(  1+h \leq n \leq 2^{h+1}-1  \)
+	\item Arbre binaire presque complet : %
+		\(  2^h \leq n \leq 2^{h+1}-1  \)
+	\item Tas
+	\item Arbre binaire de recherche (ABR)
+	
+		La recherche d'un élément ne suit qu'une branche, problème si arbre non équilibré
+	\item Arbre AVL
+	
+		Rééquilibrage d'un arbre par des rotations :
+		\(  \log _2(n+1) \leq h \leq 1.44\log _2 n  \)
+	
+\end{itemize}
+%
+~ \\
+
+
+\cat{Graphes}
+
+%
+\begin{itemize}[noitemsep]
+	\item Graphes orientés, pondérés
+	\item Implémentations par liste d'adjacence ou matrice d'adjacence
+	\item Parcours en profondeur
+	
+		Valeurs de \texttt{Pre} et \texttt{Post} traitement, types d'arc, détection de cycles, tri topologique, composantes fortements connexes (\emph{Algorithme de Kosaraju}), graphe quotient
+	\item Parcours en largeur
+		Recherche d'un plus court chemin (\emph{Algorithme de Dijkstra}, \emph{algorithme A\(^*\)})
+\end{itemize}
+%
+~ \\
+
+
+\cat{Algorithmes gloutons}
+
+\begin{itemize}[noitemsep]
+	\item e
+\end{itemize}
+
+
+
+
+\end{document}
