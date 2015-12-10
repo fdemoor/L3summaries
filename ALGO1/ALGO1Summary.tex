@@ -96,11 +96,21 @@
 	\item Implémentations par liste d'adjacence ou matrice d'adjacence
 	\item Parcours en profondeur
 	
-		Valeurs de \texttt{Pre} et \texttt{Post} traitement, types d'arc, détection de cycles, tri topologique, composantes fortement  connexes (\emph{Algorithme de Kosaraju}), graphe quotient
+		Valeurs de \texttt{pre} et \texttt{post} traitement, types d'arc, détection de cycles, tri topologique
+		
+		Composantes fortement  connexes, Algorithme de Kosaraju (un premier PP, puis un second PP dans l'ordre décroissant des temps de \texttt{post} sur le graphe transposé), graphe quotient
 	\item Parcours en largeur
 	
-		Recherche d'un plus court chemin (\emph{Algorithme de Dijkstra}, \emph{algorithme A\(^*\)})
-	\item Arbre couvrant de poids minimal (\emph{Algorithme de Kruskal}, \emph{Algorithme de Prim})
+		Recherche d'un plus court chemin
+		
+		Algorithme de Dijkstra (mise à jour de distances, et considérer le sommet qui minimise)
+		
+		Algorithme A\(^*\) (même principe, mais le choix se base en plus sur une heuristique)
+	\item Arbre couvrant de poids minimal
+	
+	Algorithme de Kruskal (TODO à détailler)
+	
+	Algorithme de Prim (TODO à détailler)
 \end{itemize}
 %
 
@@ -124,7 +134,18 @@
 	\item Écrire l'algorithme (mémoïzation)
 	\item Exemples
 	
-		Recherche plus court chemin dans un graphe (\emph{Algorithme de Floyd-Warshall}, \emph{algorithme de Bellman-Ford}), recherche plus longue sous-suite croissante, problème du sac à dos
+		Recherche plus court chemin dans un graphe
+		
+	\begin{itemize}[noitemsep]
+		\item Algorithme de Floyd-Warshall
+		
+		\( d_{i,j,k} = \) distance minimale allant de i à j %
+		passant par les k premiers sommets 
+		\item Algorithme de Bellman-Ford (TODO à détailler)
+	\end{itemize}
+		Recherche plus longue sous-suite croissante
+		
+		Problème du sac à dos
 \end{itemize}
 
 
@@ -132,7 +153,8 @@
 
 \begin{itemize}[noitemsep]
 	\item Problème du flot maximal
-	\item Algorithme de Ford-Fulkerson
+	\item Algorithme de Ford-Fulkerson (Tant qu'il existe un chemin de la source à la cible dans le graphe résiduel, maximiser les flux sur ce chemin)
+	\item L'algorithme se termine si les poids sont entiers (ou rationnels), sinon ne termine pas forcément
 	\item Réduction du problème de couplage maximal au problème de flot maximal
 \end{itemize}
 
@@ -141,7 +163,7 @@
 
 \begin{itemize}[noitemsep]
 	\item Forme canonique
-	\item Algorithme du simplexe
+	\item Algorithme du simplexe (Tant qu'on peut maximiser la solution, échanger deux variables en utilisant l'expression la plus contraignante)
 \end{itemize}
 
 
