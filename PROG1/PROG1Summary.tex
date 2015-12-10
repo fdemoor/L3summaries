@@ -1,0 +1,74 @@
+%summary for PROG1
+
+\documentclass[french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Prog 1}
+\date{}
+\author{L3 RI}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction à CamL}
+Robin Milner (ML : meta-language).
+Typer = démontrer.
+P.L Curien crée CAM (categorical abstract machine)
+$\Rightarrow$ CAML.
+
+Inférence de type : résolution de l'équation aux domaines (résoudre une équation de types).
+
+<fun> place-holder.
+
+\section{CamL et orienté objet}
+Liste : constructeurs, extracteurs, observateurs, combinateurs.
+
+car (hd) : Content Adress Register.\\
+cdr (tl) : Content Decrement Register.
+
+API (Application Programming Interface) fait le lien entre concret et abstrait. Types abstraits $\mapsto$ module.
+
+\section{Théorie des catégories}
+Catégories : Set, Group, Ring, Field, Vector. $\neq$ ensemble (cf paradowe B. Russell).
+
+Objet terminal T : $A \rightarrow\up{$\exists$!}\ T$.
+
+Objet initial I : $I \rightarrow\up{$\exists$!}\ A$.
+
+Somme et produit : TO DO schémas. Unique à un iso. près.
+
+\section{Références}
+Assigner un nom à une boîte, pas à une valeur. Modifier boîte $\rightarrow$ impureté, effet de bord.
+
+Structures modifiables en CamL : type t = {a : int ref}.
+
+\section{Les exceptions}
+Changement de thread. Un déroutement peut être matériel, système (kernel panic) ou programme.
+
+CamL : try TrucQuiPeutRaise with |telleException -> tel traitement.
+
+\section{Programmation d'ordre supérieure}
+Appeller une fonction avec ses paramètres et un futur : une fonction qui va s'appliquer au résultat. On peut alors prendre un futur excpetionnel ou faire du pipeline.
+
+On peut empiler des fonctions dans le futur (ex factorielle).
+
+%navré pour ce résumé tout pourri. Je vois pas quoi mettre d'autre. Pour Scala, je pense que les slides de Mt n'ont pas besoin d'êtres résumées. Sentez vous libres de rajouter des trucs
+
+
+
+
+
+
+\end{document} 
+
