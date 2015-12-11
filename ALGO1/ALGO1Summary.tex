@@ -108,9 +108,9 @@
 		Algorithme A\(^*\) (même principe, mais le choix se base en plus sur une heuristique)
 	\item Arbre couvrant de poids minimal
 	
-	Algorithme de Kruskal (TODO à détailler)
+	Algorithme de Kruskal (utilises une structure Union-Find, trier les arêtes par poids croissants, et les considérer toute une à une, si pas dans la même classe, on fusionne)
 	
-	Algorithme de Prim (TODO à détailler)
+	Algorithme de Prim (similaire à Dijkstra, tant qu'il reste des sommets non traités, on prend l'arête qui minimise à partir d'un sommet traité)
 \end{itemize}
 %
 
@@ -139,9 +139,12 @@
 	\begin{itemize}[noitemsep]
 		\item Algorithme de Floyd-Warshall
 		
-		\( d_{i,j,k} = \) distance minimale allant de i à j %
+		\( d_{i,j,k} = \) distance minimale d'un chemin allant de i à j %
 		passant par les k premiers sommets 
-		\item Algorithme de Bellman-Ford (TODO à détailler)
+		\item Algorithme de Bellman-Ford
+		
+		\( d_{i,j,k} = \) distance minimale d'un chemin allant de i à j %
+		contenant au plus k arcs 
 	\end{itemize}
 		Recherche plus longue sous-suite croissante
 		
