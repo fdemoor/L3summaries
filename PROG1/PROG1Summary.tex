@@ -7,9 +7,12 @@
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{tikz}
+	\usetikzlibrary{arrows}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
+
+\usepackage{float}
 
 \title{Programmation 1}
 \date{}
@@ -48,7 +51,48 @@ Objet terminal T : $A \rightarrow\up{$\exists$!}\ T$.
 
 Objet initial I : $I \rightarrow\up{$\exists$!}\ A$.
 
-Somme et produit : TO DO schémas. Unique à un iso. près.
+Somme et produit : Unique à un iso. près.
+
+%
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		Produit & Somme \\
+		\hline
+		\begin{tikzpicture}[->, shorten >=1pt, auto, node distance=2.5cm, main node/.style={circle, draw}, semithick]
+			\node[main node] (C) {C};
+			\node[main node] (P) [below of=C] {P};
+			\node[main node] (A) [below left of=P] {A};
+			\node[main node] (B) [below right of=P] {B};
+			
+			\path
+				(C) edge [bend right] node {f} (A)
+				(C) edge [bend left] node {g} (B)
+				(C) edge node {h} (P)
+				(P) edge node {p$_1$} (A)
+				(P) edge node {p$_2$} (B)
+			;
+		\end{tikzpicture}
+		&
+		\begin{tikzpicture}[->, shorten >=1pt, auto, node distance=2.5cm, main node/.style={circle, draw}, semithick]
+			\node[main node] (C) {C};
+			\node[main node] (S) [below of=C] {S};
+			\node[main node] (A) [below left of=P] {A};
+			\node[main node] (B) [below right of=P] {B};
+			
+			\path
+				(A) edge [bend left] node {f} (C)
+				(B) edge [bend right] node {g} (C)
+				(S) edge node {h} (C)
+				(A) edge node [bend left] {i$_1$} (S)
+				(B) edge node [bend right] {i$_2$} (S)
+			;
+		\end{tikzpicture} \\
+		\hline
+	\end{tabular}
+\end{table}
+%
 
 \subsection{Références}
 Assigner un nom à une boîte, pas à une valeur. Modifier boîte $\rightarrow$ impureté, effet de bord.
