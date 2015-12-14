@@ -208,8 +208,23 @@ Méthodes :
 Implémentation par une forêt d'arbres. %
 Complexité améliorée en utilisant la compression de chemin.
 
+\section{Complexité}
 
+\paragraph{Master Theorem} Soit $a \geq 1,~b \geq 0$ et $d \geq 2$. Si $T \in \mathbb{R}^{\mathbb{N}}$ vérifie 
 
+\[ T(n) = a \cdot T \left( \dfrac{n}{d} \right) + O \left( n^b \right) \]
+
+\noindent alors
+
+\[
+T(n) = \left\{
+    \begin{array}{ll}
+        O\left( n^b \right) & \mbox{si } b > \log_d(a) \\
+        O\left(n^b log_d(n)\right) & \mbox{si } b = \log_d(a) \\
+        O\left( n^{log_d(a)} \right) & \mbox{si } b < \log_d(a)
+    \end{array}
+\right.
+\]
 
 \section{Autres}
 
@@ -217,7 +232,6 @@ Complexité améliorée en utilisant la compression de chemin.
 	\item Encodage de Huffman
 	\item Formules de Horn
 	\item FFT
-	\item Master Theorem
 	\item Classes P, NP, EXPTIME
 	\item Classe NP : Réduction à SAT, Branch\&Bound, Local Search
 \end{itemize}
