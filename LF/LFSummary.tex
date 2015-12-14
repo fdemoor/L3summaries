@@ -123,13 +123,31 @@ On rajoute $\Gamma$ un alphabet de pile, et $\delta\subseteq Q\times\Sigma\cup\{
 \paragraph{Automate à pile déterministe}
 On peut voir $\delta$ comme une fonction partielle : $Q\times\Sigma\cup\{\epsilon\}\times\Gamma\cup\{\epsilon\}\rightarrow Q\times\Gamma\up{*}$ telle que $\forall q\in Q, a\in\Sigma, x\in\Gamma$, exactement une de ces valeurs est définie : $$\delta(q,a,x),\ \delta(q,a,\epsilon),\ \delta(q\epsilon,x),\ \delta(q,\epsilon,\epsilon).$$
 
-$\{a\up{n}b\up{n}\}$ déterministe. Langage des palyndromes non déterministe.
+$\{a\up{n}b\up{n}\}$ déterministe. Langage des palindromes non déterministe.
 
 \subsection{Analyse syntaxique}
 \paragraph{Analyse LL(1)}
-TO DO, un peu la flemme ce soir
+Analyse descendante. Glouton : on choisit la règle en fonction du caractère suivant. 
+
+premier($\alpha$) = $\{a\in\Sigma~|~\exists\beta\in(\Sigma\cup V)\up{*}\text{ tel que }\alpha\rightarrow\up{*}a\beta\}$ ($\cup\{\text{poisson}\}$ si $\alpha\rightarrow\epsilon$).
+
+suivant(N) = $\{a\in\Sigma~|~\exists\gamma\beta\in(\Sigma\cup V)\up{*}\text{ tels que }S\rightarrow\up{*}\gamma Na\beta\}$ ($\cup\{\text{EOF}\}$ si $\exists\alpha~|~S\rightarrow\alpha N$).
+
+G est LL(1) si $\forall N\in V$, $N\rightarrow\alpha_1\dots N\rightarrow\alpha_k$, premier($\alpha_i$) disjoints 2 à 2 et si $N\rightarrow\up{*}\epsilon$, suivant(N) disjoints des premier($\alpha_i)$.
+
+On peut alors prendre la règle qui correspond au premier caractère à chaque fois.
+
+
 \paragraph{Analyse LR(0)}
-TO DO, un peu la flemme ce soir
+On construit l'automate des items : états ensembles des règles possibles et curseur. On est LR(0) s'il n'y a pas de conflits (réduc, lecture).
+
+\paragraph{Comparaison}
+\begin{tabular}{l|c}
+CYK & générique, cubique en |m|, poly en |G|\\
+LL(1) & linéaire en |m|, poly en |G|\\
+LR(0) & linéaire en |m|, expo en |G|
+\end{tabular}
+
 
 \section{Calculabilité}
 \subsection{Machines de Turing}
@@ -176,8 +194,22 @@ On sait $L_1$ indécidable, on montre $L_2$ indécidable. On dit qu'on réduit d
 \paragraph{Théorème de Rice}
 Propriété $S\subseteq RE$. Non-triviale ($\neq\emptyset$ et $\neq RE$) $\Rightarrow$ indécidable.
 
+\paragraph{Exemples de problèmes indécidables}~
 
-\paragraph{TO DO}
-Cours du 30/11 et analyse syntaxique
+Problème LU : \( LU = \lbrace (M,w) : M~accepte~w \rbrace	 \)
+
+Problème de l'arrêt : \(  H = \lbrace (M,w) : M~s'arrête~en~lisant~w \rbrace  \)
+
+Problème de Post
+
+
+
+\section{Vu en TD}
+\paragraph{Lemme d'Arden}
+$A$ et $B$ deux langages. $\epsilon \not\in A$. L'équation $X = (A.X)\cup B$ a pour unique solution $A\up{*}B$. (si $\epsilon \in A$ la solution n'est pas unique mais il s'agit de la plus petite).
+
+\paragraph{Lemme d'Ogden}
+L algébrique. $\exists N$ tel que $\forall w\in N, |w|\geq N$, pour tout choix de $N$ positions distinguées dans $w$, $\exists$ factorisation $w=xuyvz$ telle que $xuy$ ou $yvz$ contiennent au moins une poistion distinguée, $uyv$ a au plus $N$ positions distinguées et $xu\up{n}yv\up{n}z\in L\ \forall n\in\mathbb{N}$.
+
 
 \end{document}
