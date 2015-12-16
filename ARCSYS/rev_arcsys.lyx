@@ -1,0 +1,3896 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{circuitikz}
+\usepackage{fullpage}
+\usepackage{listings}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+ARCSYS : ce qu'il faut retenir
+\end_layout
+
+\begin_layout Author
+C.
+ Ferry
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tableofcontents
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Logique booléenne
+\end_layout
+
+\begin_layout Itemize
+Monôme sous forme canonique : mettez votre formule sous forme 
+\begin_inset Formula 
+\[
+\bigwedge_{i=1}^{n}x_{i}
+\]
+
+\end_inset
+
+avec les 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ éventuellement complémentés.
+ 
+\end_layout
+
+\begin_layout Itemize
+Formule sous (1ère) forme canonique : forme normale disjonctive (OU de monômes).
+ Par exemple, dressez la table de vérités et faites la somme (avec l'opération
+ OU) des lignes où la formule est satisfaite.
+\end_layout
+
+\begin_layout Itemize
+Simplification de formules : méthode de Karnaugh, non détaillée en cours.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Pour réaliser cette méthode : 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\downarrow c,d$
+\end_inset
+
+ | 
+\begin_inset Formula $a,b|\rightarrow$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+ne changer qu'un bit par colonne
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+ne changer qu'un bit par ligne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Former dans ce tableau les plus grands rectangles possibles : la construction
+ des lignes et des colonnes (code de Gray
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+70100
+\end_layout
+
+\end_inset
+
+) donne une formule facile à faire, ici pour le carré du bas : 
+\begin_inset Formula $b\wedge c$
+\end_inset
+
+ (car 
+\begin_inset Formula $a,d$
+\end_inset
+
+ parcourent 
+\begin_inset Formula $\left\{ 0,1\right\} $
+\end_inset
+
+ et la formule reste vraie si 
+\begin_inset Formula $b=c=1$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Logique CMOS
+\end_layout
+
+\begin_layout Itemize
+Transistor MOS : 
+\begin_inset Quotes eld
+\end_inset
+
+interrupteur
+\begin_inset Quotes erd
+\end_inset
+
+ contrôlé électroniquement.
+ Il a trois pattes (pour votre culture : 
+\emph on
+émetteur-base-collecteur
+\emph default
+).
+\end_layout
+
+\begin_layout Itemize
+Temps de commutation 
+\begin_inset Formula $T_{com}>0$
+\end_inset
+
+ ! (ne pas considérer que la commutation est instantanée).
+ De manière plus générale, il y a un temps de commutation dans le circuit.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Avec des transistors, on fabrique des portes logiques...
+ Retenir leurs symboles !
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{circuitikz} 
+\backslash
+draw
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,0) node[and port] (myand) {} to node [anchor=west] {AND} (0,0)
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,0) node[or port] (myor) {} to node [anchor=west] {OR} (3,0)
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,0) node[xor port] (myxor) {} to node [anchor=west] {XOR} (6,0)
+\end_layout
+
+\begin_layout Plain Layout
+
+(9,0) node[nand port] (mynand) {} to node [anchor=west] {NAND} (9,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{circuitikz}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Avec des NAND, vous pouvez toutes les fabriquer...
+\end_layout
+
+\begin_layout Itemize
+Porte tristate : forcée à 0, forcée à 1, laissée libre.
+ Typiquement, c'est ça qu'on trouve dans les bus partagés.
+\end_layout
+
+\begin_layout Section
+Circuits combinatoires
+\end_layout
+
+\begin_layout Itemize
+Circuits faisant des calculs booléens, fabriqués avec des composants de
+ logique combinatoire (les portes ci-dessus).
+ Pas d'horloge, la sortie dépend uniquement de l'entrée (pas de l'état du
+ système).
+ 
+\series bold
+PAS DE BOUCLES
+\begin_inset space ~
+\end_inset
+
+!!
+\end_layout
+
+\begin_layout Itemize
+Le temps de propagation dans un tel circuit : estimation pessimiste, trouver
+ le plus long chemin.
+\end_layout
+
+\begin_layout Itemize
+Composants combinatoires usuels : multiplexeur (
+\begin_inset Formula $2^{p}$
+\end_inset
+
+ entrées, sélection d'entrée sur 
+\begin_inset Formula $p$
+\end_inset
+
+ bits), décodeur (entrée sur 
+\begin_inset Formula $p$
+\end_inset
+
+ bits, 
+\begin_inset Formula $2^{p}$
+\end_inset
+
+ sorties, la sortie sélectionnée est 
+\begin_inset Formula $\sum_{i=0}^{p-1}x_{i}2^{i}$
+\end_inset
+
+ + switch direct/inverse), additionneur 1 bit, additionneur 
+\begin_inset Formula $n$
+\end_inset
+
+ bits pour tout 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Méthodes de réalisation : 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+méthode booléenne (utiliser les formes canoniques vues ci-dessus, mettre
+ des AND éventuellement précédés de NOT - modélisé par 
+\begin_inset Formula $\circ$
+\end_inset
+
+ - puis un gros OR).
+ 
+\series bold
+Peu efficace
+\series default
+ mais simple à mettre en œuvre.
+\end_layout
+
+\begin_layout Itemize
+exploitation de la composition de fonctions : un bloc pour chaque fonction,
+ dont la sortie va à l'entrée d'un autre.
+ Sélectionner un résultat avec des multiplexeurs.
+ 
+\series bold
+Plus efficace.
+\end_layout
+
+\begin_layout Itemize
+récurrence, dichotomie : résoudre les sous-problèmes, en faire l'entrée
+ d'un problème plus général.
+ Attention, ces fonctions récursives sont bornées (on ne met pas une infinité
+ de composants sur une carte).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ne pas hésiter à simplifier un peu, c'est plus joli.
+ Par exemple, supprimer les OU dont une entrée est à 
+\begin_inset Formula $V_{cc}$
+\end_inset
+
+, supprimer ce qui suit un ET dont une entrée est à 
+\begin_inset Formula $GND$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Circuits synchrones
+\end_layout
+
+\begin_layout Subsection
+Du point de vue des composants
+\end_layout
+
+\begin_layout Itemize
+Le circuit a un état interne, on lui donne une horloge.
+ Il met à jour son état interne à chaque cycle d'horloge en fonction d'une
+ entrée et de son état.
+ Plus formellement:
+\begin_inset Formula 
+\begin{eqnarray*}
+e & := & f_{t}\left(e,v\right)\\
+s & = & f_{s}\left(e,v\right)
+\end{eqnarray*}
+
+\end_inset
+
+où 
+\begin_inset Formula $e$
+\end_inset
+
+ est l'état de la machine, 
+\begin_inset Formula $v$
+\end_inset
+
+ la donnée d'entrée.
+ 
+\begin_inset Formula $f_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $f_{s}$
+\end_inset
+
+ sont combinatoires, l'horloge est sur la mémoire qui contient 
+\begin_inset Formula $e$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f_{t}$
+\end_inset
+
+ = fonction de transition, 
+\begin_inset Formula $f_{s}$
+\end_inset
+
+ = fonction de sortie.
+\end_layout
+
+\begin_layout Itemize
+Machines: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+De Mealy : sortie fonction de l'état et de l'entrée.
+\end_layout
+
+\begin_layout Itemize
+De Moore
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+pas de vanne !
+\end_layout
+
+\end_inset
+
+ : sorties uniquement fonction de l'état.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+On doit respecter le temps de propagation de l'information dans le circuit
+ : 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+pour le changement d'état, 
+\begin_inset Formula $T_{cy}$
+\end_inset
+
+ le temps de cycle minimal comprenant 
+\begin_inset Formula $T_{su}$
+\end_inset
+
+ (set-up time, temps de calcul de l'état futur à partir de l'entrée), 
+\begin_inset Formula $T_{h}$
+\end_inset
+
+ le temps de maintien.
+\end_layout
+
+\begin_layout Itemize
+pour les sorties : 
+\begin_inset Formula $T_{vs}$
+\end_inset
+
+ temps de calcul des sorties à partir des entrées, 
+\begin_inset Formula $T_{es}$
+\end_inset
+
+ temps de calcul des sorties à partir de l'état.
+\end_layout
+
+\begin_layout Itemize
+Ces notations temporelles bizarres ne sont certainement pas à savoir par
+ cœur, mais il faut savoir qu'il y a un temps minimal de calcul, incompressible,
+ au-delà duquel l'horloge ne peut aller.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Des circuits séquentiels : 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+les bascules 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+D : mémoire 1 bit, 
+\begin_inset Formula $Q:=D$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+T : inverseuse d'état, 
+\begin_inset Formula $Q:=\left(\neg T\wedge Q\right)\vee\left(T\wedge\neg Q\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+JK : suivant 
+\begin_inset Formula $J,K$
+\end_inset
+
+, garder 
+\begin_inset Formula $Q$
+\end_inset
+
+, inverser 
+\begin_inset Formula $Q$
+\end_inset
+
+, forcer 0, forcer 1, 
+\begin_inset Formula $Q:=\left(J\wedge\neg Q\right)\vee\left(\neg K\wedge Q\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+RS : suivant 
+\begin_inset Formula $R,S$
+\end_inset
+
+, garder 
+\begin_inset Formula $Q$
+\end_inset
+
+, forcer 0, forcer 1), 
+\begin_inset Formula $Q:=S\vee\left(\neg R\wedge Q\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+les compteurs : permanent, compteur/décompteur (avec une entrée INC, une
+ entrée DEC, si aucune n'est mise, le compteur ne bouge pas), compteur avec
+ chargement (et entrée CH).
+\end_layout
+
+\begin_layout Itemize
+les registres : à chargement systématique (
+\begin_inset Formula $n$
+\end_inset
+
+ bascules 
+\begin_inset Formula $D$
+\end_inset
+
+ en parallèle), à chargement commandé, à décalage systématique, à décalage
+ droite-gauche...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Circuit synchrone : interconnexion de circuits synchrones ou combinatoires,
+ mais 
+\series bold
+UNE UNIQUE HORLOGE
+\begin_inset space ~
+\end_inset
+
+!!! 
+\series default
+On peut avoir des boucles sur les composants séquentiels.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+L'HORLOGE NE DOIT JAMAIS ÊTRE PRISE COMME ENTRÉE DANS UN CIRCUIT !!!!!
+\end_layout
+
+\begin_layout Subsection
+Du point de vue de la représentation
+\end_layout
+
+\begin_layout Itemize
+Les états de nos machines sont finis (entrées finies, mémoires finies à
+ états finis) : on peut faire des automates finis pour les représenter.
+\end_layout
+
+\begin_layout Itemize
+On peut fusionner les états équivalents pour simplifier l'automate.
+\end_layout
+
+\begin_layout Section
+Calculateur à logique câblée : Décomposition traitement/commande
+\end_layout
+
+\begin_layout Itemize
+On décompose le circuit en une unité de traitement (qui prend l'entrée extérieur
+e, fait le calcul proprement dit) et une unité de commande (qui modélise
+ l'automate du chapitre précédent et génère les commandes pour lancer les
+ calculs).
+\end_layout
+
+\begin_layout Itemize
+L'UT et l'UC communiquent par connexions simples (une seule source, plusieurs
+ destinataires) ou par bus (plusieurs sources, plusieurs destinataires).
+ Les bus sont fabriqués avec des portes tristate, 
+\series bold
+qui permettent de laisser libre le bus pour que d'autres composants l'utilisent
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+UC est en général un système synchrone standard, dotée d'un compteur, d'un
+ module de génération des commandes (sorties de l'UC) et d'un module de
+ séquencement (qui prend des entrées extérieures, pouvant aussi venir de
+ l'UT au titre de feedback -par exemple le signe d'une addition dans un
+ processeur NIOS).
+\end_layout
+
+\begin_layout Itemize
+UT est en général composée de mémoires, de registres, d'opérateurs logiques
+ interconnectés.
+ Elle prend en entrée des commandes (venant de l'UC) et éventuellement des
+ valeurs venant de l'extérieur (qu'il est bon de faire transiter par l'UC,
+ par exemple les valeurs immédiates des instructions NIOS qui sont décodées
+ par l'UC).
+\end_layout
+
+\begin_layout Itemize
+Pour la communication UT/UC, on a une demande de l'UC suivie d'une réponse
+ de l'UT (ces demandes/réponses étant entrelacées).
+ 
+\begin_inset Newline newline
+\end_inset
+
+Avant de commencer son calcul, l'UT attend qu'une valeur lui soit envoyée
+ (DEM=1 par exemple); une fois la valeur reçue, elle signale REP=1 et attend
+ DEM=0 pour se rendre compte que l'utilisateur a bien vu que la machine
+ avait pris sa valeur.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ce protocole est un 
+\series bold
+handshake
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Pour créer l'UT/UC, il faut écrire un algo de son fonctionnement, suffisamment
+ détaillé (les entrées/sorties et leurs attentes doivent être complètes).
+ Ainsi, on fait apparaître les opérateurs qui nous serviront.
+\end_layout
+
+\begin_layout Itemize
+Paralléliser l'algorithme, i.e.
+ mettre en évidence les calculs qui peuvent être faits en même temps.
+ On sépare les instructions exécutées séquentiellement par 
+\begin_inset Quotes eld
+\end_inset
+
+;
+\begin_inset Quotes erd
+\end_inset
+
+, les parallèles par 
+\begin_inset Quotes eld
+\end_inset
+
+,
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Si les opérateurs ne sont pas utilisés simultanément, en insérer le moins
+ d'exemplaires possibles et utiliser des bus partagés.
+\end_layout
+
+\begin_layout Itemize
+On doit pouvoir obtenir ainsi un circuit pour l'UT.
+\end_layout
+
+\begin_layout Itemize
+L'UC se déduit de l'algo : il y a autant d'états dans l'automate de l'UC
+ que de paquets d'instructions réalisables simultanément.
+\end_layout
+
+\begin_layout Itemize
+L'UC se chargera d'envoyer les bonnes commandes aux composants séquentiels
+ de l'UT pour qu'ils exécutent l'algo comme il faut.
+\end_layout
+
+\begin_layout Section
+Composants mémoire
+\end_layout
+
+\begin_layout Itemize
+Dans les systèmes que nous conçevons (durée de vie des données courte) :
+ SRAM, DRAM se tirent la bourre.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le prix ! SRAM bien plus chère que DRAM.
+\end_layout
+
+\begin_layout Itemize
+Mais le temps d'accès...
+ 1 ns pour SRAM, 10/20 ns pour DRAM.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+SRAM asynchrone
+\end_layout
+
+\begin_layout Itemize
+Dispose d'entrées WE (Write Enable), CS (Chip Select), OE (Output Enable),
+ A (Address) et d'un bus DQ (data) qui sert en entrée et en sortie.
+\end_layout
+
+\begin_layout Itemize
+L'accès à cette RAM se fait comme un circuit combinatoire : envoyez votre
+ commande, modulo le délai de propagation vous avez votre réponse.
+\end_layout
+
+\begin_layout Subsection
+SRAM synchrone
+\end_layout
+
+\begin_layout Itemize
+On rajoute aux entrées de la SRAM synchrone, une horloge CLK.
+ 
+\end_layout
+
+\begin_layout Itemize
+Lorsqu'une donnée est demandée au cycle 
+\begin_inset Formula $n$
+\end_inset
+
+, elle est visible sur DQ au cycle 
+\begin_inset Formula $n+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Pour l'écriture : dès que 
+\begin_inset Formula $WE=1$
+\end_inset
+
+, au front montant, l'écriture est activée et prend un cycle.
+ L'adresse sur A doit être présente en même temps que les données sur DQ.
+\end_layout
+
+\begin_layout Subsection
+DRAM
+\end_layout
+
+\begin_layout Itemize
+Une DRAM est une matrice de cellules mémoire : 
+\begin_inset Formula $k$
+\end_inset
+
+ lignes, 
+\begin_inset Formula $m$
+\end_inset
+
+ colonnes.
+\end_layout
+
+\begin_layout Itemize
+Pour accéder à une donnée particulière, la DRAM charge la ligne dans laquelle
+ cette donnée se situe dans un buffer, puis renvoie la colonne correspondante
+ issue du buffer.
+ Il y a donc un délai de mise en tampon puis un délai de lecture dans le
+ tampon.
+\begin_inset Newline newline
+\end_inset
+
+Conclusion : pour bien utiliser la DRAM, 
+\series bold
+localisez vos accès 
+\series default
+! (rapprochez les valeurs utilisées dans des intervalles de temps faibles).
+\end_layout
+
+\begin_layout Itemize
+La DRAM doit être maintenue 
+\begin_inset Quotes eld
+\end_inset
+
+vivante
+\begin_inset Quotes erd
+\end_inset
+
+ (durée de vie des données très faible) : il y a réécriture dans la matrice
+ même après chaque lecture.
+ En effet, la DRAM est une sorte de circuit RC, qui se décharge donc avec
+ le temps (fuite de courant même à circuit ouvert).
+\end_layout
+
+\begin_layout Itemize
+La SDRAM (DRAM synchrone) fonctionne en comptant des cycles : on fait des
+ lectures en rafale (burst) pour des adresses contigues, une lecture par
+ cycle, pour limiter le nombre de bufferings.
+\end_layout
+
+\begin_layout Itemize
+On sait aussi (culturel) faire des RAM à double front d'horloge : entrée
+ des adresses et commandes sur front montant, retour des données sur front
+ descendant.
+\end_layout
+
+\begin_layout Section
+Processeur à jeu d'instructions
+\end_layout
+
+\begin_layout Itemize
+On sait construire un automate et une UT tels que le système résultat fait,
+ par exemple, la recherche du minimum dans un tableau.
+\end_layout
+
+\begin_layout Itemize
+On se dote pour cela d'une UT 
+\begin_inset Quotes eld
+\end_inset
+
+générique
+\begin_inset Quotes erd
+\end_inset
+
+ : une unité arithmétique/logique (UAL, ALU pour les puristes), une file
+ de registres (taille limitée), une mémoire de données.
+ L'UC est adaptée à notre besoin : l'automate fait exactement la recherche
+ du minimum.
+\end_layout
+
+\begin_layout Itemize
+On peut avoir un processeur plus générique : on rajoute une unité de contrôle
+ par dessus notre UC.
+ Cette super-UC va passer des commandes à l'UC de base, qu'elle comprendra.
+ C'était l'objet du TP 
+\begin_inset Quotes eld
+\end_inset
+
+construction d'un processeur
+\begin_inset Quotes erd
+\end_inset
+
+ où l'on a dessiné le gros automate.
+\end_layout
+
+\begin_layout Itemize
+La super-UC va avoir pour fonction de chercher une instruction dans une
+ mémoire d'instruction, et de la passer à l'UC interprète, qui décode l'instruct
+ion et la fait exécuter.
+\end_layout
+
+\begin_layout Itemize
+Pour que cette super-UC sache que lire : il faut un compteur d'instructions
+ : le 
+\series bold
+Program Counter 
+\series default
+! Et un registre (
+\series bold
+instruction register
+\series default
+) pour stocker l'instruction en cours d'exécution et en permettre le décodage.
+\end_layout
+
+\begin_layout Itemize
+Les instructions machine sont standardisées : on définit un codage, par
+ exemple sur le NIOS, on a trois types d'instructions (J, R, I).
+ On y reviendra à la section NIOS.
+\end_layout
+
+\begin_layout Itemize
+Machines CISC/RISC : les machines CISC
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Complex Instruction Set Computer
+\end_layout
+
+\end_inset
+
+ étaient là historiquement pour simplifier le travail des programmeurs,
+ qui n'avaient pas de langage de haut niveau (ex : comparaison de chaînes
+ de caractères en une instruction...).
+ Les RISC
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Reduced Instruction Set Computer
+\end_layout
+
+\end_inset
+
+ sont basées sur le fait que 90% des instructions sont utilisées 10% du
+ temps (et donc 10% des instructions, 90% du temps).
+ Du coup, moins d'instructions 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ CPU moins complexe.
+\end_layout
+
+\begin_layout Itemize
+Les processeurs modernes (Core 2, ...) ont un cœur RISC et un système de traduction
+ de x86 vers leur jeu RISC.
+\end_layout
+
+\begin_layout Section
+Le cas du NIOS
+\end_layout
+
+\begin_layout Subsection
+Instructions
+\end_layout
+
+\begin_layout Itemize
+La plupart des NIOS ont un accès mémoire aligné au mot (4 octets) (ATTENTION
+ ! Votre programme plante si vous demandez l'accès à une adresse non alignée).
+\end_layout
+
+\begin_layout Itemize
+Endianness : le NIOS est est 
+\series bold
+little endian
+\series default
+ (
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+poids faible
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+..
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+..
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+poids fort
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+).
+ Exemple, 0xB16B00B5 se représente 
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0xB5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0x00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0x6B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0x16
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Le format I, J R des instructions sur 32 bits:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I : 
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rA (5 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rB (5 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IMM16 (16 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OP (6 bits)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+J : 
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rA (5 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rB (5 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rC (5 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OPx (11 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OP (6 bits)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+R : 
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IMM26 (26 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OP (6 bits)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\noindent
+Quelques instructions à retenir...
+ (PC + 4 : incrément PC post-instruction, MI : Pseudo-Instruction, traduite
+ par l'assembleur en multiples instructions)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="23" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="7cm">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Instr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+T
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Syntaxe
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Effet
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PC+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PI
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Instructions arithmétiques
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+add
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+J
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+add rC, rA, rB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rC:=rA+rB$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+addi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+addi rB, rA, IMM16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rB:=rA+\sigma\left(\mathrm{IMM}16\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sub
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+J
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+sub rC, rA, rB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rC:=rA-rB$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+subi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+subi rB, rA, IMM16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rB:=rA-\sigma\left(\mathrm{IMM}16\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Idem pour and, andi, or, ori, xor, xori.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Instructions de branchement, appels...
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+call
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+call label
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $r31:=PC+4;$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $PC:=PC_{31..28}:(\mathrm{IMM}26\ll2)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+callr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+callr rA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $r31:=PC+4;PC:=rA$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ret
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ret
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $PC:=r31$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+jmp
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+jmp rA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $PC:=rA$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+jmpi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+jmpi label
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $PC:=PC_{31..28}:(\mathrm{IMM}26\ll2)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+beq
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+beq rA, rB, label
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $PC:=PC+4$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $+\left(\text{\texttt{if }}rA=rB\texttt{ then }\sigma\left(\mathrm{IMM}16\right)\text{\texttt{ else }}0\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+bne rA, rB, label
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $PC:=PC+4$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $+\left(\text{\texttt{if }}rA!=rB\texttt{ then }\sigma\left(\mathrm{IMM}16\right)\text{\texttt{ else }}0\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bge
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+bge rA, rB, label
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $PC:=PC+4$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $+\left(\text{\texttt{if }}rA\geqslant rB\texttt{ then }\sigma\left(\mathrm{IMM}16\right)\text{\texttt{ else }}0\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Idem pour ble, blt, bgt (less or equal, less than, greater than)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Instructions de mouvement, (dé)chargement mémoire
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+movia
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+movia rB, IMM16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rB:=\mathrm{IMM}16$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+movi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+movi rB, IMM16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rB:=\sigma\left(\mathrm{IMM}16\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+mov
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+J
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+mov rC, rA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rC:=rA$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ldw
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ldw rB, offset14(rA)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rA:=\mathbf{MEM}(rA+\mathrm{offset}14)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+stw
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+stw rB, offset14(rA)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{MEM}(rA+\mathrm{offset}14):=rB$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Note culturelle : sur les x86, on a l'instruction lea (Load Effective Address)
+ qui permet de calculer l'adresse effective (offset + valeur du registre)
+ sans faire appel à la mémoire (on fait un mov après).
+ Elle est intéressante car contrairement à add, elle ne modifie pas les
+ flags du processeur (retenue, overflow, signe) et permet de faire de l'arithmét
+ique moins limitée que add
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+What does that give us? Two things that ADD doesn't provide: the ability
+ to perform addition with either two or three operands, and the ability
+ to store the result in any register; not just one of the source operands.
+ 
+\emph on
+(Abrash, Zen of Assembly)
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Adressage direct/indirect/basé :
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'adressage direct, le plus simple, consiste à passer directement l'adresse
+ cible en mémoire dans l'instruction (
+\family typewriter
+ldw rB, [addr](r0)
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+L'adressage indirect consiste à utiliser un registre relais...
+ par exemple pour utiliser une adresse sur 32 bits (sachant que les instructions
+ font 32 bits).
+ Typiquement, 
+\family typewriter
+ldw rB, 0(rA).
+\end_layout
+
+\begin_layout Itemize
+L'adressage basé consiste à utiliser un registre relais et une valeur immédiate...
+ par exemple pour lire une valeur dans une matrice dont on connaît l'adresse
+ de départ.
+ Typiquement, 
+\family typewriter
+ldw rB, offset(rA).
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Directives d'assembleur
+\end_layout
+
+\begin_layout Itemize
+Dans l'assembleur : les directives 
+\family typewriter
+.text
+\family default
+ et 
+\family typewriter
+.data
+\family default
+ permettent de séparer le code (
+\family typewriter
+.text
+\family default
+) des données statiques (
+\family typewriter
+.data
+\family default
+).
+\end_layout
+
+\begin_layout Itemize
+Réservation de données statiques: les labels sont facultatifs
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Chaînes : [label] .string 
+\begin_inset Quotes eld
+\end_inset
+
+Text
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Octets : [label] .byte value [:length]
+\end_layout
+
+\begin_layout Itemize
+Mots : [label] .word 0x12345678
+\end_layout
+
+\begin_layout Itemize
+Demi-mots : [label] .half 0x1234
+\end_layout
+
+\begin_layout Itemize
+Alignement : .align 16 (saute à la prochaine adresse alignée sur 16 bits).
+ Sur le NIOS, .align 32 aligne à 4 octets ce qui correspond au requirement
+ d'alignement dans les adresses.
+\end_layout
+
+\begin_layout Itemize
+Exportation : .globl label (rend label visible hors de votre programme, pour
+ qu'on puisse y faire appel depuis l'extérieur - pensez aux librairies partagées
+).
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Stack
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Pile : contient les arguments des fonctions appelées, les adresses de retour...
+ Schéma de la mémoire d'un programme.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Program
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Program Static Data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Heap (goes 
+\begin_inset Formula $\downarrow$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stack top (goes 
+\begin_inset Formula $\uparrow$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ Stack pointer points here
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stack
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Stack bottom)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Le NIOS a un registre contenant le sommet de la pile (stack pointer, r27).
+ Lorsque vous empilez des données, décrémentez-le 
+\series bold
+avant
+\series default
+ empilement ! Lorsque vous en dépilez, incrémentez-le après dépilement.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ATTENTION ! Le Stack Pointer doit TOUJOURS être aligné sur un mot !
+\series default
+ Ne tentez surtout pas de travailler dessus octet par octet (prévoyez le
+ cas où votre programme est interrompu et où il faut en sortir...
+ que devient la pile ?)
+\end_layout
+
+\begin_layout Itemize
+Lorsque vous faites appel à une fonction, vous empilez la valeur de r31
+ (ra, return address) pour pouvoir retrouver cette adresse après coup en
+ la dépilant et retourner là où votre programme l'avait prévu.
+ Cela permet les appels imbriqués.
+\end_layout
+
+\begin_layout Itemize
+Le Frame pointer (r28) est un registre mis à jour avant chaque appel de
+ fonction, contenant la valeur du stack pointer à ce moment : si vous laissez
+ des données dans la pile en retournant, le stack pointer est remis à sa
+ valeur d'avant l'appel...
+ ce qui ne vous dispense pas de bien gérer la pile !
+\end_layout
+
+\begin_layout Itemize
+Attention aux conventions de sauvegarde en pile des registres.
+ (Celle de gcc impose que l'appelant sauvegarde les registres 8 à 15, et
+ que l'appelé sauvegarde les registres 16 à 23).
+\end_layout
+
+\begin_layout Itemize
+Par convention, les registres 2 et 3 sont utilisés pour le retour des résultats
+ de votre programme, les registres 4 à 7 servent pour ses arguments.
+\end_layout
+
+\begin_layout Section
+Entrées et sorties
+\end_layout
+
+\begin_layout Itemize
+Des coupleurs matériels (contrôleurs) reliés au CPU, auquel on rajoute:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+un bus d'adresse I/O
+\end_layout
+
+\begin_layout Itemize
+un bus de données I/O
+\end_layout
+
+\begin_layout Itemize
+un bus de commande (choix du coupleur)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Chaque coupleur a:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+un bus d'adresse en entrée
+\end_layout
+
+\begin_layout Itemize
+un bus servant aux données (entrée + sortie dotée d'un tristate, sur le
+ même bus)
+\end_layout
+
+\begin_layout Itemize
+une entrée CS (chip select) : le coupleur lui-même a une adresse et son
+ chip select n'est activé que si sur le bus d'adresse on trouve son adresse.
+\end_layout
+
+\begin_layout Itemize
+une sortie Waitreq (acquittement de réception des commandes, et de bonne
+ exécution de celles-ci)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+On peut disposer de ports de lecture/écriture multiples sur un même coupleur
+ en réservant des bits sur le bus d'adresse pour une sous-adresse : 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+adresse chip (comparée avec un ET, résultat en chipselect) (eg.
+ 6 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+adresse port (eg.
+ 2 bits)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Le coupleur a typiquement quelques registres : pour les lire, le processeur
+ effectue une transaction (demande, attente d'acquittement, lecture); pour
+ écrire, idem (demande avec envoi de données, attente d'acquittement d'écriture,
+ libération des bus).
+\end_layout
+
+\begin_layout Itemize
+Point technique : le processeur a un registre d'état, référençant entre
+ autres le mode superutilisateur (droit de parler au matériel), l'autorisation
+ des interruptions (voir paragraphe suivant).
+\end_layout
+
+\begin_layout Itemize
+Instructions non dites dans le tableau : ldwio, stwio, parlent au matériel
+ (
+\series bold
+seulement en mode superutilisateur
+\series default
+, donc seul le noyau de l'OS a le droit de les utiliser).
+\end_layout
+
+\begin_layout Subsection
+Interruptions matérielles
+\end_layout
+
+\begin_layout Itemize
+Les coupleurs matériels ont un drapeau (flag) indiquant s'ils ont des données
+ prêtes à être traitées par le processeur.
+ Le processeur interrompt le programme en cours, sauvegarde ses registres
+ d'état et PC, exécute une routine de traitement d'interruption (à une adresse
+ fixée, EXCEPTION_HANDLER).
+\end_layout
+
+\begin_layout Itemize
+Pendant l'exécution de la routine d'interruption, le CPU ne peut être interrompu
+ à nouveau : les flags d'interruption sont soumis à un AND avec un flag
+ du processeur, le Processor Interrupt Enable (
+\series bold
+PIE
+\series default
+).
+ Si ce flag est à 0, le processeur n'est pas interrompu.
+\end_layout
+
+\begin_layout Itemize
+Sections critiques : ce sont des moments où votre programme ne doit pas
+ être interrompu...
+ On y reviendra en système, mais on peut masquer soi-même les interruptions
+ (dans le cas où la routine de traitement met à jour une variable partagée).
+\end_layout
+
+\begin_layout Section
+Cache
+\end_layout
+
+\begin_layout Standard
+Chapitre récent.
+ Je n'ai pas encore eu le temps de l'écrire.
+ Si je trouve le temps...
+ Parler du hit/miss, évoquer les différents types de caches (à N voies,
+ cache associatif, leur imperfection, les intérêts).
+\end_layout
+
+\begin_layout Section
+Pipeline
+\end_layout
+
+\begin_layout Standard
+Chapitre récent.
+ Je n'ai pas encore eu le temps de l'écrire.
+ Si je trouve le temps...
+ Parler des étages (étages de base : Fetch, Decode, EXecute, MEMory, WriteBack),
+ des aléas structurels, de données (attente RAW); parler des pipelines multiples
+ (sur certaines microarchis) et des WAW qui se présentent).
+\end_layout
+
+\begin_layout Section
+Annexe : complément à deux et extension de signe
+\end_layout
+
+\begin_layout Standard
+Le complément à deux d'un nombre se calcule en inversant tous ses bits et
+ en ajoutant 1.
+ Cela permet d'en obtenir l'opposé.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exemple sur 8 bits :
+\series default
+
+\begin_inset Formula 
+\begin{eqnarray*}
+36 & = & 00100100\\
+-36=\overline{36} & = & \overline{00100100}\\
+ & = & 11011011+1\\
+ & = & 11011100
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pourquoi le complément à deux ? Pour que 0 ait une unique représentation;
+ sinon, si on se contentait d'ajouter le bit de signe, on aurait 0 = 10000000
+ = 00000000 (sur 8 bits).
+\end_layout
+
+\begin_layout Standard
+L'extension de signe consiste à copier le bit de signe d'un nombre sur moins
+ de bit que son conteneur de destination.
+\end_layout
+
+\begin_layout Standard
+Par exemple, pour passer de 16 à 32 bits : 
+\begin_inset Formula 
+\begin{eqnarray*}
+42_{16} & = & 0000000000101010\\
+-42_{16} & = & 1111111111010101+1\\
+ & = & 1111111111010110
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si on se contente de copier en ajoutant des zéros comme padding, pour des
+ nombres positifs, tout va bien, mais là...
+ :
+\begin_inset Formula 
+\[
+00000000000000001111111111010110=65494
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si on étend le bit de signe :
+\begin_inset Formula 
+\[
+11111111111111111111111111010110=-42_{32}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'où la nécessité de l'extension de signe notée 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Annexe : représentation des objets en mémoire
+\end_layout
+
+\begin_layout Itemize
+D'abord un peu de terminologie.
+ Communément, elle est admise, mais on peut vous sortir une architecture
+ où ces termes diffèrent : prudence donc.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Mot : 32 bits (word, en C : 
+\family typewriter
+int
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+Demi-mot : 16 bits (half-word, en C : 
+\family typewriter
+short
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+Octet : 8 bits (byte, en C : 
+\family typewriter
+char
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+à ne pas prononcer 
+\begin_inset Quotes eld
+\end_inset
+
+kar
+\begin_inset Quotes erd
+\end_inset
+
+ mais bien 
+\begin_inset Quotes eld
+\end_inset
+
+shar
+\begin_inset Quotes erd
+\end_inset
+
+ !!!!
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Mot long : 64 bits (long word, en C : 
+\family typewriter
+long int
+\family default
+)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Les structures de données en C permettent de mettre à la suite en mémoire
+ un certain nombre de données : l'ordre de stockage en mémoire dépend de
+ l'ordre dans lequel vous avez déclaré les variabes !
+\end_layout
+
+\begin_layout Itemize
+Exemple:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+lstset{basicstyle=
+\backslash
+texttt}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+struct packet {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int date;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char* origin;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char packetStatus;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+struct packet monPaquet; // création de monPaquet statiquement -> dans la
+ stack
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Cette structure est de taille 4 + 4 + 1 = 9 octets...
+ mais vous allez utiliser 12 octets pour la fabriquer (vous en perdez 3)
+ : vous avez les champs 
+\family typewriter
+date
+\family default
+ et 
+\family typewriter
+origin
+\family default
+ qui font chacun 32 bits (4 octets), donc chacun doit être aligné au mot
+ (4 octets).
+ Le 
+\family typewriter
+char packetStatus
+\family default
+ qui reste fait cavalier seul sur un autre mot de la stack.
+\end_layout
+
+\begin_layout Itemize
+Les contraintes d'alignement peuvent donc induire un gaspillage de mémoire
+ ! Mais il n'y a pas de réorganisation de l'ordre dans lequel vous pouvez
+ trouver les variables.
+ Préférez 
+\family typewriter
+monPaquet.origin
+\family default
+ à 
+\family typewriter
+monPaquet+4
+\family default
+ dans le cas où vous feriez un code qui tourne sur plusieurs architectures.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+À retenir :
+\series default
+ les variables de votre programme (locales ou pas) sont alignées au mot
+ sur le NIOS II, et au sein des structures, les contraintes d'alignement
+ sont respectées 
+\emph on
+-en particulier, en aucun cas on ne trouvera un paquet de données de moins
+ d'un mot à cheval sur deux mots.
+\end_layout
+
+\end_body
+\end_document
