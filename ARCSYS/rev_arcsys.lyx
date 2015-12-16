@@ -3331,8 +3331,18 @@ Stack
 
 \begin_layout Itemize
 Le NIOS a un registre contenant le sommet de la pile (stack pointer, r27).
- Lorsque vous empilez des données, décrémentez-le avant empilement ! Lorsque
- vous en dépilez, incrémentez-le après dépilement.
+ Lorsque vous empilez des données, décrémentez-le 
+\series bold
+avant
+\series default
+ empilement ! Lorsque vous en dépilez, incrémentez-le après dépilement.
+\end_layout
+
+\begin_layout Itemize
+Lorsque vous faites appel à une fonction, vous empilez la valeur de r31
+ (ra, return address) pour pouvoir retrouver cette adresse après coup en
+ la dépilant et retourner là où votre programme l'avait prévu.
+ Cela permet les appels imbriqués.
 \end_layout
 
 \begin_layout Itemize
@@ -3399,6 +3409,25 @@ une sortie Waitreq (acquittement de réception des commandes, et de bonne
 \begin_layout Itemize
 On peut disposer de ports de lecture/écriture multiples sur un même coupleur
  en réservant des bits sur le bus d'adresse pour une sous-adresse : 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="1" columns="2">
 <features rotate="0" tabularvalignment="middle">
@@ -3433,6 +3462,11 @@ adresse port (eg.
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Le coupleur a typiquement quelques registres : pour les lire, le processeur
  effectue une transaction (demande, attente d'acquittement, lecture); pour
@@ -3441,8 +3475,18 @@ Le coupleur a typiquement quelques registres : pour les lire, le processeur
 \end_layout
 
 \begin_layout Itemize
+Point technique : le processeur a un registre d'état, référençant entre
+ autres le mode superutilisateur (droit de parler au matériel), l'autorisation
+ des interruptions (voir paragraphe suivant).
+\end_layout
+
+\begin_layout Itemize
 Instructions non dites dans le tableau : ldwio, stwio, parlent au matériel
- (seulement en mode superutilisateur).
+ (
+\series bold
+seulement en mode superutilisateur
+\series default
+, donc seul le noyau de l'OS a le droit de les utiliser).
 \end_layout
 
 \begin_layout Subsection
@@ -3452,7 +3496,26 @@ Interruptions matérielles
 \begin_layout Itemize
 Les coupleurs matériels ont un drapeau (flag) indiquant s'ils ont des données
  prêtes à être traitées par le processeur.
- Le processeur s'interrompt
+ Le processeur interrompt le programme en cours, sauvegarde ses registres
+ d'état et PC, exécute une routine de traitement d'interruption (à une adresse
+ fixée, EXCEPTION_HANDLER).
+\end_layout
+
+\begin_layout Itemize
+Pendant l'exécution de la routine d'interruption, le CPU ne peut être interrompu
+ à nouveau : les flags d'interruption sont soumis à un AND avec un flag
+ du processeur, le Processor Interrupt Enable (
+\series bold
+PIE
+\series default
+).
+ Si ce flag est à 0, le processeur n'est pas interrompu.
+\end_layout
+
+\begin_layout Itemize
+Sections critiques : ce sont des moments où votre programme ne doit pas
+ être interrompu...
+ 
 \end_layout
 
 \begin_layout Section
@@ -3468,7 +3531,87 @@ Annexe : complément à deux et extension de signe
 \end_layout
 
 \begin_layout Standard
-Blabla.
+Le complément à deux d'un nombre se calcule en inversant tous ses bits et
+ en ajoutant 1.
+ Cela permet d'en obtenir l'opposé.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exemple sur 8 bits :
+\series default
+
+\begin_inset Formula 
+\begin{eqnarray*}
+36 & = & 00100100\\
+-36=\overline{36} & = & \overline{00100100}\\
+ & = & 11011011+1\\
+ & = & 11011100
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pourquoi le complément à deux ? Pour que 0 ait une unique représentation;
+ sinon, si on se contentait d'ajouter le bit de signe, on aurait 0 = 10000000
+ = 00000000 (sur 8 bits).
+\end_layout
+
+\begin_layout Standard
+L'extension de signe consiste à copier le bit de signe d'un nombre sur moins
+ de bit que son conteneur de destination.
+\end_layout
+
+\begin_layout Standard
+Par exemple, pour passer de 16 à 32 bits : 
+\begin_inset Formula 
+\begin{eqnarray*}
+42_{16} & = & 0000000000101010\\
+-42_{16} & = & 1111111111010101+1\\
+ & = & 1111111111010110
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si on se contente de copier en ajoutant des zéros comme padding, pour des
+ nombres positifs, tout va bien, mais là...
+ :
+\begin_inset Formula 
+\[
+00000000000000001111111111010110=65494
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si on étend le bit de signe :
+\begin_inset Formula 
+\[
+11111111111111111111111111010110=-42_{32}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'où la nécessité de l'extension de signe notée 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
 \end_layout
 
 \end_body
