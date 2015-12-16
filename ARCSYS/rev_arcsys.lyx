@@ -6,6 +6,7 @@
 \begin_preamble
 \usepackage{circuitikz}
 \usepackage{fullpage}
+\usepackage{listings}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -2883,7 +2884,7 @@ mov
 \begin_inset Text
 
 \begin_layout Plain Layout
-I
+J
 \end_layout
 
 \end_inset
@@ -3088,6 +3089,39 @@ What does that give us? Two things that ADD doesn't provide: the ability
 .
 \end_layout
 
+\begin_layout Itemize
+Adressage direct/indirect/basé :
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'adressage direct, le plus simple, consiste à passer directement l'adresse
+ cible en mémoire dans l'instruction (
+\family typewriter
+ldw rB, [addr](r0)
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+L'adressage indirect consiste à utiliser un registre relais...
+ par exemple pour utiliser une adresse sur 32 bits (sachant que les instructions
+ font 32 bits).
+ Typiquement, 
+\family typewriter
+ldw rB, 0(rA).
+\end_layout
+
+\begin_layout Itemize
+L'adressage basé consiste à utiliser un registre relais et une valeur immédiate...
+ par exemple pour lire une valeur dans une matrice dont on connaît l'adresse
+ de départ.
+ Typiquement, 
+\family typewriter
+ldw rB, offset(rA).
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 Directives d'assembleur
 \end_layout
@@ -3339,6 +3373,16 @@ avant
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+ATTENTION ! Le Stack Pointer doit TOUJOURS être aligné sur un mot !
+\series default
+ Ne tentez surtout pas de travailler dessus octet par octet (prévoyez le
+ cas où votre programme est interrompu et où il faut en sortir...
+ que devient la pile ?)
+\end_layout
+
+\begin_layout Itemize
 Lorsque vous faites appel à une fonction, vous empilez la valeur de r31
  (ra, return address) pour pouvoir retrouver cette adresse après coup en
  la dépilant et retourner là où votre programme l'avait prévu.
@@ -3355,8 +3399,13 @@ Le Frame pointer (r28) est un registre mis à jour avant chaque appel de
 
 \begin_layout Itemize
 Attention aux conventions de sauvegarde en pile des registres.
- (Celle de gcc impose que l'appelant sauvegarde les registres xx à xx, et
- que l'appelé sauvegarde les registres xx à xx).
+ (Celle de gcc impose que l'appelant sauvegarde les registres 8 à 15, et
+ que l'appelé sauvegarde les registres 16 à 23).
+\end_layout
+
+\begin_layout Itemize
+Par convention, les registres 2 et 3 sont utilisés pour le retour des résultats
+ de votre programme, les registres 4 à 7 servent pour ses arguments.
 \end_layout
 
 \begin_layout Section
@@ -3515,15 +3564,33 @@ PIE
 \begin_layout Itemize
 Sections critiques : ce sont des moments où votre programme ne doit pas
  être interrompu...
- 
+ On y reviendra en système, mais on peut masquer soi-même les interruptions
+ (dans le cas où la routine de traitement met à jour une variable partagée).
 \end_layout
 
 \begin_layout Section
 Cache
 \end_layout
 
+\begin_layout Standard
+Chapitre récent.
+ Je n'ai pas encore eu le temps de l'écrire.
+ Si je trouve le temps...
+ Parler du hit/miss, évoquer les différents types de caches (à N voies,
+ cache associatif, leur imperfection, les intérêts).
+\end_layout
+
 \begin_layout Section
 Pipeline
+\end_layout
+
+\begin_layout Standard
+Chapitre récent.
+ Je n'ai pas encore eu le temps de l'écrire.
+ Si je trouve le temps...
+ Parler des étages (étages de base : Fetch, Decode, EXecute, MEMory, WriteBack),
+ des aléas structurels, de données (attente RAW); parler des pipelines multiples
+ (sur certaines microarchis) et des WAW qui se présentent).
 \end_layout
 
 \begin_layout Section
@@ -3612,6 +3679,217 @@ D'où la nécessité de l'extension de signe notée
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Annexe : représentation des objets en mémoire
+\end_layout
+
+\begin_layout Itemize
+D'abord un peu de terminologie.
+ Communément, elle est admise, mais on peut vous sortir une architecture
+ où ces termes diffèrent : prudence donc.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Mot : 32 bits (word, en C : 
+\family typewriter
+int
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+Demi-mot : 16 bits (half-word, en C : 
+\family typewriter
+short
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+Octet : 8 bits (byte, en C : 
+\family typewriter
+char
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+à ne pas prononcer 
+\begin_inset Quotes eld
+\end_inset
+
+kar
+\begin_inset Quotes erd
+\end_inset
+
+ mais bien 
+\begin_inset Quotes eld
+\end_inset
+
+shar
+\begin_inset Quotes erd
+\end_inset
+
+ !!!!
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Mot long : 64 bits (long word, en C : 
+\family typewriter
+long int
+\family default
+)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Les structures de données en C permettent de mettre à la suite en mémoire
+ un certain nombre de données : l'ordre de stockage en mémoire dépend de
+ l'ordre dans lequel vous avez déclaré les variabes !
+\end_layout
+
+\begin_layout Itemize
+Exemple:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+lstset{basicstyle=
+\backslash
+texttt}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+struct packet {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int date;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char* origin;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char packetStatus;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+struct packet monPaquet; // création de monPaquet statiquement -> dans la
+ stack
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Cette structure est de taille 4 + 4 + 1 = 9 octets...
+ mais vous allez utiliser 12 octets pour la fabriquer (vous en perdez 3)
+ : vous avez les champs 
+\family typewriter
+date
+\family default
+ et 
+\family typewriter
+origin
+\family default
+ qui font chacun 32 bits (4 octets), donc chacun doit être aligné au mot
+ (4 octets).
+ Le 
+\family typewriter
+char packetStatus
+\family default
+ qui reste fait cavalier seul sur un autre mot de la stack.
+\end_layout
+
+\begin_layout Itemize
+Les contraintes d'alignement peuvent donc induire un gaspillage de mémoire
+ ! Mais il n'y a pas de réorganisation de l'ordre dans lequel vous pouvez
+ trouver les variables.
+ Préférez 
+\family typewriter
+monPaquet.origin
+\family default
+ à 
+\family typewriter
+monPaquet+4
+\family default
+ dans le cas où vous feriez un code qui tourne sur plusieurs architectures.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+À retenir :
+\series default
+ les variables de votre programme (locales ou pas) sont alignées au mot
+ sur le NIOS II, et au sein des structures, les contraintes d'alignement
+ sont respectées 
+\emph on
+-en particulier, en aucun cas on ne trouvera un paquet de données de moins
+ d'un mot à cheval sur deux mots.
 \end_layout
 
 \end_body
