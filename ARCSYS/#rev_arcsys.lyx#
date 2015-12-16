@@ -3088,10 +3088,6 @@ What does that give us? Two things that ADD doesn't provide: the ability
 .
 \end_layout
 
-\begin_layout Subsection
-Directives d'assembleur
-\end_layout
-
 \begin_layout Itemize
 Dans l'assembleur : les directives 
 \family typewriter
@@ -3142,15 +3138,7 @@ Demi-mots : [label] .half 0x1234
 \end_layout
 
 \begin_layout Itemize
-Alignement : .align 16 (saute à la prochaine adresse alignée sur 16 bits).
- Sur le NIOS, .align 32 aligne à 4 octets ce qui correspond au requirement
- d'alignement dans les adresses.
-\end_layout
-
-\begin_layout Itemize
-Exportation : .globl label (rend label visible hors de votre programme, pour
- qu'on puisse y faire appel depuis l'extérieur - pensez aux librairies partagées
-).
+Alignement au mot : .align 
 \end_layout
 
 \end_deeper
@@ -3345,114 +3333,11 @@ Le Frame pointer (r28) est un registre mis à jour avant chaque appel de
 
 \begin_layout Itemize
 Attention aux conventions de sauvegarde en pile des registres.
- (Celle de gcc impose que l'appelant sauvegarde les registres xx à xx, et
- que l'appelé sauvegarde les registres xx à xx).
+ 
 \end_layout
 
 \begin_layout Section
 Entrées et sorties
-\end_layout
-
-\begin_layout Itemize
-Des coupleurs matériels (contrôleurs) reliés au CPU, auquel on rajoute:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-un bus d'adresse I/O
-\end_layout
-
-\begin_layout Itemize
-un bus de données I/O
-\end_layout
-
-\begin_layout Itemize
-un bus de commande (choix du coupleur)
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Chaque coupleur a:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-un bus d'adresse en entrée
-\end_layout
-
-\begin_layout Itemize
-un bus servant aux données (entrée + sortie dotée d'un tristate, sur le
- même bus)
-\end_layout
-
-\begin_layout Itemize
-une entrée CS (chip select) : le coupleur lui-même a une adresse et son
- chip select n'est activé que si sur le bus d'adresse on trouve son adresse.
-\end_layout
-
-\begin_layout Itemize
-une sortie Waitreq (acquittement de réception des commandes, et de bonne
- exécution de celles-ci)
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-On peut disposer de ports de lecture/écriture multiples sur un même coupleur
- en réservant des bits sur le bus d'adresse pour une sous-adresse : 
-\begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="2">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-adresse chip (comparée avec un ET, résultat en chipselect) (eg.
- 6 bits)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-adresse port (eg.
- 2 bits)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Le coupleur a typiquement quelques registres : pour les lire, le processeur
- effectue une transaction (demande, attente d'acquittement, lecture); pour
- écrire, idem (demande avec envoi de données, attente d'acquittement d'écriture,
- libération des bus).
-\end_layout
-
-\begin_layout Itemize
-Instructions non dites dans le tableau : ldwio, stwio, parlent au matériel
- (seulement en mode superutilisateur).
-\end_layout
-
-\begin_layout Subsection
-Interruptions matérielles
-\end_layout
-
-\begin_layout Itemize
-Les coupleurs matériels ont un drapeau (flag) indiquant s'ils ont des données
- prêtes à être traitées par le processeur.
- Le processeur s'interrompt
 \end_layout
 
 \begin_layout Section
