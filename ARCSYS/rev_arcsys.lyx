@@ -1631,7 +1631,7 @@ OP (6 bits)
 \begin_layout Itemize
 \noindent
 Quelques instructions à retenir...
- (PC + 4 : incrément PC post-instruction, MI : Pseudo-Instruction, traduite
+ (PC + 4 : incrément PC post-instruction, PI : Pseudo-Instruction, traduite
  par l'assembleur en multiples instructions)
 \begin_inset Newline newline
 \end_inset
