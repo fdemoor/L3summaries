@@ -112,7 +112,7 @@ Idée : On fait toutes les coupures sur une variable (on obtient le \emph{résol
 \subsection{Calcul des séquents}
 Un séquent : 2 suites finies de formules, noté  $(H_1,\dots , H_n)\vdash (C_1,\dots , C_m)$ qui signifie $(H_1\wedge\dots\wedge H_n)\implies (C_1\vee\dots\vee C_m)$
 
-\subsubsection{Calcul des séquents classique : LK}
+\subsubsection{Calcul des séquents classique (LK)}
 %TO DO!!
 AJOUTER LES REGLES
 
@@ -130,5 +130,126 @@ Introductiçon du ou:
 $\frac{\Gamma\vdash A}{\Gamma\vdash A\vee B}\ \frac{\Gamma\vdash B}{\Gamma\vdash A\vee B}$.
 
 \section{Calcul des prédicats}
+1\up{er} ordre : quantifier sur les objets (variables, constantes, fonctions appliquées). Second ordre : quantifier sur les relations.
+
+Langage du 1\up{er} ordre : variables, symboles logiques et quantificateurs ($\forall$ et $\exists$), constantes, fonctions, relations (d'arité définie).
+
+Termes : variables, constantes et applications de fonctions. Non-ambigü : on connait l'arité des fonctions. Ex : $f (x_1)$.
+
+Variables libres d'un terme : variables qui ne sont pas dans la portée d'un quantificateur. Ex: $x_1$ dans $f (x_1)$. 
+
+Formule atomique : Application d'un prédicat à des termes. Ex: $R t_1\dots t_n$ où $t_i$ terme.
+
+Formule du premier ordre : par induction à partir des formules atomiques et stable par les connecteurs et les quantificateurs.
+
+Clotûre universelle : $\forall x_1\dots\forall x_n F$ où les $x_i$ sont les variables libres de $F$.
+
+Structure $\mathcal{M}$ pour le langage $L$:
+\begin{itemize}
+\item $M$ensemble de base non vide
+\item un élément $c^{\mathcal{M}}\in M$ pour chaque symbole de constante (valuation des constantes).
+\item $f^{\mathcal{M}}:M\up{k}\rightarrow M$ pour $f$ d'arité $k$.
+\item sous ensemble $R^{\mathcal{M}}$ de $M\up{k}$ pour $R$ d'arité $k$.
+\end{itemize}
+
+
+Formule universellement valide : valide dans toute sturcture. noté $\models\up{*} F$.
+
+Formule contradictoire : il n'existe pas de structure où la formule est valide.
+
+$F$ et $G$ équivalents si $F\Leftrightarrow G$ uniersellement valide.
+
+Toute formule est équivalente à une autre n'utilisant que $\neg, \vee$ et $\exists$ (système minimal.
+
+
+$F$ prénexe quand tout les quantificateurs sont devant. $F$ prénexe polie quand il y a au plus une occurence de chaque variable dans le préfixe. Toute formule admet au moins une forme prénexe polie.
+
+\paragraph{Formes de Skolem}
+On passe sous forme prénexe polie. On enlève les $\exists$. Les variables quantifiées par ces $\exists$ deviennent l'image des variables quantifiées précédemment par des $\forall$ par une nouvelle fonction.
+Exemple : $\forall x\exists y Rxy$ devient $\forall x Rxfx$. $y$ est devenu $fx$.
+
+Une formule et sa forme de Skolem ne sont pas universellement équivalentes, mais il existe une structure qui valide la formule ssi il existe une structure qui valide sa forme de Skolem.
+
+Une formule close admet un modèle ssi une de ses formes de Skolem en admet.
+
+\subsection{Théories}
+Théorie : ensemble de formules closes. Elle est consistante si elle admet au moins un modèle. Contradictoire sinon. Si toute partie finie de $T$ admet un modèle, $T$ admet un modèle.
+
+Structure $\mathcal{M}$. $\mathcal{M}\models T$ ssi $\mathcal{M}\models F\forall F\in T$.
+
+Formule $F$ conséquence de $T$ ssi $\forall\mathcal{M}, \mathcal{M}\models T$ implique $\mathcal{M}\models F$. On note $T\models\up{*} F$. Équivalent à $T\cup\{\neg F\}$ contradictoire.
+
+Inversement, si $T\cup\{\neg F\}$ contradictoire alors que $F$ est universellement valide, $T$ contradictoire.
+
+Deux théories sont équivalentes si elles admettent les mêmes modèles.
+
+L'ensemble des formules $F$ telles que $T\vdash F$ est l'ensemble des théorèmes de $T$, Thm($T$). T récursif si l'ensemble des formules de $T$ est récursif : il existe un algorithme qui décide de l'appartenance à la théorie. $T$ est décidablme si Thm($T$) est récursif.
+
+Contenir le prédicat binaire = : langage et théories égalitaires.
+
+\paragraph{Théorème de Church} Si $L$ contient = et un autre prédicat binaire, $\emptyset$ est indécidable.
+
+
+\subsection{Systèmes de déduction naturelle}
+(NK) et les règles suivantes :
+
+AJOUTER LES REGLES
+
+Théorie T cohérente : il n'existe pas de $F$ telle que $T\vdash F$ et $T\vdash\neg F$. Si $T$ a toutes ses parties finies cohérentes, $T$ est cohérente.
+
+Déduction complète et correcte. Donc $T$ cohérente ssi $T$ consistante.
+%je passe la preuve sur les théories de Henkin
+
+\subsection{Calcul des séquents au premier ordre}
+AJOUTER LES RÈGLES
+
+Le Hauptsatz est valide. Le calcul des séquents est complet.
+
+\subsection{Arithmétique de Peano}
+$L = \{0,S,+,\times,=,<\}$
+
+Axiomes de l'égalité, et :
+
+ÉCRIRE TOUS LES AXIOMES DE PEANO
+
+Il y a une infinité dénombrable de tels axiomes. Il existe une infinité de modèles de P non isomorphes à $\mathbb{N}$.
+
+$P$(propriété) est axiomatisable s'il existe une théorie $T$ telle que pour toute structure $\mathcal{M}$ sur le langage, $\mathcal{M}$ vérifié $P$ ssi $\mathcal{M}\models T$. Finiment axiomatisable : $T$ est finie.
+
+``être un ensemble à au moins $n$ éléments'' finiment axiomatisable.
+``être un ensemble à exactement $n$ éléments'' finiment axiomatisable.
+Mais ``être un ensemble fini'' ou ``être un ensemble infini'' ne sont pas finiment axiomatisables.
+
+Théorème (Ryll-Nardzewski) : Aucune extension consistante de Peano n'est finiment axiomatisable.
+
+\subsection{Décidabilité et arithmétique}
+L'arithmétique de Peano est indécidable.
+\paragraph{Théorème d'incomplétude de Gödel} Une théorie récursive et consistante contenant $\mathcal{P}_0$ n'est pas syntaxiquement complète (on peut construire un énoncé qui ne peut être ni prouvé ni réfuté syntaxiquement).
+
+Une théorie syntaxiquement complète et récursive est décidable. Si T consistante et contient $\mathcal{P}$, T indécidable.
+
+\paragraph{Deuxième théorème d'incomplétude de Gödel}
+La cohérence de $T$, qui peut s'écrire comme une formule, ne peut pas être déduite de $T$.
+
+\subsection{Résolution}
+Extension de la preuve par coupure à la logique du premier ordre.
+
+On met sous forme de clauses:
+\begin{itemize}
+\item Mise sous forme prénexe normale conjonctive
+\item Mises sous forme de Skolem
+\item Distribution des $\forall$ sur les $\wedge$
+\item Décomposition des conjonctions en ensembles de clauses quantifiées universellement
+\end{itemize}
+
+Puis on fait des unifications entre clauses:
+Choisir une substitution (remplacer variables par des termes).
+
+Un ensemble dini de formules atomiques est unifiable s'il existe une substitution qui les rend égales. Pour un ensemble de couples de termes, on appelle cette substitution un unificateur. C'est un unificateur principal si tout autre unificateur s'obtient en composant avec une autre substitution. Deux unificateurs principaux sont égaux à permutation près des variables.
+
+Pour trouver un unificateur principal, on effectue toutes les simplifications possibles (lorsqu'un couple commence par la même fonction), et on fait disparaître les variables une à une en créant l'unificateur au fur et à mesure.
+
+Pour deux clauses $C_1 = (\Gamma_1, \Delta_1)$ et  $C_2 = (\Gamma_2, \Delta_2)$ sans variables communes, $C$ est un résolvant si il existe $P_1\subseteq\Delta_1$ et $N_2\subseteq\Gamma_2$ tels que $P_1\cup N_2$ unifiable, avec $\sigma$ unificateur principal et $C = (\sigma(\Gamma_1\cup\Gamma_2\backslash N_2), \sigma(\Delta_1\backslash P_1\cup\Delta_2))$.
+
 
 \end{document}
