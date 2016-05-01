@@ -169,7 +169,7 @@ $F$ prénexe quand tout les quantificateurs sont devant. $F$ prénexe polie quan
 On passe sous forme prénexe polie. On enlève les $\exists$. Les variables quantifiées par ces $\exists$ deviennent l'image des variables quantifiées précédemment par des $\forall$ par une nouvelle fonction.
 Exemple : $\forall x\exists y Rxy$ devient $\forall x Rxfx$. $y$ est devenu $fx$.
 
-Une formule et sa forme de Skolem ne sont pas universellement équivalentes, mais il existe une structure qui valide la formule ssi il existe une structure qui valide sa forme de Skolem.
+Une formule et sa forme de Skolem ne sont pas universellement équivalentes, mais il existe une structure qui valide la formule ssi il existe une structure qui valide une de ses forme de Skolem.
 
 Une formule close admet un modèle ssi une de ses formes de Skolem en admet.
 
@@ -238,15 +238,15 @@ Extension de la preuve par coupure à la logique du premier ordre.
 On met sous forme de clauses:
 \begin{itemize}
 \item Mise sous forme prénexe normale conjonctive
-\item Mises sous forme de Skolem
+\item Mise sous forme de Skolem
 \item Distribution des $\forall$ sur les $\wedge$
 \item Décomposition des conjonctions en ensembles de clauses quantifiées universellement
 \end{itemize}
 
 Puis on fait des unifications entre clauses:
-Choisir une substitution (remplacer variables par des termes).
+choisir une substitution (remplacer variables par des termes).
 
-Un ensemble dini de formules atomiques est unifiable s'il existe une substitution qui les rend égales. Pour un ensemble de couples de termes, on appelle cette substitution un unificateur. C'est un unificateur principal si tout autre unificateur s'obtient en composant avec une autre substitution. Deux unificateurs principaux sont égaux à permutation près des variables.
+Un ensemble fini de formules atomiques est unifiable s'il existe une substitution qui les rend égales. Pour un ensemble de couples de termes, on appelle cette substitution un unificateur. C'est un unificateur principal si tout autre unificateur s'obtient en composant avec une autre substitution. Deux unificateurs principaux sont égaux à permutation près des variables.
 
 Pour trouver un unificateur principal, on effectue toutes les simplifications possibles (lorsqu'un couple commence par la même fonction), et on fait disparaître les variables une à une en créant l'unificateur au fur et à mesure.
 
@@ -265,7 +265,7 @@ empoisonné(X):- boit(X,Y), poison(Y)\\
 
 But : clause négative. 2 types de coupures possibles. Un but avec une clause de Horn pour un but éventuellement plus long, ou un but avec une clause positive pour un but plus court.
 
-SLD (selective linear definite) resolution. Complet. On parcourt l'arbre de tous les résolvants possibles en profondeur
+SLD (selective linear definite) resolution. Complet. On parcourt l'arbre de tous les résolvants possibles en profondeur.
 
 
 \end{document}
