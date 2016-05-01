@@ -251,5 +251,20 @@ Pour trouver un unificateur principal, on effectue toutes les simplifications po
 
 Pour deux clauses $C_1 = (\Gamma_1, \Delta_1)$ et  $C_2 = (\Gamma_2, \Delta_2)$ sans variables communes, $C$ est un résolvant si il existe $P_1\subseteq\Delta_1$ et $N_2\subseteq\Gamma_2$ tels que $P_1\cup N_2$ unifiable, avec $\sigma$ unificateur principal et $C = (\sigma(\Gamma_1\cup\Gamma_2\backslash N_2), \sigma(\Delta_1\backslash P_1\cup\Delta_2))$.
 
+S'il existe une réfutation par résolution d'un ensemble de clauses, alors cet ensemble n'a pas de modèle. Résolution complète et correcte.
+
+\paragraph{Programmation logique}
+On utilise la résolution. Une ligne de programme : 1 clause.
+
+Clauses de Horn : au plus 1 littéral positif.\\
+Exemples : \\
+homme(Socrate) : Clause positive\\
+?mort(Socrate) : Clause négative\\
+empoisonné(X):- boit(X,Y), poison(Y)\\
+
+But : clause négative. 2 types de coupures possibles. Un but avec une clause de Horn pour un but éventuellement plus long, ou un but avec une clause positive pour un but plus court.
+
+SLD (selective linear definite) resolution. Complet. On parcourt l'arbre de tous les résolvants possibles en profondeur
+
 
 \end{document}
