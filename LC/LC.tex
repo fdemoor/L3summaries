@@ -20,6 +20,7 @@
 \maketitle
 \tableofcontents
 \section{Induction}
+
 \textbf{Définition inductive :} ensemble de base, des fonctions constructrices d'autres éléments. L'ensemble est alors défini comme le plus petit contenant la base et stable par les constructeurs.
 
 Tout élément s'obtient alors depuis des éléments de base et un nombre fini de constructeurs. Représente sous forme d'arbre $\rightarrow$ hauteur d'un élément.
@@ -174,11 +175,11 @@ Exemple : $\forall x\exists y Rxy$ devient $\forall x Rxfx$. $y$ est devenu $fx$
 Une formule et sa forme de Skolem ne sont pas universellement équivalentes, mais une formule close admet un modèle ssi une de ses formes de Skolem en admet.
 
 \subsection{Théories}
-\textbf{Théorie :} ensemble de formules closes. Elle est consistante si elle admet au moins un modèle. Contradictoire sinon. Si toute partie finie de $T$ admet un modèle, $T$ admet un modèle.
+\textbf{Théorie :} ensemble de formules closes. Elle est \textbf{consistante} si elle admet au moins un modèle. Contradictoire sinon. Si toute partie finie de $T$ admet un modèle, $T$ admet un modèle.
 
 \textbf{Structure} $\mathcal{M}$. $\mathcal{M}\models T$ ssi $\mathcal{M}\models F\forall F\in T$.
 
-\textbf{Formule $F$ conséquence de $T$} ssi $\forall\mathcal{M}, \mathcal{M}\models T$ implique $\mathcal{M}\models F$. On note $T\models\up{*} F$. Équivalent à $T\cup\{\neg F\}$ contradictoire.
+Une formule $F$ close est \textbf{conséquence} de $T$ ssi $\forall\mathcal{M}, \mathcal{M}\models T$ implique $\mathcal{M}\models F$. On note $T\models\up{*} F$. Équivalent à $T\cup\{\neg F\}$ contradictoire.
 
 Inversement, si $T\cup\{\neg F\}$ contradictoire alors que $F$ est universellement valide, $T$ contradictoire.
 
@@ -266,6 +267,64 @@ empoisonné(X):- boit(X,Y), poison(Y)\\
 But : clause négative. 2 types de coupures possibles. Un but avec une clause de Horn pour un but éventuellement plus long, ou un but avec une clause positive pour un but plus court.
 
 SLD (selective linear definite) resolution. Complet. On parcourt l'arbre de tous les résolvants possibles en profondeur.
+\newpage
+\appendix
+
+\section{Règles des différents systèmes de déduction}
+
+\subsection{Déduction naturelle}
+
+\subsubsection{Logique Minimale (NM)}
+
+\[\dfrac{}{\Gamma,A\vdash A} \text{ Ax }\]
+
+\begin{align*}
+\dfrac{\Gamma ,A\vdash B}{\Gamma\vdash A\implies B} \text{ intro} \implies &\qquad 
+\dfrac{\Gamma\vdash A \quad \Delta\vdash A\implies B}{\Gamma ,\Delta\vdash B} \text{ elim }\implies \\ 
+\\
+\dfrac{\Gamma\vdash A \quad \Delta \vdash B}{\Gamma, \Delta \vdash A\land B} \text{ intro } \land  &\qquad 
+\dfrac{\Gamma\vdash A \land B}{\Gamma \vdash A} \text{ elim }\land \\
+&\qquad \dfrac{\Gamma\vdash A \land B}{\Gamma \vdash B} \text{ elim }\land  \\
+\\
+\dfrac{\Gamma\vdash A}{\Gamma \vdash A \lor B} \text{ intro }\lor &\qquad \\
+\dfrac{\Gamma\vdash B}{\Gamma \vdash A \lor B} \text{ intro }\lor 
+&\qquad \dfrac{\Gamma\vdash A \lor B \quad \Delta,A \vdash C \quad \Delta',B \vdash C}{\Gamma, \Delta, \Delta' \vdash C} \text{ elim }\lor 
+\end{align*}
+
+\subsubsection{Logique Intuitioniste (NJ)}
+
+On ajoute le symbole $\bot$, on ajoute une règle :
+\[\dfrac{\Gamma\vdash\bot}{\Gamma\vdash A}\text{ elim }\bot\]
+
+On enlève le connecteur $\neg$ et on en fait une macro : $\neg A$ = $A\implies\bot$.
+
+%TODO Raccourcis du non
+
+\subsubsection{Logique Classique (NK)}
+
+On ajoute : 
+
+\[\dfrac{}{\Gamma\vdash A\vee\neg A}\text{ Tiers exclus }\]
+
+\subsubsection{Logique Classique et calcul des prédicats}
+
+\subsection{Déduction par coupure}
+
+\subsubsection{Coupures en calcul propositionnel}
+
+\subsubsection{Coupures et calcul des prédicats}
+
+
+\subsection{Calcul des séquents}
+
+\subsubsection{Groupe logique}
+
+
+\subsubsection{Groupe structurel}
+
+\subsubsection{Séquents et calcul des prédicats}
+
+
 
 
 \end{document}
