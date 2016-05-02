@@ -241,7 +241,17 @@ Déduction \textbf{complète} et \textbf{correcte}. Donc $T$ \textbf{cohérente}
 %je passe la preuve sur les théories de Henkin
 
 \subsection{Calcul des séquents au premier ordre}
-AJOUTER LES RÈGLES
+On ajoute les règles :
+
+\begin{align*}
+\vdash\forall\qquad\dfrac{\Gamma\vdash F,\Delta}{\Gamma\vdash\forall x F,\Delta}&\text{ $x$ non libre dans $\Gamma\cup\Delta$}\\
+\\
+\vdash\exists\qquad\dfrac{\Gamma\vdash F[t/x],\Delta}{\Gamma\vdash\exists x F,\Delta}\\
+\\
+\forall\vdash\qquad\dfrac{\Gamma, F[t/x]\vdash\Delta}{\Gamma, \forall x F\vdash\Delta}\\
+\\
+\exists\vdash\qquad\dfrac{\Gamma, F\vdash\Delta}{\Gamma, \exists x F\vdash\Delta}&\text{ $x$ non libre dans  $\Gamma\cup\Delta$}
+\end{align*}
 
 Le Hauptsatz est valide. Le calcul des séquents est complet.
 
