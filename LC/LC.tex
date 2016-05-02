@@ -308,23 +308,48 @@ On ajoute :
 
 \subsubsection{Logique Classique et calcul des prédicats}
 
+%TODO
+
 \subsection{Déduction par coupure}
 
 \subsubsection{Coupures en calcul propositionnel}
 
+\[\dfrac{(\Gamma_1,\Delta_1\cup\{p\}) \quad (\Gamma_2\cup\{p\}, \Delta_2)}{(\Gamma_1\cup\Gamma_2, \Delta_1\cup\Delta2)}\]
+
+
 \subsubsection{Coupures et calcul des prédicats}
 
+%TODO
 
-\subsection{Calcul des séquents}
+\subsection{Calcul des séquents classique (LK)}
 
-\subsubsection{Groupe logique}
+\[\dfrac{}{A \vdash A} \text{ Ax }\]
 
+\[\dfrac{\Gamma \vdash A,\Delta \quad \Gamma',A \vdash \Delta}{\Gamma,\Gamma' \vdash \Delta, \Delta'} \text{ Cut }\]
 
-\subsubsection{Groupe structurel}
+\textbf{Groupe logique :}
+\begin{align*}
+\dfrac{\Gamma,A,B \vdash \Delta}{\Gamma, A \land B \vdash \Delta} \land \vdash &\qquad 
+\dfrac{\Gamma \vdash A,\Delta \quad \Gamma' \vdash B,\Delta'}{\Gamma,\Gamma' \vdash A \land B, \Delta, \Delta'} \vdash \land \\ 
+\\
+\dfrac{\Gamma, A \vdash\Delta \quad \Gamma', B \vdash \Delta'}{\Gamma,\Gamma,  A \lor B \vdash \Delta, \Delta'} \lor \vdash    &\qquad 
+\dfrac{\Gamma \vdash A, B, \Delta}{\Gamma \vdash \Delta, A \lor B} \vdash \lor\\
+\\
+\dfrac{\Gamma \vdash A, \Delta}{\Gamma, \neg A \vdash \Delta} \neg \vdash  &\qquad 
+\dfrac{\Gamma \vdash A,\Delta}{\Gamma \vdash \Delta, \neg A} \vdash \neg
+\end{align*}
+
+\textbf{Groupe structurel :}
+
+%TODO
+
+\subsection{Calcul des séquents intuitionistes (LJ)}
+
+%TODO
 
 \subsubsection{Séquents et calcul des prédicats}
 
-
+%TODO
 
 
 \end{document}
