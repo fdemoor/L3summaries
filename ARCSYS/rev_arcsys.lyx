@@ -137,6 +137,21 @@ Pour réaliser cette méthode :
 \end_inset
 
 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="6">
 <features rotate="0" tabularvalignment="middle">
@@ -494,6 +509,11 @@ ne changer qu'un bit par ligne
 </cell>
 </row>
 </lyxtabular>
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -1437,7 +1457,7 @@ poids fort
 \begin_inset Text
 
 \begin_layout Plain Layout
-0x16
+0xB1
 \end_layout
 
 \end_inset
@@ -1611,32 +1631,16 @@ OP (6 bits)
 \begin_layout Itemize
 \noindent
 Quelques instructions à retenir...
- (PC + 4 : incrément PC post-instruction, MI : Pseudo-Instruction, traduite
+ (PC + 4 : incrément PC post-instruction, PI : Pseudo-Instruction, traduite
  par l'assembleur en multiples instructions)
 \begin_inset Newline newline
 \end_inset
 
 
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="23" columns="6">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
+<features rotate="0" islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="7cm">
@@ -3060,11 +3064,6 @@ X
 
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
 \begin_layout Itemize
 Note culturelle : sur les x86, on a l'instruction lea (Load Effective Address)
  qui permet de calculer l'adresse effective (offset + valeur du registre)
@@ -3572,12 +3571,762 @@ Sections critiques : ce sont des moments où votre programme ne doit pas
 Cache
 \end_layout
 
-\begin_layout Standard
-Chapitre récent.
- Je n'ai pas encore eu le temps de l'écrire.
- Si je trouve le temps...
- Parler du hit/miss, évoquer les différents types de caches (à N voies,
- cache associatif, leur imperfection, les intérêts).
+\begin_layout Itemize
+Le cache a pour vocation de réduire le temps d'accès aux données souvent
+ utilisées, ou locales relativement à celles sur lesquelles on travaille.
+\end_layout
+
+\begin_layout Itemize
+Si vous cuisinez, vous ne remballez pas la farine au placard entre chaque
+ cuillère, vous la gardez sur la table !
+\end_layout
+
+\begin_layout Itemize
+Cache : mémoire rapide (SRAM, typiquement) localisée proche du processeur
+ (voire, maintenant, dans celui-ci).
+ Faible capacité.
+\end_layout
+
+\begin_layout Itemize
+On trouve des méta-données et les données cherchées dans un cache : par
+ exemple
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Valid
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32 bits
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Un cache est donc 
+\begin_inset Quotes eld
+\end_inset
+
+plus large
+\begin_inset Quotes erd
+\end_inset
+
+ qu'une simple case mémoire.
+\end_layout
+
+\begin_layout Itemize
+Une info que l'on ne voit pas sur le schéma : l'adresse dans le cache !
+ Celle-ci est une info utilisée, elle n'est pas choisie au hasard, c'est
+ le 
+\begin_inset Quotes eld
+\end_inset
+
+set
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Tag et set se déduisent de l'adresse :
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tag (20 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Set (10 bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 bits non utilisés (00, alignement au mot)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Poids forts
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Poids faibles
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La taille du champ set dépend de la taille du cache...
+ du coup, la taille du tag aussi ! Ne pas toujours considérer 20 bits.
+\end_layout
+
+\begin_layout Itemize
+Lecture dans le cache :
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Demande CPU : chargement adresse 
+\family typewriter
+[addr]
+\end_layout
+
+\begin_layout Itemize
+Extraction 
+\family typewriter
+set
+\family default
+, 
+\family typewriter
+tag
+\end_layout
+
+\begin_layout Itemize
+Comparaison : 
+\family typewriter
+cache[set].tag == tag
+\family default
+ ET 
+\family typewriter
+Valid == 1
+\end_layout
+
+\begin_layout Itemize
+Si vrai, alors 
+\series bold
+hit
+\series default
+ (on a les données en cache, on les renvoie)
+\end_layout
+
+\begin_layout Itemize
+Sinon, 
+\series bold
+miss
+\series default
+ (il faut aller chercher les données en mémoire).
+ Avant d'aller les chercher, si le cache est de type write-back et 
+\family typewriter
+Valid == 1
+\family default
+, on réécrit les anciennes données en cache qui sont plus à jour que la
+ mémoire, à l'ancienne adresse.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Cache à 
+\begin_inset Formula $n$
+\end_inset
+
+ lignes seulement organisé de cette manière : peu performant (parcours de
+ longs tableaux, données dont les 
+\family typewriter
+set
+\family default
+ se marchent dessus...).
+ 
+\end_layout
+
+\begin_layout Itemize
+Mieux : le cache associatif.
+ On concatène deux entrées de cache ordinaire, pour le même set...
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+set 
+\begin_inset Formula $k$
+\end_inset
+
+ :
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Valid
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Valid
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+...
+ 
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Valid
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ (
+\begin_inset Formula $m$
+\end_inset
+
+ voies) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Alors pour l'accès au cache, on fait un ET sur chaque tag par rapport au
+ tag de l'adresse cible, puis un OU nous indique si le cache a les données
+ ou pas.
+ Un multiplexeur choisit la bonne voie
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+dans le cas d'un cache à 2 voies, on met la sortie du 
+\family typewriter
+Valid == 1
+\family default
+ ET 
+\family typewriter
+cache[set][0].tag == tag
+\family default
+ sur le sélecteur du muxer.
+ Si la voie 0 a l'info, c'est correct (le muxer sort la voie 0); si la voie
+ 0 n'a pas l'info et la voie 1 l'a, c'est correct; sinon, les données en
+ sortie du muxer ne sont pas lues (miss)
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Cache associatif 
+\begin_inset Quotes eld
+\end_inset
+
+parfait
+\begin_inset Quotes erd
+\end_inset
+
+ : une seule entrée, 
+\begin_inset Formula $N$
+\end_inset
+
+ voies...
+ Oui, mais trop de comparateurs, logique trop compliquée.
+\end_layout
+
+\begin_layout Itemize
+Qui évincer lorsque l'on a un miss ? Politique : LRU (Least Recently Used)
+ : on évince le moins récemment utilisé.
+\end_layout
+
+\begin_layout Itemize
+Un cache encore meilleur pour la localité spatiale : le cache en lignes,
+ pour charger les données adjacentes à celles sur lesquelles on travaille
+ (il y a des chances qu'en lisant une valeur, on lise celles qui la suivent,
+ eg.
+ si on lit un tableau).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+set 
+\begin_inset Formula $k$
+\end_inset
+
+ :
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Valid
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data[0]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data[1]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data[2]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data[3]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ (nombre de données: puissance de 2!)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dans ce cas, le tag n'est pas le même :
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Set
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Offset
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 bits non utilisés
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 bits (cas présent)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'
+\family typewriter
+offset
+\family default
+ est passé à un muxer pour qu'il choisisse la bonne voie de données (ce
+ qui nécessite une largeur des données en puissance de 2).
+ Ce cache fonctionne comme le premier (comparaison de 
+\family typewriter
+tag
+\family default
+ à 
+\family typewriter
+set
+\family default
+ donné).
+ 
 \end_layout
 
 \begin_layout Section

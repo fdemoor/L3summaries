@@ -1,0 +1,271 @@
+%summary for LC
+
+\documentclass[french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Logique}
+\date{}
+\author{L3 RI}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Induction}
+Définition inductive : ensemble de base, des fonctions constructrices d'autres éléments. L'ensemble est alors défini comme le plus petit contenant la base et stable par les constructeurs.
+
+Tout élément s'obtient alors depuis des éléments de base et un nombre fini de constructeurs. Représente sous forme d'arbre $\rightarrow$ hauteur d'un élément.
+
+Pour prouver quelque chose, le faire sur la base et montrer la stabilité par les constructeurs.
+
+Définition non-ambigüe : il existe un unique arbre d'induction pour chaque élément. Condition nécessaire et suffisante pour l'existence de fonctions définies inductivement.
+
+\section{Calcul propositionnel}
+\subsection{Syntaxe et sémantique}
+Propositions définies par induction : variables et connecteurs. Non ambigu.
+
+Valuation : fonction qui assigne à chaque variable 0 ou 1.
+Les valuations sont prolongeables sur l'ensemble des formules (en uitilisant la sémantique des connecteurs). Formule $F$ satisfaite par la valuation $\varphi$ : $\varphi (F) = 1$.
+
+$F$ et $G$ formules sont équivalentes \emph{ssi} $\forall\varphi ,\varphi (F) = \varphi (G)$. On note $F\equiv G$. 
+
+Soit $\Sigma$ un ensemble de formules, $F$ une formule. $F$ conséquence de $\Sigma$ ssi toute valuation qui satisfait $\Sigma$ satisfait $F$, noté $\Sigma\models F$ (aussi équivalent à $\Sigma\cup F$ non satisfiable). $\Sigma$ satisfait par une valuation si celle-ci satisfait toutes ses formules.
+
+Substitution d'une variable $p$ par une formule $G$ dans une formule $G$ noté $F[G/p]$. Opération syntaxique.
+
+Support d'une formule : ensemble des variables qu'elle utilise.
+
+
+\subsection{Formes normales}
+Pour chaque table de vérité, on peut trouver une formule dont c'est la table.
+
+Toute formule est équivalente à une formule sous forme normale disjonctive (FND) : union d'intersections de littéraux (littéral = variable ou négation d'une variable). De même, toute formule équivalente à une forme normale conjonctive (FNC).
+
+Système complet de connecteurs : ensemble de connecteurs qui permettent d'engendrer toutes les formules (sémantiquement). Ex : $\{nand\}$.
+
+\paragraph{Théorème de compacité}
+Ensemble $\Sigma$ de formules. $\Sigma$ satisfiable ssi $\Sigma$ finiment satisfiable. Et $\Sigma$ est finiment satisfiable si tout sous-ensemble fini de $\Sigma$ est satisfiable.
+
+Corollaire : $\Sigma\models F$ ssi il existe un sous-ensemble fini de $\Sigma$ dont $F$ est conséquence.
+
+\subsection{Systèmes de déduction}
+Système formel : alphabet, procédés de formation des formules, ensemble d'axiomes et ensemble de règles de déduction. Si on déduit $F$ de $\Sigma$ avec ces règles (syntaxiques), on note $\Sigma\vdash F$.
+
+Un système de déduction est correct si $\Sigma\vdash F$ (syntaxique) implique $\Sigma\models F$ (sémantique).
+
+Un système de déduction est complet si  $\Sigma\models F$ (sémantique) implique  $\Sigma\vdash F$ (syntaxique).
+
+\subsection{Système de déduction naturelle}
+\subsubsection{Logique minimale (NM)}
+$\frac{}{\Gamma,A\vdash A}$Ax\\
+
+$\frac{\Gamma ,A\vdash B}{\Gamma\vdash A\implies B}$ intro $\implies$ 
+$\frac{\Gamma\vdash A, \Delta\vdash A\implies B}{\Gamma ,\Delta\vdash B}$ elim $\implies$\\
+
+%TO DO !!
+À compléter, j'ai la flemme là...
+%TO DO !!
+
+\subsubsection{Logique intuitionniste (NJ)}
+On ajoute le symbole $\bot$, on ajoute une règle :
+$$\frac{\Gamma\vdash\bot}{\Gamma\vdash A}\text{elim $\bot$}$$
+On enlève le connecteur $\neg$ et on en fait une macro : $\neg A$ = $A\implies\bot$.
+
+%TO DO !!
+à compléter : elim intro non
+%TO DO !!
+
+\subsubsection{Logique classique (NK)}
+On ajoute le Tiers exclus :
+$$\frac{}{\Gamma\vdash A\vee\neg A}\text{Tiers exclus}$$
+
+NK plus forte que NJ plus forte que NM. On est plus fort quand on permet démontrer au moins les mêmes choses.
+ 
+\subsection{Traduction de logiques}
+Soit $\mathcal{L}$ plus forte que $\mathcal{L}'$. Une traduction est une fonction $\varphi$ qui transforme les formules : si $\vdash F$ dans $\mathcal{L}$ alors $\vdash\varphi (F)$ dans $\mathcal{L}'$. 
+
+%TO DO !!
+HELP j'ai l'impression que c'est l'inverse. Je suis peut etre juste trop fatigué
+%TO DO !!
+
+\subsection{Déduction par coupure}
+On s'intéresse aux clauses : disjonction de littéraux. Toute formule peut être mise sous forme de conjonction de clauses (FNC).
+
+On met les clauses sous la forme $(a_1\wedge\dots\wedge a_n)\implies (b_1\vee\dots\vee b_m)$ où les $a_i$ sont les variables négatives et les $b_i$ les positives. On note aussi une clause $C=(\Gamma,\Delta)$ où $a_i\in\Gamma$ et $b_i\in\Delta$.
+
+Règle de coupure :
+$$\frac{(\Gamma_1,\Delta_1\cup\{p\})\ (\Gamma_2\cup\{p\}, \Delta_2)}{(\Gamma_1\cup\Gamma_2, \Delta_1\cup\Delta2)}$$
+
+Déduction par coupure correcte et complète.
+
+Idée : On fait toutes les coupures sur une variable (on obtient le \emph{résolvant}). Si un résolvant est nul, l'ensemble de clauses était non satisfiable.
+
+\paragraph{Théorème :} Tout ensemble de clause non satisfiable possède une réfutation par coupure.
+
+\subsection{Calcul des séquents}
+Un séquent : 2 suites finies de formules, noté  $(H_1,\dots , H_n)\vdash (C_1,\dots , C_m)$ qui signifie $(H_1\wedge\dots\wedge H_n)\implies (C_1\vee\dots\vee C_m)$
+
+\subsubsection{Calcul des séquents classique (LK)}
+%TO DO!!
+AJOUTER LES REGLES
+
+\paragraph{Théorème fondamental (Hauptsatz)}
+Pour toute preuve dans LK, il existe une preuve de même conclusion sans utiliser la règle de coupure.
+
+\paragraph{Cohérence} Un système de déduction est cohérent s'il ne permet pas de prouver $A$ et $\neg A$ sans hypothèses. Cohérent ssi on ne peut pas prouver le séquent vide.
+
+LK cohérent (grâce au Hauptsatz).
+
+\subsubsection{Calcul des séquents intuitionniste (LJ)}
+Restriction des séquents : une seule formule au plus à droite de $\vdash$.
+
+Introductiçon du ou:
+$\frac{\Gamma\vdash A}{\Gamma\vdash A\vee B}\ \frac{\Gamma\vdash B}{\Gamma\vdash A\vee B}$.
+
+\section{Calcul des prédicats}
+1\up{er} ordre : quantifier sur les objets (variables, constantes, fonctions appliquées). Second ordre : quantifier sur les relations.
+
+Langage du 1\up{er} ordre : variables, symboles logiques et quantificateurs ($\forall$ et $\exists$), constantes, fonctions, relations (d'arité définie).
+
+Termes : variables, constantes et applications de fonctions. Non-ambigü : on connait l'arité des fonctions. Ex : $f (x_1)$.
+
+Variables libres d'un terme : variables qui ne sont pas dans la portée d'un quantificateur. Ex: $x_1$ dans $f (x_1)$. 
+
+Formule atomique : Application d'un prédicat à des termes. Ex: $R t_1\dots t_n$ où $t_i$ terme.
+
+Formule du premier ordre : par induction à partir des formules atomiques et stable par les connecteurs et les quantificateurs.
+
+Clotûre universelle : $\forall x_1\dots\forall x_n F$ où les $x_i$ sont les variables libres de $F$.
+
+Structure $\mathcal{M}$ pour le langage $L$:
+\begin{itemize}
+\item $M$ensemble de base non vide
+\item un élément $c^{\mathcal{M}}\in M$ pour chaque symbole de constante (valuation des constantes).
+\item $f^{\mathcal{M}}:M\up{k}\rightarrow M$ pour $f$ d'arité $k$.
+\item sous ensemble $R^{\mathcal{M}}$ de $M\up{k}$ pour $R$ d'arité $k$.
+\end{itemize}
+
+
+Formule universellement valide : valide dans toute structure. noté $\models\up{*} F$.
+
+Formule contradictoire : il n'existe pas de structure où la formule est valide.
+
+$F$ et $G$ équivalents si $F\Leftrightarrow G$ uniersellement valide.
+
+Toute formule est équivalente à une autre n'utilisant que $\neg, \vee$ et $\exists$ (système minimal).
+
+
+$F$ prénexe quand tout les quantificateurs sont devant. $F$ prénexe polie quand il y a au plus une occurence de chaque variable dans le préfixe. Toute formule admet au moins une forme prénexe polie.
+
+\paragraph{Formes de Skolem}
+On passe sous forme prénexe polie. On enlève les $\exists$. Les variables quantifiées par ces $\exists$ deviennent l'image des variables quantifiées précédemment par des $\forall$ par une nouvelle fonction.
+Exemple : $\forall x\exists y Rxy$ devient $\forall x Rxfx$. $y$ est devenu $fx$.
+
+Une formule et sa forme de Skolem ne sont pas universellement équivalentes, mais il existe une structure qui valide la formule ssi il existe une structure qui valide une de ses forme de Skolem.
+
+Une formule close admet un modèle ssi une de ses formes de Skolem en admet.
+
+\subsection{Théories}
+Théorie : ensemble de formules closes. Elle est consistante si elle admet au moins un modèle. Contradictoire sinon. Si toute partie finie de $T$ admet un modèle, $T$ admet un modèle.
+
+Structure $\mathcal{M}$. $\mathcal{M}\models T$ ssi $\mathcal{M}\models F\forall F\in T$.
+
+Formule $F$ conséquence de $T$ ssi $\forall\mathcal{M}, \mathcal{M}\models T$ implique $\mathcal{M}\models F$. On note $T\models\up{*} F$. Équivalent à $T\cup\{\neg F\}$ contradictoire.
+
+Inversement, si $T\cup\{\neg F\}$ contradictoire alors que $F$ est universellement valide, $T$ contradictoire.
+
+Deux théories sont équivalentes si elles admettent les mêmes modèles.
+
+L'ensemble des formules $F$ telles que $T\vdash F$ est l'ensemble des théorèmes de $T$, Thm($T$). T récursif si l'ensemble des formules de $T$ est récursif : il existe un algorithme qui décide de l'appartenance à la théorie. $T$ est décidablme si Thm($T$) est récursif.
+
+Contenir le prédicat binaire = : langage et théories égalitaires.
+
+\paragraph{Théorème de Church} Si $L$ contient = et un autre prédicat binaire, $\emptyset$ est indécidable.
+
+
+\subsection{Systèmes de déduction naturelle}
+(NK) et les règles suivantes :
+
+AJOUTER LES REGLES
+
+Théorie T cohérente : il n'existe pas de $F$ telle que $T\vdash F$ et $T\vdash\neg F$. Si $T$ a toutes ses parties finies cohérentes, $T$ est cohérente.
+
+Déduction complète et correcte. Donc $T$ cohérente ssi $T$ consistante.
+%je passe la preuve sur les théories de Henkin
+
+\subsection{Calcul des séquents au premier ordre}
+AJOUTER LES RÈGLES
+
+Le Hauptsatz est valide. Le calcul des séquents est complet.
+
+\subsection{Arithmétique de Peano}
+$L = \{0,S,+,\times,=,<\}$
+
+Axiomes de l'égalité, et :
+
+ÉCRIRE TOUS LES AXIOMES DE PEANO
+
+Il y a une infinité dénombrable de tels axiomes. Il existe une infinité de modèles de P non isomorphes à $\mathbb{N}$.
+
+$P$(propriété) est axiomatisable s'il existe une théorie $T$ telle que pour toute structure $\mathcal{M}$ sur le langage, $\mathcal{M}$ vérifié $P$ ssi $\mathcal{M}\models T$. Finiment axiomatisable : $T$ est finie.
+
+``être un ensemble à au moins $n$ éléments'' finiment axiomatisable.
+``être un ensemble à exactement $n$ éléments'' finiment axiomatisable.
+Mais ``être un ensemble fini'' ou ``être un ensemble infini'' ne sont pas finiment axiomatisables.
+
+Théorème (Ryll-Nardzewski) : Aucune extension consistante de Peano n'est finiment axiomatisable.
+
+\subsection{Décidabilité et arithmétique}
+L'arithmétique de Peano est indécidable.
+\paragraph{Théorème d'incomplétude de Gödel} Une théorie récursive et consistante contenant $\mathcal{P}_0$ n'est pas syntaxiquement complète (on peut construire un énoncé qui ne peut être ni prouvé ni réfuté syntaxiquement).
+
+Une théorie syntaxiquement complète et récursive est décidable. Si T consistante et contient $\mathcal{P}$, T indécidable.
+
+\paragraph{Deuxième théorème d'incomplétude de Gödel}
+La cohérence de $T$, qui peut s'écrire comme une formule, ne peut pas être déduite de $T$.
+
+\subsection{Résolution}
+Extension de la preuve par coupure à la logique du premier ordre.
+
+On met sous forme de clauses:
+\begin{itemize}
+\item Mise sous forme prénexe normale conjonctive
+\item Mise sous forme de Skolem
+\item Distribution des $\forall$ sur les $\wedge$
+\item Décomposition des conjonctions en ensembles de clauses quantifiées universellement
+\end{itemize}
+
+Puis on fait des unifications entre clauses:
+choisir une substitution (remplacer variables par des termes).
+
+Un ensemble fini de formules atomiques est unifiable s'il existe une substitution qui les rend égales. Pour un ensemble de couples de termes, on appelle cette substitution un unificateur. C'est un unificateur principal si tout autre unificateur s'obtient en composant avec une autre substitution. Deux unificateurs principaux sont égaux à permutation près des variables.
+
+Pour trouver un unificateur principal, on effectue toutes les simplifications possibles (lorsqu'un couple commence par la même fonction), et on fait disparaître les variables une à une en créant l'unificateur au fur et à mesure.
+
+Pour deux clauses $C_1 = (\Gamma_1, \Delta_1)$ et  $C_2 = (\Gamma_2, \Delta_2)$ sans variables communes, $C$ est un résolvant si il existe $P_1\subseteq\Delta_1$ et $N_2\subseteq\Gamma_2$ tels que $P_1\cup N_2$ unifiable, avec $\sigma$ unificateur principal et $C = (\sigma(\Gamma_1\cup\Gamma_2\backslash N_2), \sigma(\Delta_1\backslash P_1\cup\Delta_2))$.
+
+S'il existe une réfutation par résolution d'un ensemble de clauses, alors cet ensemble n'a pas de modèle. Résolution complète et correcte.
+
+\paragraph{Programmation logique}
+On utilise la résolution. Une ligne de programme : 1 clause.
+
+Clauses de Horn : au plus 1 littéral positif.\\
+Exemples : \\
+homme(Socrate) : Clause positive\\
+?mort(Socrate) : Clause négative\\
+empoisonné(X):- boit(X,Y), poison(Y)\\
+
+But : clause négative. 2 types de coupures possibles. Un but avec une clause de Horn pour un but éventuellement plus long, ou un but avec une clause positive pour un but plus court.
+
+SLD (selective linear definite) resolution. Complet. On parcourt l'arbre de tous les résolvants possibles en profondeur.
+
+
+\end{document}
