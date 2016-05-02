@@ -66,24 +66,27 @@ Un système de déduction est \textbf{complet} si  $\Sigma\models F$ (sémantiqu
 
 \subsection{Système de déduction naturelle}
 \subsubsection{Logique minimale (NM)}
-$\dfrac{}{\Gamma,A\vdash A}$Ax\\
+\[\dfrac{}{\Gamma,A\vdash A} \text{ Ax }\]
 
-$\dfrac{\Gamma ,A\vdash B}{\Gamma\vdash A\implies B}$ intro $\implies$ 
-$\dfrac{\Gamma\vdash A, \Delta\vdash A\implies B}{\Gamma ,\Delta\vdash B}$ elim $\implies$\\
-
-%TO DO !!
-À compléter, j'ai la flemme là...
-%TO DO -> peut être sur une feuille à part, qui n’aurait que les règles en annexe.
-% !!
-
+\begin{align*}
+\dfrac{\Gamma ,A\vdash B}{\Gamma\vdash A\implies B} \text{ intro} \implies &\qquad 
+\dfrac{\Gamma\vdash A \quad \Delta\vdash A\implies B}{\Gamma ,\Delta\vdash B} \text{ elim }\implies \\ 
+\\
+\dfrac{\Gamma\vdash A \quad \Delta \vdash B}{\Gamma, \Delta \vdash A\land B} \text{ intro } \land  &\qquad 
+\dfrac{\Gamma\vdash A \land B}{\Gamma \vdash A} \text{ elim }\land \\
+&\qquad \dfrac{\Gamma\vdash A \land B}{\Gamma \vdash B} \text{ elim }\land  \\
+\\
+\dfrac{\Gamma\vdash A}{\Gamma \vdash A \lor B} \text{ intro }\lor &\qquad \\
+\dfrac{\Gamma\vdash B}{\Gamma \vdash A \lor B} \text{ intro }\lor 
+&\qquad \dfrac{\Gamma\vdash A \lor B \quad \Delta,A \vdash C \quad \Delta',B \vdash C}{\Gamma, \Delta, \Delta' \vdash C} \text{ elim }\lor 
+\end{align*}
 \subsubsection{Logique intuitionniste (NJ)}
 On ajoute le symbole $\bot$, on ajoute une règle :
 $$\frac{\Gamma\vdash\bot}{\Gamma\vdash A}\text{elim $\bot$}$$
 On enlève le connecteur $\neg$ et on en fait une macro : $\neg A$ = $A\implies\bot$.
 
-%TO DO !!
-à compléter : elim intro non
-%TO DO !!
+On a les règles (dérivées) suivantes :
+$$\frac{\Gamma, A\vdash B\qquad \Gamma, A\vdash\neg B}{\Gamma\vdash\neg A}\text{intro}\neg\qquad \frac{\Gamma\vdash\neg A\qquad \Gamma\vdash A}{\Gamma\vdash B}\text{elim}\neg$$
 
 \subsubsection{Logique classique (NK)}
 On ajoute le Tiers exclus :
@@ -297,6 +300,9 @@ On ajoute le symbole $\bot$, on ajoute une règle :
 \[\dfrac{\Gamma\vdash\bot}{\Gamma\vdash A}\text{ elim }\bot\]
 
 On enlève le connecteur $\neg$ et on en fait une macro : $\neg A$ = $A\implies\bot$.
+
+On a les règles (dérivées) suivantes :
+$$\frac{\Gamma, A\vdash B\qquad \Gamma, A\vdash\neg B}{\Gamma\vdash\neg A}\text{intro}\neg\qquad \frac{\Gamma\vdash\neg A\qquad \Gamma\vdash A}{\Gamma\vdash B}\text{elim}\neg$$
 
 %TODO Raccourcis du non
 
