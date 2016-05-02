@@ -341,6 +341,18 @@ On ajoute :
 
 \textbf{Groupe structurel :}
 
+\begin{align*}
+\text{Affaiblissement :} &\qquad \dfrac{\Gamma\vdash\Delta}{\Gamma, A\vdash\Delta}\text{w}\vdash &\qquad
+\dfrac{\Gamma\vdash\Delta}{\Gamma\vdash A,\Delta}\vdash\text{w}\\
+\\
+\text{Contraction :} &\qquad\dfrac{\Gamma, A, A\vdash\Delta}{\Gamma, A\vdash\Delta}\text{ct} &\qquad
+\dfrac{\Gamma\vdash A, A,\Delta}{\Gamma\vdash A,\Delta}\text{tc}\\
+\\
+\text{Échange ($\sigma$ permutation) :}&\qquad\dfrac{\Gamma\vdash\Delta}{\sigma (\Gamma)\vdash\Delta}\text{Et} &\qquad
+\dfrac{\Gamma\vdash\Delta}{\Gamma\vdash\sigma (\Delta)}\text{tE}
+\end{align*}
+
+
 %TODO
 
 \subsection{Calcul des séquents intuitionistes (LJ)}
