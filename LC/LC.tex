@@ -120,8 +120,35 @@ Idée : On fait toutes les coupures sur une variable (on obtient le \emph{résol
 \textbf{Un séquent :} 2 suites finies de formules, noté  $(H_1,\dots , H_n)\vdash (C_1,\dots , C_m)$ qui signifie $(H_1\wedge\dots\wedge H_n)\implies (C_1\vee\dots\vee C_m)$
 
 \subsubsection{Calcul des séquents classique (LK)}
-%TO DO!!
-AJOUTER LES REGLES
+\[\dfrac{}{A \vdash A} \text{ Ax }\]
+
+\[\dfrac{\Gamma \vdash A,\Delta \quad \Gamma',A \vdash \Delta}{\Gamma,\Gamma' \vdash \Delta, \Delta'} \text{ Cut }\]
+
+\textbf{Groupe logique :}
+\begin{align*}
+\dfrac{\Gamma,A,B \vdash \Delta}{\Gamma, A \land B \vdash \Delta} \land \vdash &\qquad 
+\dfrac{\Gamma \vdash A,\Delta \quad \Gamma' \vdash B,\Delta'}{\Gamma,\Gamma' \vdash A \land B, \Delta, \Delta'} \vdash \land \\ 
+\\
+\dfrac{\Gamma, A \vdash\Delta \quad \Gamma', B \vdash \Delta'}{\Gamma,\Gamma,  A \lor B \vdash \Delta, \Delta'} \lor \vdash    &\qquad 
+\dfrac{\Gamma \vdash A, B, \Delta}{\Gamma \vdash \Delta, A \lor B} \vdash \lor\\
+\\
+\dfrac{\Gamma \vdash A, \Delta}{\Gamma, \neg A \vdash \Delta} \neg \vdash  &\qquad 
+\dfrac{\Gamma \vdash A,\Delta}{\Gamma \vdash \Delta, \neg A} \vdash \neg
+\end{align*}
+
+\textbf{Groupe structurel :}
+
+\begin{align*}
+\text{Affaiblissement :} &\qquad \dfrac{\Gamma\vdash\Delta}{\Gamma, A\vdash\Delta}\text{w}\vdash &\qquad
+\dfrac{\Gamma\vdash\Delta}{\Gamma\vdash A,\Delta}\vdash\text{w}\\
+\\
+\text{Contraction :} &\qquad\dfrac{\Gamma, A, A\vdash\Delta}{\Gamma, A\vdash\Delta}\text{ct} &\qquad
+\dfrac{\Gamma\vdash A, A,\Delta}{\Gamma\vdash A,\Delta}\text{tc}\\
+\\
+\text{Échange ($\sigma$ permutation) :}&\qquad\dfrac{\Gamma\vdash\Delta}{\sigma (\Gamma)\vdash\Delta}\text{Et} &\qquad
+\dfrac{\Gamma\vdash\Delta}{\Gamma\vdash\sigma (\Delta)}\text{tE}
+\end{align*}
+
 
 \paragraph{Théorème fondamental (Hauptsatz)}
 Pour toute preuve dans LK, il existe une preuve de même conclusion sans utiliser la règle de coupure.
@@ -197,8 +224,16 @@ Inversement, si $T\cup\{\neg F\}$ contradictoire alors que $F$ est universelleme
 
 \subsection{Systèmes de déduction naturelle}
 (NK) et les règles suivantes :
+\begin{align*}
+\text{intro $\forall$} &\qquad\dfrac{\Gamma\vdash F}{\Gamma\vdash\forall x F}\text{ $x$ n'est pas libre dans $\Gamma$}\\
+\\
+\text{elim $\forall$} &\qquad\dfrac{\Gamma\vdash\forall x F}{\Gamma\vdash F[t/x]}\text{ $t$ un terme tel que la substitution [$t$/$x$] soit licite dans $F$}\\
+\\
+\text{intro $\exists$} &\qquad\dfrac{\Gamma\vdash F[t/x]}{\Gamma\vdash\exists x F}\\
+\\
+\text{elim $\exists$} &\qquad\dfrac{\Gamma\vdash\exists x F\qquad\Gamma, F\vdash G}{\Gamma\vdash G}\text{ $x$ n'est pas libre ni dans $\Gamma$ ni dans $G$}
+\end{align*}
 
-AJOUTER LES REGLES
 
 \textbf{Théorie T cohérente : }il n'existe pas de $F$ telle que $T\vdash F$ et $T\vdash\neg F$. Si $T$ a toutes ses parties finies cohérentes, $T$ est cohérente.
 
