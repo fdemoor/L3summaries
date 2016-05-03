@@ -259,8 +259,21 @@ Le Hauptsatz est valide. Le calcul des séquents est complet.
 $L = \{0,S,+,\times,=,<\}$
 
 Axiomes de l'égalité, et :
+$$\forall x,\, \neg(S x = 0)$$
+$$\forall x\exists y,\, \neg(x=0)\implies(S y = x)$$
+$$\forall x\forall y,\, S x = S y \implies x = y$$
+$$\forall x,\, x+0=x$$
+$$\forall x\forall y,\, x+S y = S(x + y)$$
+$$\forall x,\, x\times 0 = 0$$
+$$\forall x\forall y,\, x\times S y = x + x\times y$$
+À ce stade là, on parle d'arithmétique de Robinson
+$$\forall x,\, \neg(x<0)$$
+$$\forall x\forall y,\, (x<S y)\Leftrightarrow(x = y \vee x<y)$$
+À ce stade là, on a $\mathcal{P}_0$
 
-ÉCRIRE TOUS LES AXIOMES DE PEANO
+Axiomes de récurrence : pour chaque formule $F$ et chaque variable $x$ libre de $F$, 
+$$(F[0/x]\wedge\forall x (F\implies F[S x/x]))\implies\forall x F$$
+
 
 Il y a une infinité dénombrable de tels axiomes. Il existe une infinité de modèles de P non isomorphes à $\mathbb{N}$.
 
