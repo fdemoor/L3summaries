@@ -362,7 +362,6 @@ On enlève le connecteur $\neg$ et on en fait une macro : $\neg A$ = $A\implies\
 On a les règles (dérivées) suivantes :
 $$\frac{\Gamma, A\vdash B\qquad \Gamma, A\vdash\neg B}{\Gamma\vdash\neg A}\text{intro}\neg\qquad \frac{\Gamma\vdash\neg A\qquad \Gamma\vdash A}{\Gamma\vdash B}\text{elim}\neg$$
 
-%TODO Raccourcis du non
 
 \subsubsection{Logique Classique (NK)}
 
@@ -370,9 +369,17 @@ On ajoute :
 
 \[\dfrac{}{\Gamma\vdash A\vee\neg A}\text{ Tiers exclus }\]
 
-\subsubsection{Logique Classique et calcul des prédicats}
+\subsubsection{Logique Classique au premier ordre}
 
-%TODO
+\begin{align*}
+\text{intro $\forall$} &\qquad\dfrac{\Gamma\vdash F}{\Gamma\vdash\forall x F}\text{ $x$ n'est pas libre dans $\Gamma$}\\
+\\
+\text{elim $\forall$} &\qquad\dfrac{\Gamma\vdash\forall x F}{\Gamma\vdash F[t/x]}\text{ $t$ un terme tel que la substitution [$t$/$x$] soit licite dans $F$}\\
+\\
+\text{intro $\exists$} &\qquad\dfrac{\Gamma\vdash F[t/x]}{\Gamma\vdash\exists x F}\\
+\\
+\text{elim $\exists$} &\qquad\dfrac{\Gamma\vdash\exists x F\qquad\Gamma, F\vdash G}{\Gamma\vdash G}\text{ $x$ n'est pas libre ni dans $\Gamma$ ni dans $G$}
+\end{align*}
 
 \subsection{Déduction par coupure}
 
@@ -381,7 +388,7 @@ On ajoute :
 \[\dfrac{(\Gamma_1,\Delta_1\cup\{p\}) \quad (\Gamma_2\cup\{p\}, \Delta_2)}{(\Gamma_1\cup\Gamma_2, \Delta_1\cup\Delta2)}\]
 
 
-\subsubsection{Coupures et calcul des prédicats}
+\subsubsection{Coupures au premier ordre}
 
 %TODO
 
@@ -421,12 +428,17 @@ On ajoute :
 Restriction des séquents classiques (LK): une seule formule au plus à droite de $\vdash$.
 
 Introduction du ou:
-$\frac{\Gamma\vdash A}{\Gamma\vdash A\vee B}\ \frac{\Gamma\vdash B}{\Gamma\vdash A\vee B}$.
+\[\dfrac{\Gamma\vdash A}{\Gamma\vdash A\vee B}\ \frac{\Gamma\vdash B}{\Gamma\vdash A\vee B}\].
 
 
-\subsubsection{Séquents et calcul des prédicats}
+\subsubsection{Calcul des séquents au premier ordre}
 
-%TODO
-
+\begin{align*}
+\dfrac{\Gamma\vdash F,\Delta}{\Gamma\vdash\forall x F,\Delta} \quad \vdash\forall \text{ $x$ non libre dans $\Gamma\cup\Delta$} &\qquad \dfrac{\Gamma, F[t/x]\vdash\Delta}{\Gamma, \forall x F\vdash\Delta} \quad \forall\vdash
+\\
+\\
+\dfrac{\Gamma\vdash F[t/x],\Delta}{\Gamma\vdash\exists x F,\Delta} \quad \vdash\exists &\qquad
+\dfrac{\Gamma, F\vdash\Delta}{\Gamma, \exists x F\vdash\Delta} \quad \exists\vdash \text{ $x$ non libre dans  $\Gamma\cup\Delta$}
+\end{align*}
 
 \end{document}
