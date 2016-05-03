@@ -277,7 +277,7 @@ $$(F[0/x]\wedge\forall x (F\implies F[S x/x]))\implies\forall x F$$
 
 Il y a une infinité dénombrable de tels axiomes. Il existe une infinité de modèles de P non isomorphes à $\mathbb{N}$.
 
-$P$(propriété) est axiomatisable s'il existe une théorie $T$ telle que pour toute structure $\mathcal{M}$ sur le langage, $\mathcal{M}$ vérifié $P$ ssi $\mathcal{M}\models T$. Finiment axiomatisable : $T$ est finie.
+$P$(propriété) est \textbf{axiomatisable} s'il existe une théorie $T$ telle que pour toute structure $\mathcal{M}$ sur le langage, $\mathcal{M}$ vérifié $P$ ssi $\mathcal{M}\models T$. \textbf{Finiment axiomatisable} : $T$ est finie.
 
 ``être un ensemble à au moins $n$ éléments'' finiment axiomatisable.
 ``être un ensemble à exactement $n$ éléments'' finiment axiomatisable.
@@ -383,14 +383,8 @@ On ajoute :
 
 \subsection{Déduction par coupure}
 
-\subsubsection{Coupures en calcul propositionnel}
+\[\dfrac{(\Gamma_1,\Delta_1\cup\{p\}) \quad (\Gamma_2\cup\{p\}, \Delta_2)}{(\Gamma_1\cup\Gamma_2, \Delta_1\cup\Delta_2)}\]
 
-\[\dfrac{(\Gamma_1,\Delta_1\cup\{p\}) \quad (\Gamma_2\cup\{p\}, \Delta_2)}{(\Gamma_1\cup\Gamma_2, \Delta_1\cup\Delta2)}\]
-
-
-\subsubsection{Coupures au premier ordre}
-
-%TODO
 
 \subsection{Calcul des séquents classique (LK)}
 
@@ -416,11 +410,11 @@ On ajoute :
 \text{Affaiblissement :} &\qquad \dfrac{\Gamma\vdash\Delta}{\Gamma, A\vdash\Delta}\text{w}\vdash &\qquad
 \dfrac{\Gamma\vdash\Delta}{\Gamma\vdash A,\Delta}\vdash\text{w}\\
 \\
-\text{Contraction :} &\qquad\dfrac{\Gamma, A, A\vdash\Delta}{\Gamma, A\vdash\Delta}\text{ct} &\qquad
-\dfrac{\Gamma\vdash A, A,\Delta}{\Gamma\vdash A,\Delta}\text{tc}\\
+\text{Contraction :} &\qquad\dfrac{\Gamma, A, A\vdash\Delta}{\Gamma, A\vdash\Delta}\text{c} \vdash &\qquad
+\dfrac{\Gamma\vdash A, A,\Delta}{\Gamma\vdash A,\Delta} \vdash \text{c}\\
 \\
-\text{Échange ($\sigma$ permutation) :}&\qquad\dfrac{\Gamma\vdash\Delta}{\sigma (\Gamma)\vdash\Delta}\text{Et} &\qquad
-\dfrac{\Gamma\vdash\Delta}{\Gamma\vdash\sigma (\Delta)}\text{tE}
+\text{Échange ($\sigma$ permutation) :}&\qquad\dfrac{\Gamma\vdash\Delta}{\sigma (\Gamma)\vdash\Delta}\text{E} \vdash &\qquad
+\dfrac{\Gamma\vdash\Delta}{\Gamma\vdash\sigma (\Delta)} \vdash \text{E}
 \end{align*}
 
 
@@ -431,14 +425,15 @@ Introduction du ou:
 \[\dfrac{\Gamma\vdash A}{\Gamma\vdash A\vee B}\ \frac{\Gamma\vdash B}{\Gamma\vdash A\vee B}\].
 
 
+
 \subsubsection{Calcul des séquents au premier ordre}
 
 \begin{align*}
-\dfrac{\Gamma\vdash F,\Delta}{\Gamma\vdash\forall x F,\Delta} \quad \vdash\forall \text{ $x$ non libre dans $\Gamma\cup\Delta$} &\qquad \dfrac{\Gamma, F[t/x]\vdash\Delta}{\Gamma, \forall x F\vdash\Delta} \quad \forall\vdash
+\dfrac{\Gamma, F[t/x]\vdash\Delta}{\Gamma, \forall x F\vdash\Delta} \quad \forall\vdash &\qquad  \dfrac{\Gamma\vdash F,\Delta}{\Gamma\vdash\forall x F,\Delta} \quad \vdash\forall \text{ $x$ non libre dans $\Gamma\cup\Delta$}
 \\
 \\
-\dfrac{\Gamma\vdash F[t/x],\Delta}{\Gamma\vdash\exists x F,\Delta} \quad \vdash\exists &\qquad
-\dfrac{\Gamma, F\vdash\Delta}{\Gamma, \exists x F\vdash\Delta} \quad \exists\vdash \text{ $x$ non libre dans  $\Gamma\cup\Delta$}
+\dfrac{\Gamma, F\vdash\Delta}{\Gamma, \exists x F\vdash\Delta} \quad \exists\vdash \text{ $x$ non libre dans  $\Gamma\cup\Delta$}  &\qquad
+\dfrac{\Gamma\vdash F[t/x],\Delta}{\Gamma\vdash\exists x F,\Delta} \quad \vdash\exists 
 \end{align*}
 
 \end{document}
