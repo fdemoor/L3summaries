@@ -426,7 +426,17 @@ $\frac{\Gamma\vdash A}{\Gamma\vdash A\vee B}\ \frac{\Gamma\vdash B}{\Gamma\vdash
 
 \subsubsection{Séquents et calcul des prédicats}
 
-%TODO
+%TODO vérifier que ce que j'ai copié ici est bon (calcul des séquents au premier
+% ordre, est-ce bien ça qui se cache derrière le titre de ce paragraphe ?)
 
+\begin{align*}
+\vdash\forall\qquad\dfrac{\Gamma\vdash F,\Delta}{\Gamma\vdash\forall x F,\Delta}&\text{ $x$ non libre dans $\Gamma\cup\Delta$}\\
+\\
+\vdash\exists\qquad\dfrac{\Gamma\vdash F[t/x],\Delta}{\Gamma\vdash\exists x F,\Delta}\\
+\\
+\forall\vdash\qquad\dfrac{\Gamma, F[t/x]\vdash\Delta}{\Gamma, \forall x F\vdash\Delta}\\
+\\
+\exists\vdash\qquad\dfrac{\Gamma, F\vdash\Delta}{\Gamma, \exists x F\vdash\Delta}&\text{ $x$ non libre dans  $\Gamma\cup\Delta$}
+\end{align*}
 
 \end{document}
