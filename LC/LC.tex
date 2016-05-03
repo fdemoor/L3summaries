@@ -20,6 +20,7 @@
 \begin{document}
 \maketitle
 \tableofcontents
+\newpage
 \section{Induction}
 
 \textbf{Définition inductive :} ensemble de base, des fonctions constructrices d'autres éléments. L'ensemble est alors défini comme le plus petit contenant la base et stable par les constructeurs.
@@ -329,6 +330,15 @@ empoisonné(X):- boit(X,Y), poison(Y)\\
 But : clause négative. 2 types de coupures possibles. Un but avec une clause de Horn pour un but éventuellement plus long, ou un but avec une clause positive pour un but plus court.
 
 SLD (selective linear definite) resolution. Complet. On parcourt l'arbre de tous les résolvants possibles en profondeur.
+
+\section{Autres / Vu en TD}
+\paragraph{Modèle de Herbrand} Domaine de base : ensemble des termes clos. Les symboles de fonctions sont interprétés par les constructions de termes correspondant.
+
+\paragraph{Théorème de Herbrand} Pour toute formule $F$ du premier ordre sous forme de Skolem, on peut construire une formule du calcul propositionnel $F'$ telle que si $F'$ non satisfiable, $F$ non satisfiable. On peut aussi construire un ensemble $E$ de formules du calcul propositionnel tel que $F$ satisfiable ssi $E$ satisfiable.
+
+\paragraph{Application du théorème de Herbrand}
+Pour déterminer si une théorie $T$ est consistante, on met ses formules sous forme de Skolem, on liste les termes et les atomes (applications de prédicat aux termes). On propose l'ensemble de toutes les interprétations possibles (en évaluant toutes les variables par tous les termes) et on regarde s'il est satisfiable.
+
 \newpage
 \appendix
 
