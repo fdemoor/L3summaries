@@ -7,12 +7,16 @@
 \usepackage{tikz}
 \usepackage{fullpage}
 
+\usepackage{float}
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
 \title{Algorithmique 2}
 \date{}
 \author{L3 RI}
+
+\newcommand{\NP}{\mathrm{NP}}
 
 
 \begin{document}
@@ -21,7 +25,15 @@
 
 \section{NP-Complétude}
 
-\begin{center}
+\subsection{Définitions}
+
+\paragraph{Réduction} Soient $L_1$, $L_2$ des langages.
+Une réduction polynomiale de $L_1$ à $L_2$ est une fonction $f$ calculable en temps polynomial telle que :
+	\[ f(x) \in L_2 \Longleftrightarrow x \in L_1 \]
+On note $L_1 \leq L_2$ ($L_1$ plus facile que $L_2$ = Si on sait résoudre $L_2$, on sait résoudre $L_1$)
+
+\begin{figure}[H]
+\center
 \begin{tikzpicture}
 \draw (1,0) -- (1,4) -- (7,4) -- (7,0) -- (1,0);
 \draw (2,1) -- (2,3) -- (3,3) -- (3,1) -- (2,1);
@@ -31,10 +43,20 @@
 \draw[->] (6,2) -- (8,2);
 \node[draw,line width=-1] at (0,2.2) {$x$};
 \node[draw,line width=-1] at (2.5,2) {$f$};
-\node[draw,line width=-1] at (5.6,1.2) {$L_1$};
-\node[draw,line width=-1] at (6.6,0.2) {$L_2$};
+\node[draw,line width=-1] at (5.6,1.2) {$L_2$};
+\node[draw,line width=-1] at (6.6,0.2) {$L_1$};
 \end{tikzpicture}
-\end{center}
+\caption{Schéma de réduction de $L_1$ à $L_2$}
+\end{figure}
+
+\paragraph{Classe NP}Soit $L$ un langage. $L$ est dit dans la classe NP s'il existe une machine de Turing non-déterministe en temps polynomial par rapport à la taille de l'entrée qui décide $L$.
+
+\paragraph{NP-Complétude} Soit $L$ un langage. $L$ est dit NP-dur si pour tout $L' \in \NP$, $L' \leq L$.
+$L$ est dit NP-complet si $L \in \NP$ et $L$ est NP-dur.
+
+\subsection{Satisfiabilité d'une formule}
+
+\subsection{Ensembles indépendants dans un graphe}
 
 \section{Algorithmes d'approximation}
 
