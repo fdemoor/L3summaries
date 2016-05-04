@@ -9,15 +9,18 @@
 
 \usepackage{float}
 
+\usepackage{tabularx}
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 
 \title{Algorithmique 2}
 \date{}
 \author{L3 RI}
 
 \newcommand{\NP}{\mathrm{NP}}
-
+\newcommand{\size}[1]{\vert #1 \vert}
 
 \begin{document}
 \maketitle
@@ -54,9 +57,39 @@ On note $L_1 \leq L_2$ ($L_1$ plus facile que $L_2$ = Si on sait résoudre $L_2$
 \paragraph{NP-Complétude} Soit $L$ un langage. $L$ est dit NP-dur si pour tout $L' \in \NP$, $L' \leq L$.
 $L$ est dit NP-complet si $L \in \NP$ et $L$ est NP-dur.
 
+\paragraph{Remarques} Si un problème NP-complet est dans P, alors P = NP. Pour montrer que $L'$ est NP-dur, il suffit de montrer qu'il existe $L$ NP-dur tel que $L \leq L'$.
+
 \subsection{Satisfiabilité d'une formule}
 
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Problème de décision : SAT}} \\ 
+\emph{Entrée} & $\varphi$ formule de la logique propositionnelle \\ 
+\emph{Sortie} & Oui si $\varphi$ est satisfiable, c'est-à-dire s'il existe une valuation $v$ des variables qui rend $\varphi$ vraie \\
+\end{tabularx}
+
+\paragraph{Théorème de Cook} SAT est NP-complet.
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{X}
+\multicolumn{1}{c}{\textbf{Problème de décision : $i$-SAT}} \\ 
+Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que chaque clause contient au plus $i$ littéraux \\
+\end{tabularx}
+
+\paragraph{Théorème} 3-SAT est NP-complet.
+
+\paragraph{Théorème} 2-SAT est dans P.
+
 \subsection{Ensembles indépendants dans un graphe}
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Problème de décision : ENS\_INDEP}} \\ 
+\emph{Entrée} & $G = (V, E)$ un graphe non-orienté et $k \in \mathbb{N}$ \\ 
+\emph{Sortie} & Oui s'il existe $V' \subseteq V$ tel que $\size{V'} = k$ et $(V' \times V') \cap E = \varnothing$ \\
+\end{tabularx}
+
+\paragraph{Théorème} ENS\_INDEP est NP-complet
 
 \section{Algorithmes d'approximation}
 
