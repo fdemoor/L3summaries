@@ -68,7 +68,7 @@ $L$ est dit NP-complet si $L \in \NP$ et $L$ est NP-dur.
 \emph{Sortie} & Oui si $\varphi$ est satisfiable, c'est-à-dire s'il existe une valuation $v$ des variables qui rend $\varphi$ vraie \\
 \end{tabularx}
 
-\paragraph{Théorème de Cook} SAT est NP-complet.
+\paragraph{Théorème de Cook} SAT est NP-complet. (\emph{Réduction de $L$ à SAT pour $L \in \NP$ en considérant une machine de Turing $\mathcal{M}$ non-déterministe qui décide $L$. On construit une formule qui traduit une exécution de $\mathcal{M}$.})
 
 \vspace{0.5cm}
 \begin{tabularx}{\textwidth}{X}
@@ -76,11 +76,20 @@ $L$ est dit NP-complet si $L \in \NP$ et $L$ est NP-dur.
 Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que chaque clause contient au plus $i$ littéraux \\
 \end{tabularx}
 
-\paragraph{Théorème} 3-SAT est NP-complet.
+\paragraph{Théorème} 3-SAT est NP-complet. (\emph{Réduction de SAT à 3-SAT.})
 
-\paragraph{Théorème} 2-SAT est dans P.
+\paragraph{Théorème} 2-SAT est dans P. (\emph{Réduction de 2-SAT à la détermination des CFC d'un graphe.})
 
-\subsection{Ensembles indépendants dans un graphe}
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Problème de décision : MAX-2-SAT}} \\ 
+\emph{Entrée} & $\varphi$ formule en 2-forme normale conjonctive et $k \in \mathbb{N}$ \\ 
+\emph{Sortie} & Oui s'il existe une valuation qui satisfait au moins $k$ clauses de $\varphi$ \\
+\end{tabularx}
+
+\paragraph{Théorème} MAX-2-SAT est NP-complet. (\emph{Réduction de 3-SAT à MAX-2-SAT.})
+
+\subsection{Graphes}
 
 \vspace{0.5cm}
 \begin{tabularx}{\textwidth}{p{1cm}X}
@@ -89,7 +98,17 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 \emph{Sortie} & Oui s'il existe $V' \subseteq V$ tel que $\size{V'} = k$ et $(V' \times V') \cap E = \varnothing$ \\
 \end{tabularx}
 
-\paragraph{Théorème} ENS\_INDEP est NP-complet
+\paragraph{Théorème} ENS\_INDEP est NP-complet. (\emph{Réduction de 3-SAT à ENS\_INDEP.})
+
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Problème de décision : MAX\_CUT}} \\ 
+\emph{Entrée} & $G = (V, E)$ un graphe non-orienté et $k \in \mathbb{N}$ \\ 
+\emph{Sortie} & Oui s'il existe $S_1$ et $S_2$, $S = S_1 \uplus S_2$ et $\# \lbrace (u,v) \in E ~\vert~ u \in S_1 \text{ et } v \in S_2 \rbrace \geq k$ \\
+\end{tabularx}
+
+\paragraph{Théorème} MAX\_CUT est NP-complet. (\emph{Réduction de MAX-2-SAT à MAX\_CUT}.)
 
 \section{Algorithmes d'approximation}
 
