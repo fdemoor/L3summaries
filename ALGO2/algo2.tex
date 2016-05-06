@@ -169,8 +169,62 @@ En effet, on considère un rectangle qu'on divise en huit parties. On peut alors
 
 \section{Algorithmes distribués}
 
+\subsection{Généralités}
 
+\paragraph{}Un système distribué est constitué de \textbf{processus} communiquant par des objets de partage ou par \textbf{envoi de messages}.\\
 
+\begin{itemize}
+	\item \textbf{Communications}
+	
+	Asynchrones (pas de confirmation de réception du message)
+	
+	Par rendez-vous (Transmission uniquement sir le récepteur est prêt, problème d'interblocage)
+	
+	\item \textbf{Primitives} 
+	
+	Point à point
+	
+	broadcast
+	
+	\item \textbf{Topologie}
+	
+	Graphe fortement connexe
+	
+	Graphe complet
+	
+	\item \textbf{Degré de synchronie}
+	
+	Synchrone (horloges locales des processus son synchronisées, delai d'acheminement des message borné par $\Delta$, vitesse relative des processus bornée par $\phi$)
+	
+	Asynchrone ($\Delta$ et $\phi$ n'existent pas a priori)
+	
+	\item \textbf{Types de défaillances}
+	
+	Processus (crash, omission, byzantin)
+	
+	Liens de communication, perte de messages, altération, duplication, création
+\end{itemize}
+
+\subsection{Problème du consensus}
+
+\paragraph{}Chaque processus $p_i$ a une valeur $v_i$ et une variale de décision $d_i$ initialement à $\perp$ qui est \emph{write once}.
+
+\paragraph{}Un algorithme résout le consensus s'il garantit :
+\begin{itemize}
+	\item \textbf{Accord :} Si deux processus décident, alors ils décident la même valeur
+	\item \textbf{Terminaison :} Tout processus correct va finalement décider
+	\item \textbf{Validité :} Si $v$ est une valeur de décision d'un processus correct, alors $v$ était une valeur initiale
+\end{itemize}
+
+Si on ôte une des trois propriétés, le problème du consensus affaibli devient trivial.
+
+\subsection{Consensus dans le cas synchrone}
+
+\TODO
+
+\subsection{Consensus dans le cas asynchrone}
+
+\TODO
 
 
 \end{document}
