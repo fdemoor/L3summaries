@@ -19,6 +19,8 @@
 \date{}
 \author{L3 RI}
 
+\newcommand{\TODO}{\textcolor{red}{\textbf{TODO}}}
+
 \newcommand{\NP}{\mathrm{NP}}
 \newcommand{\size}[1]{\vert #1 \vert}
 
@@ -112,11 +114,62 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 
 \section{Algorithmes d'approximation}
 
+\TODO
+
 \section{Algorithmes probabilistes}
+
+\TODO
 
 \section{Géométrie algorithmique}
 
+\subsection{Enveloppe convexe}
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Calcul de l'enveloppe convexe}} \\ 
+\emph{Entrée} & Un ensemble $S$ de points $(x,y)$ du plan \\ 
+\emph{Sortie} & $C \subseteq S$ une énumération dans le sens trigonométrique des points extrémaux de l'enveloppe convexe de S \\
+\end{tabularx}
+
+\paragraph{Position d'un point par rapport à une droite} On suppose qu'il n'existe pas trois points alignés. $p_2$ est à gauche de la droite orientée $(\vec{p_0p_1})$ si et seulement si :
+ \[ \det(\vec{p_0p_1}, \vec{p_0p_2}) > 0 \]
+ 
+\paragraph{Marche de Jarvis} Algorithme du paquet cadeau
+\begin{itemize}
+	\item Partir du point de plus petite ordonnée $p_0$
+	\item Prendre un point suivant, parcourir tous les points et le remplacer s'il en existe un plus à gauche de la droite orientée $(\vec{p_{actuel}~p_{suivant}})$
+	\item Recommencer jusqu'à retomber sur $p_0$
+\end{itemize}
+
+\paragraph{Complexité de la marche de Jarvis} Si $n$ est la taille de $S$ et $h$ le nombre de points dans l'enveloppe convexe : $O(nh)$
+
+La complexité dépend de la sortie (\emph{output sensitive}).
+
+
+\paragraph{Balayage de Graham}\TODO
+
+\paragraph{Complexité du balayage de Graham}\TODO
+
+\subsection{Points les plus rapprochés}
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Points les plus rapprochés}} \\ 
+\emph{Entrée} & Un ensemble $S$ de points $(x,y)$ du plan \\ 
+\emph{Sortie} & $d^*$ la distance minimale entre deux points de $S$ \\
+\end{tabularx}
+
+\paragraph{Algorithme}Principe de diviser pour régner, on divise le plan en deux. On obtient récursivement $\delta_D$ et $\delta_G$. Soit $\delta = \min (\delta_G, \delta_D)$. On considère l'ensemble $M$ des points dans la bande de largeur $2\delta$. $M = p_1 \ldots p_k$ énumérés par ordonnées croissantes.
+
+\paragraph{Lemme}S'il existe $i < j$ tel que $d(p_i,p_j) < \delta$ alors il existe $i' < j' \leq i'+8$ tel que $d(p_{i'},p_{j'}) < \delta$.
+
+En effet, on considère un rectangle qu'on divise en huit parties. On peut alors prendre 9 points et appliquer le principe des tiroirs.
+
+\paragraph{Complexité} Pré-tris en $O(n \log n)$. Au total, avec le \emph{Master Theorem} : $O(n \log n)$
+
 \section{Algorithmes distribués}
+
+
 
 
 
