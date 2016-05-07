@@ -220,11 +220,21 @@ Si on ôte une des trois propriétés, le problème du consensus affaibli devien
 
 \subsection{Consensus dans le cas synchrone}
 
-\TODO
+\paragraph{}Si on formalise, un processus $p_i$ a un ensemble d'états ($states_i$), des états initiaux possibles ($start_i \subseteq states_i$) une fonction $msg_i$ qui à un état et un voisin associe un message (ou $null$) et une fonction de transition.
+Un round est constitué d'une application de la fonction $msg_i$ et d'un envoi des messages aux destinataires, puis d'une réception des messages et une mise à jour de l'état courant.
+
+\paragraph{}Un algorithme résout le problème du consensus et tolère t défaillances si pour toute exécution $\sigma$ telle que $f(\sigma) \leq t$ (nombre de défaillances au cours de $\sigma$), on a les trois propriétés : accord, terminaison, validité.
+
+\paragraph{Algorithme Flood Set} Chaque processus commence avec $W_i = \lbrace v_i \rbrace$. Pour tout round d'indice inférieur à t, chaque processus envoie $W_i$ à tout le monde, et ajoute à $W_i$ ce qu'il reçoit des autres. Quand l'indice du round est $t + 1$, on décide $d_i = \min_i W_i$. L'algorithme Flood Set résout le problème du consensus pour les systèmes synchrones et tolère $t$ défaillances de type crash.
+
+\paragraph{Preuve} Terminaison : décision au tour $t + 1$. Validité : à tout instant, $W_i$ contient des valeur initiales. Accord : Il existe un round sans crash, à l'issue de ce round tous les processus ont le même $W_i$, et l'égalité est conservée.
+
 
 \subsection{Consensus dans le cas asynchrone}
 
-\TODO
+\paragraph{Théorème de Fischer Lynch Paterson}Il n'existe pas d'algorithme résolvant le consensus dans le cas asynchrone qui tolère même une seule défaillance de type crash.
+
+\paragraph{}\TODO formalisation, propriété du diamant, bivalence, étapes de la preuve (cf TD6)
 
 
 \end{document}
