@@ -131,6 +131,17 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 \emph{Sortie} & $C \subseteq S$ une énumération dans le sens trigonométrique des points extrémaux de l'enveloppe convexe de S \\
 \end{tabularx}
 
+\begin{figure}[H]
+\center
+\begin{tikzpicture}
+\draw (0,0) -- (2,0) -- (4,3) -- (2,5) -- (-2,4) -- (-3,3) -- (-2,1) -- (0,0);
+\foreach \Point in {(2,1.5), (0,1), (2.5,3), (-1,2.5), (1,3), (0,0), (2,0), (4,3), (2,5), (-2,4), (-3,3), (-2,1), (.5,2), (2,3.2), (1.2,2.4)}{
+    \node at \Point {\textbullet};
+}
+\end{tikzpicture}
+\caption{Exemple d'enveloppe convexe d'un ensemble de points}
+\end{figure}
+
 \paragraph{Position d'un point par rapport à une droite} On suppose qu'il n'existe pas trois points alignés. $p_2$ est à gauche de la droite orientée $(\vec{p_0p_1})$ si et seulement si :
  \[ \det(\vec{p_0p_1}, \vec{p_0p_2}) > 0 \]
  
