@@ -5,7 +5,7 @@
 
 \title{Images~: OpenGL}
 \date{26 avril 1986}
-\author{jean-marie}
+\author{Corentin Ferry\footnote{\texttt{cferr@openmailbox.org}}}
 
 \renewcommand{\contentsname}{Sommaire}
 \newcommand{\code}[1]{\texttt{#1}}
@@ -26,6 +26,42 @@ Cette section, un peu inutile pour l'évaluation, est à écrire en dernier.
 fonctions C qu'OpenGL implémente (\code{glSphered} par exemple...).
 
 \section{Modélisation}
+\subsection{Modélisations surfacique, volumique}
+
+\paragraph{Modélisation volumique}
+La modélisation volumique, passons très rapidement dessus. Elle n'est pas 
+utilisée dans le cadre du rendu 3D, mais plutôt en CAD. 
+
+Un volume se décrit par exemple géométriquement par induction, avec~:
+\begin{itemize}
+    \item L'ensemble de base constitué de volumes simples, du style sphères,
+    parallélépipèdes rectangles, etc, que l'on sait construire dans le monde
+    du discret;
+    \item Des fonctions d'assemblage comme l'union, l'intersection, la 
+    différence symétrique...
+\end{itemize}
+
+On appelle ceci de la \textbf{constructive solid geometry}.
+
+Si on travaille en discret, on peut aussi représenter un volume par des
+\textbf{voxels}, ce qui signifie "volume pixels", à condition d'avoir subdivisé
+l'espace en petits cubes. On choisit alors de quel matériau un cube est rempli.
+
+\paragraph{Modélisation surfacique}
+Lorsque l'on travaille sur des cartes graphiques : on n'a pas besoin de plonger
+à l'intérieur d'un objet que l'on voit de l'extérieur (la plupart du temps),
+donc une modélisation surfacique suffit. Cela évite un nombre assez conséquent
+de calculs inutiles.
+
+On représente les surfaces de manière discrète, par des polygones, lesquels
+peuvent être représentés par des \textbf{triangles} (cf. Delaunay), lesquels 
+ne sont jamais que des listes de points. En d'autres termes, il suffit d'avoir 
+une liste de points suffisamment bien ordonnée pour représenter une surface.
+
+L'ordre de la liste de points induit aussi \textbf{l'orientation de la surface} 
+(celle dont on déduit le vecteur normal). Cette définition est implicite.
+
+
 
 \section{Rendu}
 
