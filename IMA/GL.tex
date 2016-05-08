@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{listings}
-\usepackage[english, russian]{babel}
+\usepackage[russian, english]{babel}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -17,7 +17,9 @@
 \date{26 avril 1986}
 \author{Corentin Ferry\footnote{\texttt{cferr@openmailbox.org}}}
 
-\renewcommand{\contentsname}{Sommaire}
+\addto\captionsenglish {
+    \renewcommand{\contentsname}{Sommaire}
+}
 \newcommand{\code}[1]{\texttt{#1}}
 
 \begin{document}
