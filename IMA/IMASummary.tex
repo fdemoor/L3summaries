@@ -373,17 +373,87 @@ On peut aussi prouver que $\mathcal{R}^* = \mathcal{R}$.
 
 \section{Segmentation}
 \subsection{Seuillage d'histogramme}
+\paragraph{Principe} On sépare les pixel de l'image selon que leur valeur
+est au-dessus ou en dessous d'un certain seuil. On crée ainsi $k+1$ classes
+en choisissant $k$ seuils.
+
+\paragraph{Méthode d'Otsu} Seuillage d'histogramme où l'on minimise la
+variance intra-classe.
+
+\paragraph{Seuillage par classification bayésienne} On approxime
+l'histogramme par un mélange de gaussiennes.
+
 \subsection{Algo K-means}
-\subsection{Limites algos globaux}
+\paragraph{Principe} Permet une classification en $k$ classes dans un
+espace de dimension $n$. Si $n=1$ on a une image en niveaux de gris, $n=3$
+une image en couleur.
+\begin{itemize}
+\item{Init} On initialiase $k$ graines aléatoires.
+\item{Boucle} Jusqu'à convergence
+\begin{itemize}
+\item{Classification} Pour chaque pixel, on trouve la graine $i$ ma plus
+proche. On étiquette ce pixel avec $i$.
+\item{Équilibrage} On calcule le barycentre de chaque classe, ils deviennent
+les nouvelles graines.
+\end{itemize}
+\end{itemize}
+
+\subparagraph{Remarque}Pas de propriété sur la connexité.
+
+\paragraph{Limites} Choix du nombre de classe et sensibilité à l'initialisation.
+
+\paragraph{Variante} Algorithme des Fuzzy c-means. L'appartenance d'un
+pixel à une classe est remplacé par une pondération de l'appartenance à
+chacune des classes.
+
+\paragraph{Autre méthode} Sélection récursive d'histogramme.
+
+\subsection{Limites algos globaux} Des zones claires mais faiblement éclairées
+seront dans la même classe que des zones sombres fortement éclairées.
+Choisir une approche plus locale, en seuillant par région, ne suffit pas
+car certaines zones ont un histogramme monomodal qui sera mal interprété.
+
 \subsection{Region growing}
+
+\paragraph{Principe} On part d'un ensemble de graines. On étend la zone
+(classe) aux voisins en limitant l'écart-type de la classe à un seuil.
+
+\paragraph{Avantages et limites}Implémentation rapide mais sensible aux
+choix des graines, aux parcours des frontières des classes et au seuil.
+
 \subsection{Split and merge}
+
+\paragraph{Principe} On fonctionne en deux étapes : \emph{Split}, où on
+partitionne l'image en sous-régions tant que la région n'est pas «homogène»
+($\to$ graphe d'adjacence), et \emph{Merge}, où on regroupe les régions
+voisines du graphes tant qu'elles sont homogènes.
+
+\paragraph{Avantages et limites} Méthode hybride locale et globale mais
+sensible au choix du seuil du critère d'homogénéité, à l'ordre de parcours.
+Par ailleurs la segmentation finale présente des structures carrées.
+
 \subsection{Méthode markovienne}
+[Basé sur les probabilités et le recuit simulé]
 \subsection{Graph-Cuts}
 \subsection{Détecteur de Canny}
+
+[Seuillage par la norme du gradient sur l'image lisser.]
 \subsection{Segmentation par contours actifs}
+
+[Minimiser le contour, favoriser une courbe régulière, fonctionne par
+descente de gradient]
+[Utilise le Level-Set pour permettre, entre autre des changement de
+topologie. Extraction du niveau 0 par interpolation.]
 
 \section{Transformée de Fourier}
 \subsection{Transformée 1D}
+\paragraph{Principe} On peut représenter un signal $f(x)$ par une
+somme dénombrable de sinus/cosinus:
+$$f(x) = \sum_{n = -\infty}^{+ \infty} c_n(f)e^{\imath 2\pi \frac{n}{T}}
+\quad\text{avec}\quad c_n(f) = \frac{1}{T}\int_{-T/2}^{T/2} f(t) e^{-\imath 2\pi \frac{n}{T}t} $$
+où $T$ est la période et $c_0(f)$ la moyenne de $f$
+
+\paragraph{Transformée de Fourier 1D}
 \subsection{Transformée 2D et 2D discrète}
 \subsection{Transformée sur des images}
 
