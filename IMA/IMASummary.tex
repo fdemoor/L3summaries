@@ -29,7 +29,7 @@
 On considère des images en niveaux de gris. À chaque pixel d'une image
 on associe donc une valeur dans ${0\dots255}$
 \subsection{Histogramme}
-L'histogramme d'une image donne des informations que la densité de
+L'histogramme d'une image donne des informations sur la densité de
 chaque valeur.
 \paragraph{Définition} L'histogramme d'une image $I$ est une fonction
 discrète qui associe à chaque valeur d’intensité le nombre de pixels
@@ -41,14 +41,14 @@ h_t : & {0\dots255} & \to & \mathbb{N} \\
 \end{array}
 $$
 \subparagraph{Remarque} Si on a une image de taille $p\times q$ alors
-$\sum_{n = 0}^{255} = p*q$
+$\sum_{n = 0}^{255} h_t(n)= p*q$
 
 \subparagraph{Propriété} L'histogramme d'une image et de sa translation
 sont les mêmes. Ce n'est donc \emph{pas une caractéristique de l'image}.
 
 \paragraph{Interprétation} Si l'histogramme est condensé sur les valeurs
-faibles (resp. sur les fortes) alors l'image est \emph{sous-exposé} (resp.
-\emph{surexposé}).
+faibles (resp. sur les fortes) alors l'image est \emph{sous-exposée} (resp.
+\emph{surexposée}).
 
 \paragraph{Égalisation} On peut normaliser un histogramme condensé en
 étalant ces valeurs sur toute la plage $[|0, 255|]$. Cela améliore le
@@ -99,7 +99,7 @@ L'influence des voisins sur le résultat en une position donnée va donc
 dépendre du noyau de convolution $g$ utilisé. Cela permet de lisser mais
 peut aussi induire du flou.
 
-Ex : Noyau moyenneur, gaussienne, floude bougé, etc.
+Ex : Noyau moyenneur, gaussienne, flou de bougé, etc.
 
 \subparagraph{Remarque} Pour débruiter, un filtre médian est plus
 efficace qu'un filtre moyenneur.
@@ -136,7 +136,9 @@ $w = (w_1, \dots w_n)$ donne une information scalaire sur la variation
 du volume autour du point.
 $$\text{div} w = \frac{\partial w_1}{\partial x_1} + \dots + \frac{\partial w_n}{\partial x_n} = \nabla \cdot w$$
 
-\paragraph{Rotationnel} [À compléter, éventuellement,
+\paragraph{Rotationnel} 
+Le rotationnel est un champ de vecteurs.
+[À compléter, éventuellement,
 pour ceux qui ont du temps, et du courage, ou une quelconque autre motivation]
 
 \subsection{Équation aux dérivées partielles}
@@ -255,7 +257,7 @@ On considère trois types de régularisation: débruitage, déconvolution
 («défloutage») et inpainting (ou désocclusion).
 
 \paragraph{Modélisation mathématique} La dégradation d'une image $f_0$
-inconnue en une image $f$ observé se traduit par $f = \mathcal{R} f_0 + \eta$
+inconnue en une image $f$ observée se traduit par $f = \mathcal{R} f_0 + \eta$
 où $\mathcal{R}$ est l'opérateur représentant la dégradation déterministe
 (ex: convolution avec une gaussienne, opérateur de masquage) et $\eta$ est
 une image aléatoire, le bruit.
@@ -314,7 +316,7 @@ $$\frac{\partial F}{\partial u(x,y)}(x, y, u(x,y),\nabla u(x,y))
 (\frac{\partial F}{\partial \xi_i}(x, y, u(x,y),\nabla u(x,y))) = 0$$
 où $\frac{\partial F}{\partial \xi_i}$ est la dérivée partielle par
 rapport à la i\ieme composante de $\nabla u (x,y)$.
-C'est l'\emph{Équation d'Euler-Lagrange} associé au problème d'optimisation.
+C'est l'\emph{Équation d'Euler-Lagrange} associée au problème d'optimisation.
 
 \subsection{Débruitage}
 \paragraph{Régularisation de Tikhonov} En utilisant l'EDP précédente,
