@@ -11,6 +11,7 @@
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{mathrsfs}
 
 \usepackage{float}
 
@@ -250,11 +251,125 @@ $u_k^{n+1}$ en fonction de $u_i^n$ pour un certain $i$. Il est implicite
 sinon.
 
 \section{Restauration d'images}
+On considère trois types de régularisation: débruitage, déconvolution
+(«défloutage») et inpainting (ou désocclusion).
+
+\paragraph{Modélisation mathématique} La dégradation d'une image $f_0$
+inconnue en une image $f$ observé se traduit par $f = \mathcal{R} f_0 + \eta$
+où $\mathcal{R}$ est l'opérateur représentant la dégradation déterministe
+(ex: convolution avec une gaussienne, opérateur de masquage) et $\eta$ est
+une image aléatoire, le bruit.
+
+\subparagraph{Bruit} On suppose que $\eta$ décrit un bruit blanc, ie
+que toutes les fréquences ont la même importance dans le processus aléatoire.
+Généralement, on prend un bruit blanc gaussien, la loi de probabilité des
+fréquences est alors une gaussienne.
+
 \subsection{Régularisation}
+\paragraph{Score de régularité} Il existe une infinité de $\eta$ aboutissant
+à une image initiale $f_0$. On sait cependant que l'image initiale était
+«lisse». On a donc besoin de mesurer la régularité. Souvent, on utilise la
+norme du gradient $\phi (u) = \int_\Omega \|\nabla u(x) \|^2d\Omega$.
+
+\paragraph{Modélisation} On aboutit à la résolution du problème:
+$$\mathcal{R}u \ \text{proche de}\  f \qquad\text{ET}\qquad u\  \text{régulière}$$
+Une modélisation possible est alors
+$$ \|f - \mathcal{R}u\|^2_{\mathscr{L}^2} =
+\int_\Omega \left( f(x) - \mathcal{R} u(x) \right)^2 d\Omega \quad\text{petit}$$
+$$ \|\nabla u\|^2_{\mathscr{L}^2} =
+\int_\Omega \|\nabla u(x) \|^2d\Omega \quad\text{petit}$$
+
+\paragraph{Régularisation de Tikhonov} On cherche $u$ telle que
+$$ \inf_u
+\underbrace{\int_\Omega \left( f(x) - \mathcal{R} u(x) \right)^2 d\Omega}_{\text{Terme de fidelité}}
++ \lambda \underbrace{\int_\Omega \|\nabla u(x) \|^2d\Omega}_{\text{Régularisation}}$$
+
 \subsection{Minimisation de fonctionnelle}
+
+\paragraph{Méthodes locales} Depuis un point $x_0$ on construit une
+suite de point avec une condition d'arrêt. Ex: Descente de gradient,
+recuit simulé.
+
+\paragraph{Méthodes globales} On cherche directement le minimum global.
+Ex: Moindre carré, simplexe, algos génétiques.
+
+\paragraph{Descente de gradient} On se déplace dans la direction opposé au
+gradient, c'est la direction de la plus grande descente. On avance à un
+pas proportionnel au gradient.
+
+\subparagraph{Limites de l'algo} On ne converge que vers un minimum local
+dépendant du point de départ. Dans les zones «plates», le gradient est
+faible et donc l'algo lent.
+
+\paragraph{Image} Pour adapter la méthode de descente de gradient aux
+images on passe par la dérivée de Gâteaux.
+
+\subparagraph{Dérivée de Gâteaux} La dérivée de Gâteaux de $J$ au point
+$u$ dans la direction $\phi$ est définie par
+$$\lim_{\epsilon \to 0} \frac{J(u + \epsilon \phi) - J(u)}{\epsilon}$$
+
+On cherche $\inf_u J(u)$. Après calculs, on trouve une EDP:
+$$\frac{\partial F}{\partial u(x,y)}(x, y, u(x,y),\nabla u(x,y))
+- \sum_{i=1}^n \frac{\partial}{\partial x_i}
+(\frac{\partial F}{\partial \xi_i}(x, y, u(x,y),\nabla u(x,y))) = 0$$
+où $\frac{\partial F}{\partial \xi_i}$ est la dérivée partielle par
+rapport à la i\ieme composante de $\nabla u (x,y)$.
+C'est l'\emph{Équation d'Euler-Lagrange} associé au problème d'optimisation.
+
 \subsection{Débruitage}
+\paragraph{Régularisation de Tikhonov} En utilisant l'EDP précédente,
+on montre qu'il faut résoudre l'EDP $u(x,y) -f(x,y) -\lambda \nabla u(x,y) = 0$
+pour résoudre le problème de minimisation.
+
+\paragraph{Descente de gradient} La formule de descente de gradient devient
+$$\frac{\partial u(x,t)}{\partial t} = -\left(\frac{\partial F}{\partial u(x,y)}
+- \sum_{i=1}^n \frac{\partial}{\partial x_i} (\frac{\partial F}{\partial \xi_i})\right)$$
+
+\paragraph{Discrétisation} Au final à chaque étape de la descente on a
+$$u_{i,j}^{n+1} = u_{i,j}^n - \Delta t \left(\frac{\partial F}{\partial u(x,y)}
+- \sum_{i=1}^n \frac{\partial}{\partial x_i} (\frac{\partial F}{\partial \xi_i})\right)$$
+
+\paragraph{Observation} La courbe d'énergie (ie le terme régularisant)
+est bien décroissant et converge vers 0. L'énergie est convexe donc ne
+dépend pas de l'initialisation, prendre $u^0 = f$ accélère la convergence.
+
+\paragraph{Diffusion linéaire} L'opérateur laplacien $\nabla$ lisse
+de manière isotrope et altère donc trop les contours. On transforme
+l'équation pour moins pénaliser les gradients forts grâce à une fonction
+$\Psi$ adaptée:
+$$ J(u) =
+\underbrace{\int_\Omega \left( u(x) -f(x) \right)^2 d\Omega}_{\text{Terme de fidelité}}
++ \lambda \underbrace{\int_\Omega \Psi{\|\nabla u(x) \|}d\Omega}_{\text{Régularisation}}$$
+
+\paragraph{Nouvelle descente de gradient}
+$$\frac{\partial u}{\partial t} = 2(f - u) + \lambda \text{div}\left( \frac{\Psi'(\|\nabla u\|)}{\|\nabla u\|} \nabla u\right)$$
+Avec par exemple: $\Psi(x) = \sqrt{\varepsilon + x^2} \xrightarrow[\varepsilon\to 0]{} \vert x \vert$
+
+\subparagraph{Autres méthodes de débruitage} Non-Local Means et BM3D.
+
 \subsection{Défloutage}
+\paragraph{Adjoint} On définit l'adjoint $\mathcal{R}^*$ de $\mathcal{R}$
+par  $<\mathcal{R}f \vert g> = <f \vert \mathcal{R}^* g>$.
+
+\paragraph{$\mathcal{R} \neq$ Id} Si on considère la condition
+$\lim_{\epsilon \to 0} \frac{J(u + \epsilon \phi) - J(u)}{\epsilon}$
+alors il suffit de prendre $\phi = -2\mathcal{R}^*(\mathcal{R} u -f)$
+pour avoir la convergence.
+
+\subparagraph{Nouvelle descente de gradient}
+$$\frac{\partial u}{\partial t} = 2\mathcal{R}^* f - 2 \mathcal{R}^*\mathcal{R} u$$
+
+\paragraph{Déconvolution} Ici, $\mathcal{R} u = G_\sigma * u$. On peut alors
+montrer que $\mathcal{R}^* = \mathcal{R}$
+
 \subsection{Inpainting}
+\paragraph{Descente de gradient} En précisant que l'on a un terme de régularité
+($\lambda \neq 0$) on aboutit à la descente de gradient:
+$$\frac{\partial u}{\partial t} = 2\mathcal{R}^* f - 2 \mathcal{R}^*\mathcal{R} u
++ \lambda \text{div}\left( \frac{\Psi'(\|\nabla u\|)}{\|\nabla u\|} \nabla u\right)$$
+On peut aussi prouver que $\mathcal{R}^* = \mathcal{R}$.
+
+\paragraph{Autre méthode} Le copier-coller.
 
 \section{Segmentation}
 \subsection{Seuillage d'histogramme}
