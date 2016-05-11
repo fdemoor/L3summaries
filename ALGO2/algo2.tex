@@ -137,7 +137,11 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 \item hypothèse : il y a une solution de coût optimal $C^*$
 \end{itemize}
 
-\paragraph{Garantie de performance} Un algorithme d’approximation a une garantie de performance $\rho (n)$ (appelé facteur d’approximation) si \[\dfrac{C(\text{solution calculée})}{C^*} \leq \rho(n).\]
+\paragraph{Garantie de performance} Un algorithme d’approximation a une garantie de performance $\rho (n)$ (appelé facteur d’approximation) si
+\[\frac{C(\text{solution calculée})}{C^*} \leq \rho(n) \]
+pour un problème de minimisation, ou 
+\[ \frac{C^*}{C(\text{solution calculée})} \leq \rho(n) \]
+pour un problème de maximisation.
 
 \subsection{Exemples}
 
