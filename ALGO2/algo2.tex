@@ -260,6 +260,17 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 \end{itemize}
 Contrepartie : solution approchée (avec bonne proba d’être près de l’optimale) ou complexité bonne en moyenne mais pas dans le pire des cas.
 
+\subsection{Premiers exemples}
+
+\paragraph{Random Quick Sort} Comme le tri rapide déterministe mais le pivot est choisi aléatoirement. La complexité est quadratique dans le pire des cas mais en $\mathcal{O}(n \cdot ln(n))$ en moyenne.
+
+Pour le montrer, on calcule l’espérance de $X_{i, j}$ qui vaut 1 si $i$ et $j$ sont comparées et $0$ sinon. Si $X$ est le temps d’exécution, on a :
+\[\mathbb{E}(X) = \sum_{1 \leq i < j \leq n}^n \mathbb{E}(X_{i, j}) \]
+
+\paragraph{Random Min Cut}
+
+\TODO
+
 \subsection{Classes de complexité des algorithmes probabilistes}
 
 \paragraph{ZPP : Zero Error Probabilistic Polynomial} Pour toute entrée de taille $n$, si il termine l’algo renvoie la réponse exacte et le temps moyen d’exécution et borné par $P(n)$, où $P$ est un polynôme. 
@@ -276,9 +287,23 @@ Contrepartie : solution approchée (avec bonne proba d’être près de l’opti
 
 \emph{Rappel :} $L \in $ co-RP $ \Longleftrightarrow $ $\Sigma^* \setminus L \in $ RP.
 
+\subsection{Déterminisation ou dérandomisation}
 
+\paragraph{But} Passer d’un algorithme probabiliste à un algorithme déterministe en conservant les même facteurs d’approximation.
 
+\subsection{Schéma d’approximation probabiliste entièrement polynomial}
 
+En anglais : Fully Polynomial Randomized Approximation (FPRA)
+
+\paragraph{Définition} Si $k$ est une valeur, $X$ est $(\varepsilon, \delta)$-approximation de $k$ si $\mathbb{P}(\left| X - k \right| \leq \varepsilon \cdot k) \geq 1 - \delta$.
+
+\paragraph{Schéma d’approximation probabiliste entièrement polynomial} C'est un algorithme $A$ qui prend $\varphi, \varepsilon, \delta$ en entrée et calcule $A(\varphi)$ une $(\varepsilon, \delta)$-approximation de la valeur recherchée, en temps polynomial en $\left| \varphi \right|$, $log(\frac{1}{\varphi})$ et $\frac{1}{\varepsilon}$.
+
+\paragraph{Bornes de Chernoff} Soient $0 < p, \delta, \varepsilon < 1$ et $N \geq \dfrac{3 \cdot log(\frac{2}{\delta})}{p \cdot \varepsilon^2}$.
+
+Si $X_1, \dots, X_N$ sont des variables aléatoires indépendantes et à valeur dans $ \{ 0, 1 \} $, alors 
+
+\[\mathbb{P}\left( \left| ~ \left( \frac{1}{N} \sum^N_{i = 1}X_i \right) - p ~ \right| \leq \varepsilon \cdot p \right) \geq 1 - \delta.\]
 \section{Géométrie algorithmique}
 
 \subsection{Enveloppe convexe}
