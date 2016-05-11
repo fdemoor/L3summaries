@@ -20,15 +20,16 @@
 \maketitle
 %\tableofcontents
 \section*{TD 1 : Introduction à C++}
-Surcharge des opérateurs : un même nom de fonction en désigne plusieurs selon le contexte (type des arguments par exemple).
+Surcharge des opérateurs et fonctions : un même nom de fonction en désigne plusieurs (avec nombre d'arguments différent, types des arguments différentes, mais le type de retour doit être le même pour les fonctions),
+attentions aux ambiguïtés (erreur à la compilation).
 
-Fonction amie qui accède aux champs \code{private} d'un autre classe.
+Fonction amie qui accède aux champs \code{private} d'un autre classe, ou classe amie.
 
 \code{static} : lié à la classe et non à ses instances.
 
-STL : Standard Template Library.
+STL : Standard Template Library (implémente de nombreuses structures de données : listes, tableaux, dictionnaires, piles, files, etc).
 
-Itérateurs pour parcourir les différents conteneurs.
+Itérateurs pour parcourir les différents conteneurs, \code{const\_iterator} disponible en C++11.
 
 \section*{TD 2 : Introduction à la programmation C}
 Premières versions du système Unix.
@@ -39,7 +40,7 @@ Utilisation de \code{gcc}.
 
 \code{sizeof} pour connaître la taille d'un type.
 
-Utilisation de \code{valgrind};
+Utilisation de \code{valgrind} pour détecter les fuites mémoires et voir l'utilisation du tas.
 
 Tous les paramètres sont passés par valeur (pas les tableaux : adresse du premier élément. Sauf dans une structure).
 
@@ -48,33 +49,38 @@ Fonction \code{ulimit} en Shell pour ajuster taille de la pile.
 \code{static} : durée de vie globale, portée locale.
 
 \section*{TD 3 : références et héritage en C++}
-Références : utilisation implicite. C'est un alias, on peut passer en paramètre et modifier l'objet lui-même.
 
-Mot-clé \code{const} sur une référence si on ne veut pas que l'objet soit modifié.
+Références : utilisation implicite. C'est un alias, on peut passer en paramètre et modifier l'objet lui-même (en réalité, passage par pointeur implicite), on peut avoir comme type de retour \code{T\&} (mais la référence renvoyée doit être stockée dans le tas)
+
+Mot-clé \code{const} sur une méthode, un membre ou un argument pour garantir sa non-modification, erreur à la compilation si pas respecté. Attention si argument est \code{const}, les méthodes appliquées dessus dans la fonction doivent être \code{const} également.
 
 Attention à ne pas retourner des références vers des objets supprimés.
 
 Dans une classe : \code{public}, \code{private} pour ce qui est accessible depuis l'extérieur de la classe ou non. On peut déclarer des classes/méthodes amies avec \code{friend} qui ont accès au \code{private}.
 
-On module la visiblité en faisant des héritages \code{public, private, protected}.
+On module la visibilité en faisant des héritages \code{public, private, protected}.
 
 En cas d'héritage multiple, c’est la première occurrence de l’attribut qui masque les autres.
 
+Polymorphisme, redéfinir des méthodes de la classe mère.
+
 
 \section*{TD 4 : pointeurs, virtualisation et exceptions en C++}
+
 \code{this} : pointeur vers l'instance courante d'une classe.
 
-Déconseillé d'utiliser pointeurs. Sont utilisés par STL. Ou dès qu'on utilise du C (\code{cstdlib, cstdio}...).
+Déconseillé d'utiliser pointeurs. Sont utilisés par STL. Ou dès qu'on utilise du C (\code{cstdlib, cstdio}...). Ou pas. Les passages par référence sont des passage implicite par pointeur, parfois plus simple d'utiliser directement des pointeurs.
 
 Copier une classe dont un attribut est un pointeur : on va copier la même adresse. Copie superficielle.
 
 Résolution : choix de la méthode à appliquer (surcharge). Résolution statique : le compilateur cherche la première méthode possible dans l'héritage.
 
-On peut spécifier la fonction pour utiliser la classe réelle de l'objet et non la classe spécifiée par la référence ou le pointeur : \code{virtual}.
+On peut spécifier la fonction pour utiliser la classe réelle de l'objet et non la classe spécifiée par la référence ou le pointeur : \code{virtual}. Attention, la virtualisation ne marche qu'avec des pointeurs. Un destructeur doit toujours être \code{virtual}.
 
 Exceptions : \code{try, throw, catch}. Classes peuvent être lancées.
 
 \section*{TD 5 : généricité en C++, conteneurs STL}
+
 \code{template} : déclarations paramétrées. Classes paramétrées : classes génériques.
 
 Conteneurs associatifs : permet d'associer des valeurs à des clés. \code{mmap}. On peut ensuite faire des recherches de clés : \code{find}.
@@ -84,11 +90,13 @@ Différents types d'itérateurs pour les parcourir : \code{iterator, reverse\_it
 \code{multimap} : plusieurs paires pour une même clé. \code{set} et \code{multiset}.
 
 \section*{TD 6 : Premiers pas en OpenGL/GLUT}
+
 L'interface est autonome par rapport au programme. Doit se reconfigurer à chaque événement : interactions clavier, X11, redimensionnement... Callback functions.
 
 Quand on fait le programme, on n'a pas de contrôle sur l'environnement dans lequel il va être lancé. Les callback functions ne doivent dépendre que de choses sous contrôle.
 
 \section*{TD 7 : À la découverte de Lisp}
+
 Un objet : soit un atome, soit une liste d'objets entre parenthèses.
 
 \textit{Read Eval Print} : REP.
@@ -101,12 +109,13 @@ Liaison dynamique : récursivité native.
 
 % le reste parle de eval, apply... On a tous vu comment ca marchait pour le projet
 
-Les symbols dans une liste après un lambda ne seront évalués qu'au moment de l'application (liaison dynamique). On peut donc définir avec des objets encore non définis.
+Les symboles dans une liste après un lambda ne seront évalués qu'au moment de l'application (liaison dynamique). On peut donc définir avec des objets encore non définis.
 
 Protéger les noms de variables libres : \code{gensym}.
 
 \section*{TD 8 : Évaluation statique et clôtures}
-Liaison lexicale : on fait un \textit{snapshot} de l'environnement à chaque déclaration, que l'on restaure pour chaque évaluation.
+
+Liaison lexicale : on fait une \textit{snapshot} de l'environnement à chaque déclaration, que l'on restaure pour chaque évaluation.
 
 Associer environnement et objet : clôture.
 
@@ -115,6 +124,7 @@ Il faut alors utiliser des \textit{placeholders} pour les définitions récursiv
 Continuation : doit utiliser la valeur des variables libres au moment de sa définition.
 
 \section*{TD 9 : Scheme, aspects avancés}
+
 \code{let} équivalent à \code{lambda} (liaison locale pour évaluation).
 
 \code{letrec} crée les liaisons avant évaluations : pour fonctions récursives.
