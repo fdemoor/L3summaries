@@ -253,7 +253,31 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 
 \section{Algorithmes probabilistes}
 
-\TODO
+\noindent Introduire de l’aléatoire pour :
+\begin{itemize}
+\item Réduire la complexité
+\item Simplifier les algorithmes.
+\end{itemize}
+Contrepartie : solution approchée (avec bonne proba d’être près de l’optimale) ou complexité bonne en moyenne mais pas dans le pire des cas.
+
+\subsection{Classes de complexité des algorithmes probabilistes}
+
+\paragraph{ZPP : Zero Error Probabilistic Polynomial} Pour toute entrée de taille $n$, si il termine l’algo renvoie la réponse exacte et le temps moyen d’exécution et borné par $P(n)$, où $P$ est un polynôme. 
+
+\emph{Exemple :} Random quick sort. 
+
+\paragraph{RP : Randomized Polynomial} Pour toute entrée de taille $n$, l’algo $A$ s’exécute en temps borné par $P(n)$, ou $P$ est un polynôme, et si $x \in L$, $A$ répond \og oui \fg{} avec probabilité $\frac{1}{2}$, sinon il répond non avec probabilité $1$.
+
+\emph{Exemple :} Random min cut. 
+
+\paragraph{Théorème} RP $\subset$ NP.
+\paragraph{Théorème} P $\subset$ ZPP.
+\paragraph{Théorème} ZPP = RP $\cap$ co-RP.
+
+\emph{Rappel :} $L \in $ co-RP $ \Longleftrightarrow $ $\Sigma^* \setminus L \in $ RP.
+
+
+
 
 \section{Géométrie algorithmique}
 
