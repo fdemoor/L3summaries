@@ -341,9 +341,25 @@ Si $X_1, \dots, X_N$ sont des variables aléatoires indépendantes et à valeur 
 La complexité dépend de la sortie (\emph{output sensitive}).
 
 
-\paragraph{Balayage de Graham}\TODO
+\paragraph{Balayage de Graham}
+On utilise une pile pour représenter l'enveloppe.
+$p_0$ point d'ordonnée minimale. $p_1\dots p_n$ énumération des autres points, triés par angle polaire croissant (par rapport à $p_0$).
+On est alors certains que les 3 premiers (et et les deux derniers) points sont dans l'enveloppe convexe.
 
-\paragraph{Complexité du balayage de Graham}\TODO
+\begin{itemize}
+\item Au début, empiler $p_0$, $p_1$ puis $p_2$
+\item Pour $i$ de 1 à $n$\begin{itemize}
+  \item Tant que $p_i$ est à droite du vecteur formé par les deux points en haut de la pile (ie $p_i$ est à l'extérieur de la proposition d'enveloppe que représente la pile), on dépile.
+    \item Puis on empile $p_i$.
+\end{itemize}
+\item On retourne la pile.
+\end{itemize}
+
+
+\paragraph{Complexité du balayage de Graham}
+$\mathcal{O}(n log(n))$ pour trier les points. Dans la boucle, on empile ou dépile au maximum $n$ fois.
+
+Donc complexité en $\mathcal{O}(n log(n))$.
 
 \subsection{Points les plus rapprochés}
 
