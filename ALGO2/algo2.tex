@@ -113,6 +113,19 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 \paragraph{Théorème} MAX\_CUT est NP-complet. (\emph{Réduction de MAX-2-SAT à MAX\_CUT}.)
 
 \section{Algorithmes d'approximation}
+\paragraph{Problème d'optimisation} : On cherche à maximiser ou minimiser quelque chose. Problème de décision associé : regarder si on peut être supérieur ou inférieur à un certain paramètre. Opt résout Dec. Dec résout Opt par dichotomie.
+
+Une instance de problème d'optimisation : ensemble de solutions admissibles, un coût pour chaque solution. Il y a toujours une solution optimale de coût $C$\up{*}.
+
+\paragraph{VERTEX\_COVER} Trouver un sous-graphe de nombre de sommets minimal qui couvre toutes les arrêtes. Problème de décision NP-complet (réduction d'ens\_indep).
+
+On peut prendre un algorithme glouton qui choisit une arête non couverte et ajoute ses deux extrémités à la solution jusqu'à ce qu'il n'y ait plus d'arêtes non couvertes. C'est une 2-approximation.
+
+\paragraph{Garantie de performance} Un algorithme d'approximation a la garantie de performance $\rho(n)$ si $C(\text{solution})\leq\rho(n) C\up{*}$ (pour un problème de minimisation, pour de la maximisation, inverser le sens de l'inégalité). $\rho(n)$ : facteur d'approximation.
+
+
+
+
 
 \TODO
 
