@@ -271,9 +271,7 @@ Contrepartie : solution approchée (avec bonne proba d’être près de l’opti
 Pour le montrer, on calcule l’espérance de $X_{i, j}$ qui vaut 1 si $i$ et $j$ sont comparées et $0$ sinon. Si $X$ est le temps d’exécution, on a :
 \[\mathbb{E}(X) = \sum_{1 \leq i < j \leq n}^n \mathbb{E}(X_{i, j}) \]
 
-\paragraph{Random Min Cut}
-
-\TODO
+\paragraph{Random Min Cut} Soit $G$ un graphe non orienté, pondéré par des entiers. On veut trouver la coupe de poids minimal (ie un ensemble d’arêtes à supprimer pour rendre le graphe non connexe). On contracte des arêtes au hasard. Si $G$ a $n$ sommets, la probabilité que la coupe renvoyée soit minimale est supérieure à $\frac{2}{n^2}$
 
 \subsection{Classes de complexité des algorithmes probabilistes}
 
@@ -294,10 +292,13 @@ Pour le montrer, on calcule l’espérance de $X_{i, j}$ qui vaut 1 si $i$ et $j
 \subsection{Déterminisation ou dérandomisation}
 
 \paragraph{But} Passer d’un algorithme probabiliste à un algorithme déterministe en conservant les même facteurs d’approximation.
+\emph{Exemple :} Déterminisation de Random Max Cut (NP-Complet). 
 
 \subsection{Schéma d’approximation probabiliste entièrement polynomial}
 
 En anglais : Fully Polynomial Randomized Approximation (FPRA)
+
+\emph{Exemple développé :} SAT-DNF (nombre de valuations qui satisfont une formule en DNF - NP-dur). 
 
 \paragraph{Définition} Si $k$ est une valeur, $X$ est $(\varepsilon, \delta)$-approximation de $k$ si $\mathbb{P}(\left| X - k \right| \leq \varepsilon \cdot k) \geq 1 - \delta$.
 
@@ -308,6 +309,9 @@ En anglais : Fully Polynomial Randomized Approximation (FPRA)
 Si $X_1, \dots, X_N$ sont des variables aléatoires indépendantes et à valeur dans $ \{ 0, 1 \} $, alors 
 
 \[\mathbb{P}\left( \left| ~ \left( \frac{1}{N} \sum^N_{i = 1}X_i \right) - p ~ \right| \leq \varepsilon \cdot p \right) \geq 1 - \delta.\]
+
+
+
 \section{Géométrie algorithmique}
 
 \subsection{Enveloppe convexe}
@@ -449,7 +453,7 @@ Un round est constitué d'une application de la fonction $msg_i$ et d'un envoi d
 
 \paragraph{Théorème de Fischer Lynch Paterson}Il n'existe pas d'algorithme résolvant le consensus dans le cas asynchrone qui tolère même une seule défaillance de type crash.
 
-\paragraph{}\TODO formalisation, propriété du diamant, bivalence, étapes de la preuve (cf TD6)
+\paragraph{}\TODO{} formalisation, propriété du diamant, bivalence, étapes de la preuve (cf TD6)
 
 
 \end{document}
