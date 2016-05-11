@@ -1,11 +1,14 @@
 \documentclass[french]{article}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{babel}
+\usepackage[french]{babel}
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{fullpage}
+\usepackage{caption}
+\usepackage{subcaption}
+
 
 \usepackage{float}
 
@@ -127,7 +130,115 @@ On peut prendre un algorithme glouton qui choisit une arête non couverte et ajo
 
 
 
-\TODO
+\subsection{Définitions}
+
+\paragraph{Problème de décision (DEC) $≠$ Problème d’optimisation (OPT)} 
+\begin{itemize}
+
+
+\item Un problème OPT (par exemple \og $x$ tel $f(x)$ minimal \fg) peut être traduit en un problème DEC (\og Pour un $b$ donné, existe-t’il $x$ tel que $f(x) \leq b$ ? \fg). 
+
+\item OPT permet de résoudre DEC
+\item Souvent, DEC permet de résoudre OPT par dichotomie.
+
+\end{itemize}
+
+\paragraph{Instance d’un problème d’optimisation} 
+\begin{itemize}
+\item ensemble de solution admissibles
+\item coût pour chaque solution admissibles
+\item hypothèse : il y a une solution de coût optimal $C^*$
+\end{itemize}
+
+\paragraph{Garantie de performance} Un algorithme d’approximation a une garantie de performance $\rho (n)$ (appelé facteur d’approximation) si \[\dfrac{C(\text{solution calculée})}{C^*} \leq \rho(n).\]
+
+\subsection{Exemples}
+
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Problème d’optimisation : VERTEX COVER}} \\ 
+\emph{Entrée} & $G = (V,E)$ un graphe non orienté \\ 
+\emph{Sortie} & $S \subset V$ de cardinal minimal tel que S couvre les arêtes de $G$, ie $\forall (v, v') \in E, v \notin S \implies v' \in S$\\
+\end{tabularx}
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}[b]{0.3\textwidth}
+\center
+\begin{tikzpicture}
+\node[draw, circle, fill=gray!50] (A) {};
+\node[draw, circle, fill=gray!50] (B) at(1, 0) {};
+\node[draw, circle] (C) at(2, 0) {};
+\node[draw, circle, fill=gray!50] (D) at(3, 0) {};
+\node[draw, circle] (E) at(0, 1) {};
+\node[draw, circle] (F) at(1, 1) {};
+\node[draw, circle] (G) at(2, 1) {};
+
+\draw (A) -- (E);
+\draw (E) -- (F);
+\draw (F) -- (B);
+\draw (B) -- (C);
+\draw (F) -- (G);
+\draw (G) -- (C);
+\draw (G) -- (D);
+\end{tikzpicture}
+\subcaption{$S$ n’est pas admissible}
+\end{subfigure}
+\qquad
+\begin{subfigure}[b]{0.3\textwidth}
+\center
+\begin{tikzpicture}
+\node[draw, circle, fill=gray!50] (A) {};
+\node[draw, circle, fill=gray!50] (B) at(1, 0) {};
+\node[draw, circle] (C) at(2, 0) {};
+\node[draw, circle, fill=gray!50] (D) at(3, 0) {};
+\node[draw, circle] (E) at(0, 1) {};
+\node[draw, circle] (F) at(1, 1) {};
+\node[draw, circle, fill=gray!50] (G) at(2, 1) {};
+
+\draw (A) -- (E);
+\draw (E) -- (F);
+\draw (F) -- (B);
+\draw (B) -- (C);
+\draw (F) -- (G);
+\draw (G) -- (C);
+\draw (G) -- (D);
+\end{tikzpicture}
+\subcaption{$S$ est une solution non optimale}
+\end{subfigure}
+\qquad
+\begin{subfigure}[b]{0.3\textwidth}
+\center
+\begin{tikzpicture}
+\node[draw, circle] (A) {};
+\node[draw, circle, fill=gray!50] (B) at(1, 0) {};
+\node[draw, circle] (C) at(2, 0) {};
+\node[draw, circle] (D) at(3, 0) {};
+\node[draw, circle, fill=gray!50] (E) at(0, 1) {};
+\node[draw, circle] (F) at(1, 1) {};
+\node[draw, circle, fill=gray!50] (G) at(2, 1) {};
+
+\draw (A) -- (E);
+\draw (E) -- (F);
+\draw (F) -- (B);
+\draw (B) -- (C);
+\draw (F) -- (G);
+\draw (G) -- (C);
+\draw (G) -- (D);
+\end{tikzpicture}
+\subcaption{$S$ est une solution optimale}
+\end{subfigure}
+
+\caption{$S$ est constitué des nœuds grisés}
+\end{figure}
+
+\paragraph{Théorème} Le problème de décision associé à VERTEX COVER est NP-complet. (\emph{VERTEX COVER $\equiv$ ENS\_INDEP})
+
+
+
+
 
 \section{Algorithmes probabilistes}
 
