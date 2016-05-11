@@ -179,9 +179,9 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 \begin{tikzpicture}
 \node[draw, circle, fill=gray!50] (A) {};
 \node[draw, circle, fill=gray!50] (B) at(1, 0) {};
-\node[draw, circle] (C) at(2, 0) {};
+\node[draw, circle, fill=gray!50] (C) at(2, 0) {};
 \node[draw, circle, fill=gray!50] (D) at(3, 0) {};
-\node[draw, circle] (E) at(0, 1) {};
+\node[draw, circle, fill=gray!50] (E) at(0, 1) {};
 \node[draw, circle] (F) at(1, 1) {};
 \node[draw, circle, fill=gray!50] (G) at(2, 1) {};
 
@@ -223,6 +223,30 @@ Restriction de SAT à des formules en forme normale conjonctive (CNF) tel que ch
 
 \paragraph{Théorème} Le problème de décision associé à VERTEX COVER est NP-complet. (\emph{VERTEX COVER $\equiv$ ENS\_INDEP})
 
+
+\paragraph{Théorème} Un algorithme glouton permet d’obtenir une $2$-approximation pour VERTEX COVER..
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Problème d’optimisation : SET COVER}} \\ 
+\emph{Entrée} & $X$ ensemble fini d’éléments, $\mathcal{F}$ une famille de sous ensembles de $X$.\\ 
+\emph{Sortie} & $S \subset \mathcal{F}$ de cardinal minimal tel que S couvre tout $X$, ie $\forall x \in X, \exists ~ \mathcal{E} \in S $ tel que $x \in \mathcal{E}$\\
+\end{tabularx}
+
+\paragraph{Théorème} VERTEX COVER $\leq$ SET COVER
+
+
+\paragraph{Théorème} Un algorithme glouton permet d’obtenir une $ln(n)$-approximation pour VERTEX COVER.
+
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\multicolumn{2}{c}{\textbf{Problème d’optimisation : VOYAGEUR DU COMMERCE}} \\ 
+\emph{Entrée} & $n$ villes, distances entre chaque ville\\ 
+\emph{Sortie} & Une tournée qui minimise la distance parcourue.\\
+\end{tabularx}
+
+\paragraph{Théorème} Si P $\neq$ NP, alors pour toutes constante $\rho \geq 1$, il n’existe pas d’algorithme d’approximation polynomial de garantie de performance $\rho$ pour le voyageur de commerce.
 
 
 
